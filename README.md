@@ -1,73 +1,151 @@
-# Welcome to your Lovable project
+# Anton Sechin — UX/UI Designer Portfolio
 
-## Project info
+A premium, minimalist portfolio website built with React, TypeScript, and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## ✨ Features
 
-## How can I edit this code?
+- **Bilingual Support**: Full RU/EN language switching with persistent selection
+- **Animated Gradient Background**: Subtle, premium animated background
+- **RPG-Style Skills Section**: Avatar-centered skill layout with hover effects
+- **Case Studies**: Full case pages with lightbox gallery
+- **Responsive Design**: Mobile, tablet, and desktop optimized
+- **SEO Ready**: Meta tags, OpenGraph, semantic HTML
 
-There are several ways of editing your application.
+## 🚀 Quick Start
 
-**Use Lovable**
+### Prerequisites
+- Node.js 18+ 
+- npm or bun
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd portfolio
 
-**Use your preferred IDE**
+# Install dependencies
+npm install
+# or
+bun install
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+# or
+bun dev
 ```
 
-**Edit a file directly in GitHub**
+The site will be available at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📁 Project Structure
 
-**Use GitHub Codespaces**
+```
+src/
+├── assets/           # Images (avatar, case covers)
+├── components/       # React components
+│   ├── ui/          # shadcn/ui components
+│   ├── Header.tsx
+│   ├── Hero.tsx
+│   ├── Skills.tsx
+│   ├── Portfolio.tsx
+│   ├── CTA.tsx
+│   ├── Contacts.tsx
+│   └── ...
+├── config/          # Configuration files
+│   ├── site.config.ts   # Personal info (name, email, links)
+│   ├── i18n.ts         # Translations (RU/EN)
+│   └── cases.ts        # Case study content
+├── hooks/
+│   └── useLanguage.tsx # i18n hook
+├── pages/
+│   ├── Index.tsx       # Homepage
+│   └── CasePage.tsx    # Case detail page
+└── index.css          # Design system tokens
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🎨 Customization
 
-## What technologies are used for this project?
+### 1. Update Personal Info
 
-This project is built with:
+Edit `src/config/site.config.ts`:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```typescript
+export const siteConfig = {
+  name: "Your Name",
+  role: "Your Role",
+  email: "your@email.com",
+  telegram: {
+    username: "@yourusername",
+    url: "https://t.me/yourusername",
+  },
+  linkedin: "https://linkedin.com/in/yourprofile",
+  cvUrl: "/cv.pdf", // Place CV in public/cv.pdf
+  // ...
+};
+```
 
-## How can I deploy this project?
+### 2. Update Translations
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Edit `src/config/i18n.ts` to customize all text content in both languages.
 
-## Can I connect a custom domain to my Lovable project?
+### 3. Update Case Studies
 
-Yes, you can!
+Edit `src/config/cases.ts`:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Replace placeholder images in `src/assets/`
+2. Update case content (title, summary, full content)
+3. Add real screenshots to the gallery arrays
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### 4. Update Avatar
+
+Replace these files:
+- `src/assets/avatar.jpg` — Your photo for hero section
+- `src/assets/avatar-3d.png` — 3D avatar for skills section (optional)
+
+### 5. Design Tokens
+
+Customize colors in `src/index.css`:
+
+```css
+:root {
+  --primary: 258 70% 55%;  /* Violet accent */
+  /* ... other tokens */
+}
+```
+
+## 🌐 Deployment
+
+### Vercel (Recommended)
+
+1. Push code to GitHub/GitLab
+2. Import project in Vercel
+3. Deploy!
+
+### Netlify
+
+1. Push code to GitHub/GitLab
+2. Import in Netlify
+3. Build command: `npm run build`
+4. Publish directory: `dist`
+
+## 📋 Checklist Before Deploy
+
+- [ ] Replace `src/assets/avatar.jpg` with your photo
+- [ ] Update `src/config/site.config.ts` with your info
+- [ ] Update LinkedIn URL
+- [ ] Add `public/cv.pdf` (your CV)
+- [ ] Replace case cover images with real screenshots
+- [ ] Update case study content with real projects
+- [ ] Add `public/og-image.png` for social sharing
+
+## 🛠 Tech Stack
+
+- **Framework**: React 18 + TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Routing**: React Router
+- **Animations**: CSS animations + Framer Motion
+- **Build**: Vite
+
+---
+
+Built with ❤️ using [Lovable](https://lovable.dev)
