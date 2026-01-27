@@ -135,7 +135,7 @@ export const i18n = {
       location: "Локация",
     },
     casePage: {
-      back: "← Назад",
+      back: "Назад",
       problem: "Проблема и цель",
       role: "Моя роль",
       process: "Процесс",
@@ -227,7 +227,7 @@ export const i18n = {
       location: "Location",
     },
     casePage: {
-      back: "← Back",
+      back: "Back",
       problem: "Problem & Goal",
       role: "My Role",
       process: "Process",
