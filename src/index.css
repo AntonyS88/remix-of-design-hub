@@ -212,58 +212,123 @@
     }
   }
 
-  /* Premium Glass Card - No borders, shadow only */
-  .glass-card {
-    @apply bg-card/90 backdrop-blur-xl;
-    box-shadow: 0 4px 24px -4px hsl(var(--primary) / 0.08);
+  /* ========================================
+     BRAND GLOW SYSTEM
+     Subtle, premium glow using brand accent
+     ======================================== */
+  
+  /* Glow token variables */
+  :root {
+    --glow-color: var(--primary);
+    --glow-blur: 60px;
+    --glow-opacity: 0.25;
+    --glow-hover-opacity: 0.35;
   }
 
-  .glass-card-hover {
-    @apply glass-card transition-all duration-300;
+  .dark {
+    --glow-opacity: 0.18;
+    --glow-hover-opacity: 0.28;
   }
 
-  .glass-card-hover:hover {
-    box-shadow: 0 12px 40px -8px hsl(var(--primary) / 0.15);
-    transform: translateY(-4px);
+  /* Avatar Glow - subtle brand glow behind avatar */
+  .avatar-glow {
+    @apply relative;
   }
 
-  /* Case Block - Premium hover */
+  .avatar-glow::before {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(
+      circle,
+      hsl(var(--glow-color) / var(--glow-opacity)) 0%,
+      hsl(var(--glow-color) / calc(var(--glow-opacity) * 0.5)) 40%,
+      transparent 70%
+    );
+    filter: blur(var(--glow-blur));
+    z-index: 0;
+    animation: glow-pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  /* CTA Button Glow - appears on hover */
+  .cta-glow {
+    @apply relative overflow-hidden transition-all duration-300;
+    box-shadow: 0 0 0 0 hsl(var(--glow-color) / 0);
+  }
+
+  .cta-glow:hover {
+    box-shadow: 0 4px 32px -4px hsl(var(--glow-color) / var(--glow-hover-opacity));
+  }
+
+  .cta-glow::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary-foreground) / 0.08), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  .cta-glow:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Case Block Hover Glow */
   .case-block {
-    @apply bg-card/60 backdrop-blur-sm;
+    @apply bg-card/60 backdrop-blur-sm transition-all duration-500;
     box-shadow: 0 4px 32px -8px hsl(var(--foreground) / 0.06);
   }
 
   .case-block:hover {
-    box-shadow: 0 16px 48px -12px hsl(var(--primary) / 0.12);
+    box-shadow: 
+      0 16px 48px -12px hsl(var(--foreground) / 0.08),
+      0 0 40px -8px hsl(var(--glow-color) / var(--glow-hover-opacity));
     transform: translateY(-6px);
   }
 
-  /* Skill Slot - No border, shadow only */
+  /* Skill Slot Hover Glow */
   .skill-slot {
     @apply bg-skill-bg rounded-2xl p-4 transition-all duration-300;
     box-shadow: 0 2px 12px -2px hsl(var(--foreground) / 0.06);
   }
 
   .skill-slot:hover {
-    box-shadow: 0 8px 24px -4px hsl(var(--primary) / 0.15);
+    box-shadow: 
+      0 8px 24px -4px hsl(var(--foreground) / 0.08),
+      0 0 24px -4px hsl(var(--glow-color) / var(--glow-hover-opacity));
     transform: translateY(-3px) scale(1.02);
   }
 
-  /* Avatar Ring */
-  .avatar-ring {
-    @apply rounded-full;
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(290 60% 60%), hsl(220 70% 60%));
-    padding: 4px;
-    animation: ring-pulse 4s ease-in-out infinite;
+  /* Glass Card Hover Glow */
+  .glass-card {
+    @apply bg-card/90 backdrop-blur-xl transition-all duration-300;
+    box-shadow: 0 4px 24px -4px hsl(var(--primary) / 0.08);
   }
 
-  @keyframes ring-pulse {
-    0%, 100% {
-      box-shadow: 0 0 20px 4px hsl(var(--primary) / 0.3);
-    }
-    50% {
-      box-shadow: 0 0 40px 8px hsl(var(--primary) / 0.2);
-    }
+  .glass-card-hover {
+    @apply glass-card;
+  }
+
+  .glass-card-hover:hover {
+    box-shadow: 
+      0 12px 40px -8px hsl(var(--foreground) / 0.1),
+      0 0 32px -8px hsl(var(--glow-color) / var(--glow-hover-opacity));
+    transform: translateY(-4px);
+  }
+
+  /* Active Nav Indicator Glow */
+  .nav-link.active::after,
+  .nav-link:hover::after {
+    box-shadow: 0 2px 12px 0 hsl(var(--glow-color) / 0.4);
   }
 
   /* Section animations */
@@ -295,22 +360,6 @@
 
   .nav-link:hover::after {
     @apply scale-x-100;
-  }
-
-  /* CTA Highlight */
-  .cta-glow {
-    @apply relative overflow-hidden;
-  }
-
-  .cta-glow::before {
-    content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    background: linear-gradient(90deg, transparent, hsl(var(--primary-foreground) / 0.1), transparent);
-    animation: shimmer 2s infinite;
-  }
-
-  .cta-glow:hover::before {
-    @apply opacity-100;
   }
 
   @keyframes shimmer {

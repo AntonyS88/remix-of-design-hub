@@ -10,13 +10,13 @@ export function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center pt-16 pb-20 px-4">
       <div className="text-center max-w-2xl mx-auto animate-fade-in">
-        {/* Avatar */}
+        {/* Avatar with subtle brand glow */}
         <div className="mb-8 flex justify-center">
-          <div className="avatar-ring">
+          <div className="avatar-glow relative">
             <img
               src={avatarImage}
               alt={siteConfig.name}
-              className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover bg-muted"
+              className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover bg-muted relative z-10"
             />
           </div>
         </div>
