@@ -11,8 +11,8 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: t.nav.skills, href: '#skills' },
     { label: t.nav.cases, href: '#cases' },
+    { label: t.nav.skills, href: '#skills' },
     { label: t.nav.contacts, href: '#contacts' },
   ];
 
