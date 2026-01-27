@@ -104,10 +104,10 @@ export default function CasePage() {
           {/* Back button */}
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 py-2"
           >
-            <ArrowLeft className="w-4 h-4" />
-            {t.casePage.back}
+            <ArrowLeft className="w-6 h-6" strokeWidth={2} />
+            <span className="text-sm font-medium">{t.casePage.back}</span>
           </Link>
 
           {/* Hero */}
@@ -232,7 +232,7 @@ export default function CasePage() {
                 >
                   <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer">
                     {t.cta.button}
-                    <ArrowUpRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight className="w-6 h-6 ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
                   </a>
                 </Button>
               </div>

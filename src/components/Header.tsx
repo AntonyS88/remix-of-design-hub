@@ -58,7 +58,7 @@ export function Header() {
             >
               <a href={`mailto:${siteConfig.email}`}>
                 {t.nav.emailMe}
-                <ArrowUpRight className="w-5 h-5" strokeWidth={2} />
+                <ArrowUpRight className="w-6 h-6 ml-2" strokeWidth={2} />
               </a>
             </Button>
 
@@ -102,7 +102,7 @@ export function Header() {
             >
               <a href={`mailto:${siteConfig.email}`}>
                 {t.nav.emailMe}
-                <ArrowUpRight className="w-5 h-5 ml-2" strokeWidth={2} />
+                <ArrowUpRight className="w-6 h-6 ml-2" strokeWidth={2} />
               </a>
             </Button>
           </div>

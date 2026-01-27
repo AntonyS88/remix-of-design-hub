@@ -41,15 +41,15 @@ export function Portfolio() {
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <span className="inline-flex items-center gap-2 px-6 py-3 bg-background/95 backdrop-blur-sm text-foreground font-medium rounded-2xl shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     {t.cases.viewCase}
-                    <ArrowUpRight className="w-5 h-5" strokeWidth={2} />
+                    <ArrowUpRight className="w-6 h-6" strokeWidth={2} />
                   </span>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="pt-6 pb-2">
+              <div className="pt-6 pb-4 px-1">
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-3">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {caseItem.tags.map((tag) => (
                     <span
                       key={tag}
@@ -61,7 +61,7 @@ export function Portfolio() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                   {caseItem.title[lang]}
                 </h3>
 
@@ -71,9 +71,9 @@ export function Portfolio() {
                 </p>
 
                 {/* Mobile CTA */}
-                <div className="flex items-center text-sm font-medium text-primary mt-4 lg:hidden">
+                <div className="flex items-center text-sm font-medium text-primary mt-5 lg:hidden">
                   {t.cases.viewCase}
-                  <ArrowUpRight className="w-5 h-5 ml-1" strokeWidth={2} />
+                  <ArrowUpRight className="w-6 h-6 ml-1.5" strokeWidth={2} />
                 </div>
               </div>
             </Link>
