@@ -8,44 +8,52 @@ export function Portfolio() {
   const { lang, t } = useLanguage();
 
   return (
-    <section id="cases" className="py-20 sm:py-32 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-6xl">
+    <section id="cases" className="py-20 sm:py-32 px-4">
+      <div className="container mx-auto max-w-4xl">
         {/* Section Title */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-16">
           {t.cases.title}
         </h2>
 
-        {/* Case Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Case Blocks - Vertical Stack */}
+        <div className="flex flex-col gap-12 lg:gap-16">
           {cases.map((caseItem, index) => (
             <Link
               key={caseItem.slug}
               to={`/case/${caseItem.slug}`}
               className={cn(
-                "group glass-card-hover rounded-2xl overflow-hidden",
+                "group case-block rounded-3xl overflow-hidden",
                 "transform transition-all duration-500"
               )}
               style={{ animationDelay: `${index * 0.15}s` }}
             >
-              {/* Cover Image */}
-              <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+              {/* Cover Image with Overlay */}
+              <div className="relative aspect-[16/10] overflow-hidden rounded-3xl">
                 <img
                   src={caseItem.coverImage}
                   alt={caseItem.title[lang]}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300" />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                
+                {/* Hover CTA - Desktop only */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <span className="inline-flex items-center gap-2 px-6 py-3 bg-background/95 backdrop-blur-sm text-foreground font-medium rounded-2xl shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    {t.cases.viewCase}
+                    <ArrowUpRight className="w-5 h-5" strokeWidth={2} />
+                  </span>
+                </div>
               </div>
 
               {/* Content */}
-              <div className="p-5 sm:p-6">
+              <div className="pt-6 pb-2">
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-3">
                   {caseItem.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs font-medium px-2.5 py-1 rounded-full bg-accent text-accent-foreground"
+                      className="text-xs font-medium px-3 py-1.5 rounded-xl bg-secondary text-secondary-foreground"
                     >
                       {tag}
                     </span>
@@ -53,19 +61,19 @@ export function Portfolio() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                   {caseItem.title[lang]}
                 </h3>
 
                 {/* Summary */}
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                <p className="text-base text-muted-foreground leading-relaxed">
                   {caseItem.summary[lang]}
                 </p>
 
-                {/* CTA */}
-                <div className="flex items-center text-sm font-medium text-primary">
+                {/* Mobile CTA */}
+                <div className="flex items-center text-sm font-medium text-primary mt-4 lg:hidden">
                   {t.cases.viewCase}
-                  <ArrowUpRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="w-5 h-5 ml-1" strokeWidth={2} />
                 </div>
               </div>
             </Link>

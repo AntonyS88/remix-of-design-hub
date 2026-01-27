@@ -18,13 +18,14 @@ function ContactItem({ icon, label, value, href, external = true }: ContactItemP
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
       className={cn(
-        "flex items-center gap-4 p-4 rounded-xl",
-        "bg-card/50 border border-border/50",
-        "hover:border-primary/30 hover:bg-accent/50",
-        "transition-all duration-300 group"
+        "flex items-center gap-4 p-4 rounded-2xl",
+        "bg-card/60 backdrop-blur-sm",
+        "hover:bg-accent/50",
+        "transition-all duration-300 group",
+        "shadow-sm hover:shadow-md"
       )}
     >
-      <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+      <div className="w-11 h-11 rounded-xl bg-accent flex items-center justify-center group-hover:bg-primary/10 transition-colors">
         {icon}
       </div>
       <div className="flex-1 min-w-0">
@@ -41,26 +42,26 @@ export function Contacts() {
 
   const contactItems = [
     {
-      icon: <Mail className="w-5 h-5 text-primary" />,
+      icon: <Mail className="w-6 h-6 text-primary" strokeWidth={2} />,
       label: t.contacts.email,
       value: siteConfig.email,
       href: `mailto:${siteConfig.email}`,
       external: false,
     },
     {
-      icon: <Send className="w-5 h-5 text-primary" />,
+      icon: <Send className="w-6 h-6 text-primary" strokeWidth={2} />,
       label: t.contacts.telegram,
       value: siteConfig.telegram.username,
       href: siteConfig.telegram.url,
     },
     {
-      icon: <Linkedin className="w-5 h-5 text-primary" />,
+      icon: <Linkedin className="w-6 h-6 text-primary" strokeWidth={2} />,
       label: t.contacts.linkedin,
       value: "LinkedIn",
       href: siteConfig.linkedin,
     },
     {
-      icon: <FileText className="w-5 h-5 text-primary" />,
+      icon: <FileText className="w-6 h-6 text-primary" strokeWidth={2} />,
       label: t.contacts.cv,
       value: "CV.pdf",
       href: siteConfig.cvUrl,
@@ -82,9 +83,8 @@ export function Contacts() {
           ))}
         </div>
 
-        {/* Location */}
         <div className="flex items-center justify-center gap-2 text-muted-foreground mb-12">
-          <MapPin className="w-4 h-4" />
+          <MapPin className="w-5 h-5" strokeWidth={2} />
           <span className="text-sm">{siteConfig.location}</span>
         </div>
 

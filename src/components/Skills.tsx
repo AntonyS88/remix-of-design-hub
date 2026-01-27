@@ -46,7 +46,7 @@ export function Skills() {
           <div className="flex justify-center mb-12 lg:mb-0 lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:z-10">
             <div className="relative">
               <div className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full bg-gradient-to-br from-primary/20 via-accent to-primary/10 p-1 animate-pulse-soft">
-                <div className="w-full h-full rounded-full overflow-hidden bg-card border-2 border-primary/20">
+                <div className="w-full h-full rounded-full overflow-hidden bg-card">
                   <img
                     src={avatar3d}
                     alt="3D Avatar"
@@ -89,8 +89,8 @@ export function Skills() {
                   )}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-accent flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-accent flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+                    <Icon className="w-6 h-6 text-primary" strokeWidth={2} />
                   </div>
                   <h3 className="font-semibold text-sm sm:text-base text-foreground mb-1">
                     {skill.title}

@@ -81,8 +81,8 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
         xl: "1rem",
-        "2xl": "1.5rem",
-        "3xl": "2rem",
+        "2xl": "var(--radius-lg)",
+        "3xl": "var(--radius-xl)",
       },
       boxShadow: {
         'soft': '0 4px 24px -4px rgba(0, 0, 0, 0.08)',
