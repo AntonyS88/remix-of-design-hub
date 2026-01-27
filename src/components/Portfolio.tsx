@@ -47,7 +47,7 @@ export function Portfolio() {
               </div>
 
               {/* Content */}
-              <div className="pt-6 pb-4 px-1">
+              <div className="p-4">
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {caseItem.tags.map((tag) => (
