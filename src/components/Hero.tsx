@@ -39,14 +39,14 @@ export function Hero() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
-            variant="outline"
+            variant="secondary"
             size="lg"
             className="rounded-full px-8 min-w-[180px] group"
             asChild
           >
             <a href={siteConfig.cvUrl} target="_blank" rel="noopener noreferrer">
               {t.hero.openCv}
-              <ArrowUpRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </a>
           </Button>
 
@@ -58,7 +58,7 @@ export function Hero() {
           >
             <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer">
               {t.hero.messageTelegram}
-              <ArrowUpRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </a>
           </Button>
         </div>

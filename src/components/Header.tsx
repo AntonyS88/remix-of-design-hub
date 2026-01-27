@@ -25,7 +25,7 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Desktop Nav */}
@@ -58,7 +58,7 @@ export function Header() {
             >
               <a href={`mailto:${siteConfig.email}`}>
                 {t.nav.emailMe}
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowUpRight className="w-5 h-5" strokeWidth={2} />
               </a>
             </Button>
 
@@ -68,7 +68,7 @@ export function Header() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" strokeWidth={2} /> : <Menu className="w-6 h-6" strokeWidth={2} />}
             </button>
           </div>
         </div>
@@ -77,7 +77,7 @@ export function Header() {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "md:hidden absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border transition-all duration-300",
+          "md:hidden absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-xl transition-all duration-300",
           mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
         )}
       >
@@ -91,7 +91,7 @@ export function Header() {
               {item.label}
             </button>
           ))}
-          <hr className="my-2 border-border" />
+          <div className="border-t border-border/30 my-2" />
           <div className="flex items-center justify-between px-4 py-2">
             <LanguageSwitcher />
             <Button
@@ -102,7 +102,7 @@ export function Header() {
             >
               <a href={`mailto:${siteConfig.email}`}>
                 {t.nav.emailMe}
-                <ArrowUpRight className="w-4 h-4 ml-2" />
+                <ArrowUpRight className="w-5 h-5 ml-2" strokeWidth={2} />
               </a>
             </Button>
           </div>

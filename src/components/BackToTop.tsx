@@ -35,7 +35,7 @@ export function BackToTop() {
       )}
       aria-label="Back to top"
     >
-      <ArrowUp className="w-5 h-5" />
+      <ArrowUp className="w-6 h-6" strokeWidth={2} />
     </button>
   );
 }
