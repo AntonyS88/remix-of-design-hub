@@ -84,7 +84,7 @@ export function Contacts() {
         </div>
 
         <div className="flex items-center justify-center gap-2 text-muted-foreground mb-12">
-          <MapPin className="w-5 h-5" strokeWidth={2} />
+          <MapPin className="w-6 h-6" strokeWidth={2} />
           <span className="text-sm">{siteConfig.location}</span>
         </div>
 
