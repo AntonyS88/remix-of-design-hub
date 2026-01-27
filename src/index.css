@@ -8,9 +8,10 @@
 */
 
 @layer base {
+  /* Light Theme */
   :root {
-    /* Core palette - Premium Minimalism */
-    --background: 250 20% 98%;
+    /* Core palette - Clean Light */
+    --background: 240 20% 98%;
     --foreground: 240 10% 10%;
 
     /* Card surfaces */
@@ -25,12 +26,12 @@
     --primary: 258 70% 55%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Soft gray */
-    --secondary: 250 15% 95%;
-    --secondary-foreground: 240 10% 20%;
+    /* Secondary - Soft gray (filled, no outline) */
+    --secondary: 240 10% 94%;
+    --secondary-foreground: 240 10% 25%;
 
     /* Muted */
-    --muted: 250 15% 92%;
+    --muted: 240 10% 92%;
     --muted-foreground: 240 5% 45%;
 
     /* Accent - Light violet */
@@ -41,20 +42,20 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Borders & inputs */
-    --border: 250 20% 90%;
-    --input: 250 20% 90%;
+    /* Borders & inputs - very subtle */
+    --border: 240 10% 92%;
+    --input: 240 10% 92%;
     --ring: 258 70% 55%;
 
     --radius: 0.75rem;
     --radius-lg: 1.5rem;
     --radius-xl: 2rem;
 
-    /* Gradient colors for animated background */
-    --gradient-1: 258 80% 85%;
-    --gradient-2: 290 60% 90%;
-    --gradient-3: 220 70% 92%;
-    --gradient-4: 258 50% 95%;
+    /* Gradient colors - soft in light mode */
+    --gradient-1: 258 60% 92%;
+    --gradient-2: 290 40% 94%;
+    --gradient-3: 220 50% 94%;
+    --gradient-4: 258 30% 96%;
 
     /* Skill slot */
     --skill-bg: 0 0% 100%;
@@ -72,52 +73,65 @@
     --sidebar-ring: 258 70% 55%;
   }
 
+  /* Dark Theme (Default) - Premium Dark */
   .dark {
-    --background: 240 15% 8%;
-    --foreground: 0 0% 95%;
+    /* Near-black background, not pure black */
+    --background: 228 20% 7%;
+    --foreground: 220 15% 92%;
 
-    --card: 240 15% 12%;
-    --card-foreground: 0 0% 95%;
+    /* Surface - slightly lighter for cards */
+    --card: 228 18% 11%;
+    --card-foreground: 220 15% 92%;
 
-    --popover: 240 15% 12%;
-    --popover-foreground: 0 0% 95%;
+    /* Popover */
+    --popover: 228 18% 11%;
+    --popover-foreground: 220 15% 92%;
 
-    --primary: 258 70% 60%;
+    /* Primary - Vibrant violet */
+    --primary: 258 75% 62%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 15% 18%;
-    --secondary-foreground: 0 0% 90%;
+    /* Secondary - Filled surface (no outline) */
+    --secondary: 228 15% 16%;
+    --secondary-foreground: 220 10% 85%;
 
-    --muted: 240 15% 20%;
-    --muted-foreground: 240 5% 60%;
+    /* Muted */
+    --muted: 228 12% 18%;
+    --muted-foreground: 220 8% 55%;
 
-    --accent: 258 50% 20%;
-    --accent-foreground: 258 70% 75%;
+    /* Accent */
+    --accent: 258 45% 22%;
+    --accent-foreground: 258 70% 78%;
 
+    /* Destructive */
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 15% 20%;
-    --input: 240 15% 20%;
-    --ring: 258 70% 60%;
+    /* Borders - extremely subtle */
+    --border: 228 12% 16%;
+    --input: 228 12% 16%;
+    --ring: 258 75% 62%;
 
-    --gradient-1: 258 60% 20%;
-    --gradient-2: 290 40% 15%;
-    --gradient-3: 220 50% 18%;
-    --gradient-4: 258 30% 12%;
+    /* Gradient colors - rich dark violet/blue/magenta */
+    --gradient-1: 258 70% 25%;
+    --gradient-2: 280 50% 20%;
+    --gradient-3: 220 60% 22%;
+    --gradient-4: 300 40% 18%;
 
-    --skill-bg: 240 15% 15%;
+    /* Skill slot */
+    --skill-bg: 228 15% 13%;
     --skill-border: 258 40% 30%;
-    --skill-hover: 258 70% 60%;
+    --skill-hover: 258 75% 62%;
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    /* Sidebar */
+    --sidebar-background: 228 20% 8%;
+    --sidebar-foreground: 220 15% 92%;
+    --sidebar-primary: 258 75% 62%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 258 70% 60%;
+    --sidebar-accent: 228 12% 15%;
+    --sidebar-accent-foreground: 220 15% 92%;
+    --sidebar-border: 228 12% 16%;
+    --sidebar-ring: 258 75% 62%;
   }
 }
 
@@ -142,29 +156,59 @@
     position: fixed;
     inset: 0;
     z-index: -1;
-    background: 
-      radial-gradient(ellipse 80% 50% at 20% 20%, hsl(var(--gradient-1) / 0.5), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 30%, hsl(var(--gradient-2) / 0.4), transparent),
-      radial-gradient(ellipse 70% 60% at 40% 80%, hsl(var(--gradient-3) / 0.3), transparent),
-      radial-gradient(ellipse 50% 50% at 70% 70%, hsl(var(--gradient-4) / 0.4), transparent),
-      hsl(var(--background));
-    animation: gradient-shift 15s ease-in-out infinite;
+    overflow: hidden;
   }
 
-  @keyframes gradient-shift {
+  /* Gradient blobs */
+  .gradient-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 10% 10%, hsl(var(--gradient-1) / 0.08), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 90% 20%, hsl(var(--gradient-2) / 0.07), transparent 55%),
+      radial-gradient(ellipse 60% 70% at 20% 90%, hsl(var(--gradient-3) / 0.06), transparent 50%),
+      radial-gradient(ellipse 50% 50% at 85% 80%, hsl(var(--gradient-4) / 0.07), transparent 50%),
+      hsl(var(--background));
+    animation: gradient-drift 30s ease-in-out infinite;
+  }
+
+  /* Light mode - softer gradients */
+  :root .gradient-bg::before {
+    background: 
+      radial-gradient(ellipse 80% 60% at 10% 10%, hsl(var(--gradient-1) / 0.25), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 90% 20%, hsl(var(--gradient-2) / 0.2), transparent 55%),
+      radial-gradient(ellipse 60% 70% at 20% 90%, hsl(var(--gradient-3) / 0.18), transparent 50%),
+      radial-gradient(ellipse 50% 50% at 85% 80%, hsl(var(--gradient-4) / 0.2), transparent 50%),
+      hsl(var(--background));
+  }
+
+  /* Subtle noise texture overlay */
+  .gradient-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  .dark .gradient-bg::after {
+    opacity: 0.04;
+  }
+
+  @keyframes gradient-drift {
     0%, 100% {
-      background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
-      transform: scale(1);
+      transform: translate(0, 0) scale(1);
     }
     25% {
-      background-position: 20% 10%, 80% 20%, 20% 80%, 80% 90%;
+      transform: translate(2%, 1%) scale(1.01);
     }
     50% {
-      background-position: 50% 50%, 50% 50%, 50% 50%, 50% 50%;
-      transform: scale(1.02);
+      transform: translate(-1%, 2%) scale(1.02);
     }
     75% {
-      background-position: 80% 20%, 20% 80%, 80% 20%, 20% 80%;
+      transform: translate(1%, -1%) scale(1.01);
     }
   }
 

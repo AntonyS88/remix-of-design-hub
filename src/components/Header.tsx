@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeToggle } from './ThemeToggle';
 import { siteConfig } from '@/config/site.config';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -47,7 +48,8 @@ export function Header() {
           </div>
 
           {/* Right side */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <ThemeToggle className="hidden sm:flex" />
             <LanguageSwitcher className="hidden sm:flex" />
             
             <Button
@@ -93,7 +95,10 @@ export function Header() {
           ))}
           <div className="border-t border-border/30 my-2" />
           <div className="flex items-center justify-between px-4 py-2">
-            <LanguageSwitcher />
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <LanguageSwitcher />
+            </div>
             <Button
               variant="default"
               size="sm"
