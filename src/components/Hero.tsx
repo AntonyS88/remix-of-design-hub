@@ -1,11 +1,12 @@
 import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/site.config';
 import { Button } from '@/components/ui/button';
 import avatarImage from '@/assets/avatar.jpg';
 
 export function Hero() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <section className="min-h-screen flex items-center justify-center pt-16 pb-20 px-4">
@@ -44,10 +45,10 @@ export function Hero() {
             className="rounded-full px-8 min-w-[180px] group"
             asChild
           >
-            <a href={siteConfig.cvUrl} target="_blank" rel="noopener noreferrer">
-              {t.hero.openCv}
-              <ArrowUpRight className="w-6 h-6 ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
-            </a>
+            <Link to={`/resume/${lang}`}>
+              {t.hero.openResume}
+              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+            </Link>
           </Button>
 
           <Button
@@ -58,7 +59,7 @@ export function Hero() {
           >
             <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer">
               {t.hero.messageTelegram}
-              <ArrowUpRight className="w-6 h-6 ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </a>
           </Button>
         </div>

@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { LanguageProvider } from "@/hooks/useLanguage";
 import Index from "./pages/Index";
 import CasePage from "./pages/CasePage";
+import ResumePage from "./pages/ResumePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,8 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/case/:slug" element={<CasePage />} />
+              <Route path="/resume/:lang" element={<ResumePage />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
