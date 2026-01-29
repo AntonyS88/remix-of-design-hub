@@ -40,12 +40,12 @@ export function CTA() {
             <Button
               variant="default"
               size="lg"
-              className="rounded-full px-10 cta-glow group/btn"
+              className="rounded-full px-8 cta-glow group/btn"
               asChild
             >
               <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer">
                 {t.cta.button}
-                <ArrowUpRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" strokeWidth={2} />
+                <ArrowUpRight className="w-5 h-5 shrink-0 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" strokeWidth={2} />
               </a>
             </Button>
           </div>

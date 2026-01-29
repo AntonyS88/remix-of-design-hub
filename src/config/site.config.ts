@@ -10,8 +10,9 @@ export const siteConfig = {
     username: "@AntonyS88",
     url: "https://t.me/AntonyS88",
   },
-  linkedin: "https://www.linkedin.com/in/your-link/", // Update with your LinkedIn
-  cvUrl: "/cv.pdf", // Place your CV in public/cv.pdf
+  linkedin: "https://www.linkedin.com/in/anton-sechin-ab7449a3/",
+  cvUrl: "/cv.pdf",
+  emailSubject: "UX%2FUI%20Design%20Inquiry",
   
   // Avatar images
   avatarPhoto: "/assets/avatar.jpg", // Your photo for hero
@@ -20,8 +21,8 @@ export const siteConfig = {
   // Social links for contacts section
   socials: {
     telegram: "https://t.me/AntonyS88",
-    linkedin: "https://www.linkedin.com/in/your-link/",
-    email: "mailto:sechin.ao@gmail.com",
+    linkedin: "https://www.linkedin.com/in/anton-sechin-ab7449a3/",
+    email: "mailto:sechin.ao@gmail.com?subject=UX%2FUI%20Design%20Inquiry",
   },
   
   // SEO
