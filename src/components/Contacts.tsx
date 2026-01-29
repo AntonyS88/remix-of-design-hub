@@ -42,26 +42,26 @@ export function Contacts() {
 
   const contactItems = [
     {
-      icon: <Mail className="w-6 h-6 text-primary" strokeWidth={2} />,
+      icon: <Mail className="w-5 h-5 text-primary" strokeWidth={2} />,
       label: t.contacts.email,
       value: siteConfig.email,
-      href: `mailto:${siteConfig.email}`,
+      href: `mailto:${siteConfig.email}?subject=${siteConfig.emailSubject}`,
       external: false,
     },
     {
-      icon: <Send className="w-6 h-6 text-primary" strokeWidth={2} />,
+      icon: <Send className="w-5 h-5 text-primary" strokeWidth={2} />,
       label: t.contacts.telegram,
       value: siteConfig.telegram.username,
       href: siteConfig.telegram.url,
     },
     {
-      icon: <Linkedin className="w-6 h-6 text-primary" strokeWidth={2} />,
+      icon: <Linkedin className="w-5 h-5 text-primary" strokeWidth={2} />,
       label: t.contacts.linkedin,
       value: "LinkedIn",
       href: siteConfig.linkedin,
     },
     {
-      icon: <FileText className="w-6 h-6 text-primary" strokeWidth={2} />,
+      icon: <FileText className="w-5 h-5 text-primary" strokeWidth={2} />,
       label: t.contacts.cv,
       value: "CV.pdf",
       href: siteConfig.cvUrl,
@@ -84,7 +84,7 @@ export function Contacts() {
         </div>
 
         <div className="flex items-center justify-center gap-2 text-muted-foreground mb-12">
-          <MapPin className="w-6 h-6" strokeWidth={2} />
+          <MapPin className="w-5 h-5" strokeWidth={2} />
           <span className="text-sm">{siteConfig.location}</span>
         </div>
 

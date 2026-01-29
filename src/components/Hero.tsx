@@ -42,24 +42,24 @@ export function Hero() {
           <Button
             variant="secondary"
             size="lg"
-            className="rounded-full px-8 min-w-[180px] group"
+            className="rounded-full px-8 min-w-[200px] group"
             asChild
           >
             <Link to={`/resume/${lang}`}>
               {t.hero.openResume}
-              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+              <ArrowUpRight className="w-5 h-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </Link>
           </Button>
 
           <Button
             variant="default"
             size="lg"
-            className="rounded-full px-8 min-w-[180px] cta-glow group"
+            className="rounded-full px-8 min-w-[200px] cta-glow group"
             asChild
           >
             <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer">
               {t.hero.messageTelegram}
-              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+              <ArrowUpRight className="w-5 h-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </a>
           </Button>
         </div>

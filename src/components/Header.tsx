@@ -55,12 +55,12 @@ export function Header() {
             <Button
               variant="default"
               size="sm"
-              className="hidden sm:flex items-center gap-2 rounded-full px-4"
+              className="hidden sm:flex items-center rounded-full px-4"
               asChild
             >
-              <a href={`mailto:${siteConfig.email}`}>
+              <a href={`mailto:${siteConfig.email}?subject=${siteConfig.emailSubject}`}>
                 {t.nav.emailMe}
-                <ArrowUpRight className="w-6 h-6 ml-2" strokeWidth={2} />
+                <ArrowUpRight className="w-5 h-5" strokeWidth={2} />
               </a>
             </Button>
 
@@ -102,12 +102,12 @@ export function Header() {
             <Button
               variant="default"
               size="sm"
-              className="rounded-full"
+              className="rounded-full px-4"
               asChild
             >
-              <a href={`mailto:${siteConfig.email}`}>
+              <a href={`mailto:${siteConfig.email}?subject=${siteConfig.emailSubject}`}>
                 {t.nav.emailMe}
-                <ArrowUpRight className="w-6 h-6 ml-2" strokeWidth={2} />
+                <ArrowUpRight className="w-5 h-5" strokeWidth={2} />
               </a>
             </Button>
           </div>
