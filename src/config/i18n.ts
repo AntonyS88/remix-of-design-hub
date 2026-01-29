@@ -14,7 +14,7 @@ export interface I18nContent {
   hero: {
     greeting: string;
     bio: string;
-    openCv: string;
+    openResume: string;
     messageTelegram: string;
   };
   skills: {
@@ -67,7 +67,7 @@ export const i18n = {
     hero: {
       greeting: "Привет!",
       bio: "Я работаю с 2021 года. Делаю понятные интерфейсы для веба и мобильных приложений — от UX-логики до чистого UI и передачи в разработку.",
-      openCv: "Открыть CV",
+      openResume: "Открыть резюме",
       messageTelegram: "Написать в Telegram",
     },
     skills: {
@@ -159,7 +159,7 @@ export const i18n = {
     hero: {
       greeting: "Hi!",
       bio: "I've been working since 2021. I design clear, user-friendly web and mobile interfaces — from UX logic to polished UI and developer handoff.",
-      openCv: "Open CV",
+      openResume: "Open Resume",
       messageTelegram: "Message on Telegram",
     },
     skills: {
