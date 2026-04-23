@@ -26,6 +26,10 @@ export interface I18nContent {
     title: string;
     viewCase: string;
   };
+  shots: {
+    title: string;
+    subtitle: string;
+  };
   cta: {
     title: string;
     subtitle: string;
@@ -120,6 +124,10 @@ export const i18n = {
       title: "Кейсы",
       viewCase: "Смотреть кейс",
     },
+    shots: {
+      title: "Шоты",
+      subtitle: "Визуальные эксперименты и UI-этюды",
+    },
     cta: {
       title: "Есть проект?",
       subtitle: "Давай обсудим!",
@@ -211,6 +219,10 @@ export const i18n = {
     cases: {
       title: "Cases",
       viewCase: "View case",
+    },
+    shots: {
+      title: "Shots",
+      subtitle: "Visual experiments & UI studies",
     },
     cta: {
       title: "Have a project?",

@@ -295,6 +295,19 @@
     transform: translateY(-6px);
   }
 
+  /* Shot Card - bento tiles */
+  .shot-card {
+    box-shadow: 0 4px 20px -8px hsl(var(--foreground) / 0.06);
+    transition: box-shadow 300ms ease, transform 300ms ease;
+  }
+
+  .shot-card:hover {
+    box-shadow:
+      0 12px 36px -10px hsl(var(--foreground) / 0.12),
+      0 0 32px -8px hsl(var(--glow-color) / var(--glow-hover-opacity));
+    transform: translateY(-3px);
+  }
+
   /* Skill Slot Hover Glow */
   .skill-slot {
     @apply bg-skill-bg rounded-2xl p-4 transition-all duration-300;
