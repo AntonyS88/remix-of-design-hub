@@ -4,36 +4,26 @@ import { shots, type Shot } from '@/config/shots';
 import { cn } from '@/lib/utils';
 
 interface ShotsProps {
-  /** Optional id for anchor linking */
   id?: string;
-  /** Show section title */
   showTitle?: boolean;
-  /** Limit number of shots rendered */
   limit?: number;
-  /** Offset into the shots array (so two sections show different shots) */
   offset?: number;
-  /** Optional title override */
   title?: string;
-  /** Optional subtitle */
   subtitle?: string;
 }
 
-const colSpanMap = {
-  1: 'lg:col-span-1',
-  2: 'lg:col-span-2',
-  3: 'lg:col-span-3',
-} as const;
-
-const rowSpanMap = {
-  1: 'lg:row-span-1',
-  2: 'lg:row-span-2',
-} as const;
-
-function ShotCard({ shot }: { shot: Shot }) {
+function ShotCard({ shot, index }: { shot: Shot; index: number }) {
   const { lang } = useLanguage();
-  const colClass = colSpanMap[shot.span?.col ?? 1];
-  const rowClass = rowSpanMap[shot.span?.row ?? 1];
-  const isTall = (shot.span?.row ?? 1) === 2;
+  const { colStart, colSpan, rowStart, rowSpan } = shot.desktop;
+
+  // Inline styles for grid placement (Tailwind can't safely template arbitrary numeric spans)
+  const desktopStyle: React.CSSProperties = {
+    gridColumn: `${colStart} / span ${colSpan}`,
+    gridRow: `${rowStart} / span ${rowSpan}`,
+  };
+
+  // Mobile fallback: full-width stack with simple alternating heights for rhythm
+  const mobileTall = index % 3 === 0;
 
   return (
     <a
@@ -41,13 +31,15 @@ function ShotCard({ shot }: { shot: Shot }) {
       target={shot.external ? '_blank' : undefined}
       rel={shot.external ? 'noopener noreferrer' : undefined}
       aria-label={shot.title[lang]}
+      style={desktopStyle}
       className={cn(
-        'group relative block overflow-hidden rounded-3xl bg-card/60 backdrop-blur-sm',
-        'shot-card',
-        'sm:col-span-1 md:col-span-1',
-        colClass,
-        rowClass,
-        isTall ? 'aspect-square lg:aspect-auto' : 'aspect-[4/3]'
+        'group relative block overflow-hidden rounded-3xl bg-card/60 backdrop-blur-sm shot-card',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        // Mobile: ignore desktop grid placement, stack full width
+        'col-[unset] row-[unset]',
+        mobileTall ? 'min-h-[280px]' : 'min-h-[200px]',
+        'sm:min-h-0',
+        // Tablet & desktop: honor inline grid styles
       )}
     >
       <img
@@ -58,9 +50,9 @@ function ShotCard({ shot }: { shot: Shot }) {
       />
 
       {/* Bottom gradient for legibility */}
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/65 via-black/20 to-transparent opacity-90 transition-opacity duration-300" />
 
-      {/* Hover overlay tint */}
+      {/* Hover violet tint */}
       <div className="absolute inset-0 bg-primary/0 transition-colors duration-300 group-hover:bg-primary/10" />
 
       {/* Title + arrow */}
@@ -112,10 +104,21 @@ export function Shots({
           </div>
         )}
 
-        {/* Bento grid: 1 col mobile, 2 cols tablet, 4 cols desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[180px] sm:auto-rows-[200px] lg:auto-rows-[220px] gap-4 sm:gap-5">
-          {items.map((shot) => (
-            <ShotCard key={shot.id} shot={shot} />
+        {/*
+          Grid:
+          - Mobile (<640): 1 col, natural row height (each card sets min-h)
+          - Tablet (640–1024): 2 cols, auto rows
+          - Desktop (≥1024): 6 cols × 4 rows, fixed row height for true bento
+        */}
+        <div
+          className={cn(
+            'grid gap-4 sm:gap-5',
+            'grid-cols-1 sm:grid-cols-2',
+            'lg:grid-cols-6 lg:auto-rows-[160px] xl:auto-rows-[180px]'
+          )}
+        >
+          {items.map((shot, i) => (
+            <ShotCard key={shot.id} shot={shot} index={i} />
           ))}
         </div>
       </div>
