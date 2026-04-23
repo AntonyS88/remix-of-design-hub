@@ -18,13 +18,11 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        {/* Shots #1 — right after hero, first 4 tiles */}
-        <Shots id="shots" limit={4} />
+        {/* Shots #1 — right after hero, full bento */}
+        <Shots id="shots" />
         <Portfolio />
-        {/* Shots #2 — between cases and skills, remaining 4 tiles */}
+        {/* Shots #2 — between cases and skills */}
         <Shots
-          offset={4}
-          limit={4}
           title={t.shots.title + ' — More'}
           subtitle={t.shots.subtitle}
         />
