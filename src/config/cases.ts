@@ -18,6 +18,12 @@ export interface CaseStudy {
     ru: string;
     en: string;
   };
+  /** Desktop bento placement on a 6-col grid */
+  bento?: {
+    colSpan: 1 | 2 | 3 | 4 | 5 | 6;
+    rowSpan: 1 | 2;
+    aspect?: string; // e.g. 'aspect-[16/10]', defaults to 'aspect-[16/10]'
+  };
   content: {
     ru: CaseContent;
     en: CaseContent;
