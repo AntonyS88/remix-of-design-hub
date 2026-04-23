@@ -7,10 +7,9 @@ import { CTA } from '@/components/CTA';
 import { Contacts } from '@/components/Contacts';
 import { GradientBackground } from '@/components/GradientBackground';
 import { BackToTop } from '@/components/BackToTop';
-import { useLanguage } from '@/hooks/useLanguage';
+
 
 const Index = () => {
-  const { t } = useLanguage();
 
   return (
     <>
