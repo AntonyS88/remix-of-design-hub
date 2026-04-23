@@ -22,13 +22,13 @@ export function Portfolio() {
               key={caseItem.slug}
               to={`/case/${caseItem.slug}`}
               className={cn(
-                "group case-block rounded-3xl overflow-hidden",
+                "group case-block rounded-[20px] overflow-hidden",
                 "transform transition-all duration-500"
               )}
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               {/* Cover Image with Overlay */}
-              <div className="relative aspect-[16/10] overflow-hidden rounded-3xl">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[20px]">
                 <img
                   src={caseItem.coverImage}
                   alt={caseItem.title[lang]}

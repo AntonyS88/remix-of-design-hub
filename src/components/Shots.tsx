@@ -33,7 +33,7 @@ function ShotCard({ shot, index }: { shot: Shot; index: number }) {
       aria-label={shot.title[lang]}
       style={desktopStyle}
       className={cn(
-        'group relative block overflow-hidden rounded-3xl bg-card/60 backdrop-blur-sm shot-card',
+        'group relative block overflow-hidden rounded-[20px] bg-card/60 backdrop-blur-sm shot-card',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
         // Mobile: ignore desktop grid placement, stack full width
         'col-[unset] row-[unset]',
