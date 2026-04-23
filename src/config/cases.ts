@@ -52,6 +52,7 @@ export const cases: CaseStudy[] = [
     slug: "ai-assistants",
     coverImage: caseAI,
     tags: ["Chat UI", "Landing", "Web"],
+    bento: { colSpan: 4, rowSpan: 2, aspect: 'aspect-[16/11]' },
     title: {
       ru: "AI Assistants",
       en: "AI Assistants",
@@ -121,6 +122,7 @@ export const cases: CaseStudy[] = [
     slug: "operations-dashboard",
     coverImage: caseDashboard,
     tags: ["Dashboard", "Monitoring", "B2B"],
+    bento: { colSpan: 2, rowSpan: 1, aspect: 'aspect-[4/3]' },
     title: {
       ru: "Operations Dashboard",
       en: "Operations Dashboard",
@@ -190,6 +192,7 @@ export const cases: CaseStudy[] = [
     slug: "mobile-app-concept",
     coverImage: caseMobile,
     tags: ["Mobile", "iOS", "UI Kit"],
+    bento: { colSpan: 2, rowSpan: 1, aspect: 'aspect-[4/3]' },
     title: {
       ru: "Mobile App Concept",
       en: "Mobile App Concept",
