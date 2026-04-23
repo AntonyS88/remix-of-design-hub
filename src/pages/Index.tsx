@@ -18,14 +18,9 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        {/* Shots #1 — right after hero, full bento */}
+        {/* Shots — right after hero, full bento */}
         <Shots id="shots" />
         <Portfolio />
-        {/* Shots #2 — between cases and skills */}
-        <Shots
-          title={t.shots.title + ' — More'}
-          subtitle={t.shots.subtitle}
-        />
         <Skills />
         <CTA />
         <Contacts />
