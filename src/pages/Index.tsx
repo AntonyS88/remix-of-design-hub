@@ -8,9 +8,7 @@ import { Contacts } from '@/components/Contacts';
 import { GradientBackground } from '@/components/GradientBackground';
 import { BackToTop } from '@/components/BackToTop';
 
-
 const Index = () => {
-
   return (
     <>
       <GradientBackground />

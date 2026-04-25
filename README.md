@@ -148,4 +148,4 @@ Customize colors in `src/index.css`:
 
 ---
 
-Built with ❤️ using [Lovable](https://lovable.dev)
+Built with React + TypeScript.

@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import type { CSSProperties } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { shots, type Shot } from '@/config/shots';
 import { cn } from '@/lib/utils';
@@ -17,7 +18,7 @@ function ShotCard({ shot, index }: { shot: Shot; index: number }) {
   const { colStart, colSpan, rowStart, rowSpan } = shot.desktop;
 
   // Inline styles for grid placement (Tailwind can't safely template arbitrary numeric spans)
-  const desktopStyle: React.CSSProperties = {
+  const desktopStyle: CSSProperties = {
     gridColumn: `${colStart} / span ${colSpan}`,
     gridRow: `${rowStart} / span ${rowSpan}`,
   };

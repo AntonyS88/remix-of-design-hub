@@ -17,6 +17,10 @@ export interface I18nContent {
     openResume: string;
     messageTelegram: string;
   };
+  shots: {
+    title: string;
+    subtitle: string;
+  };
   skills: {
     title: string;
     summary: string;
@@ -73,6 +77,10 @@ export const i18n = {
       bio: "Я работаю с 2021 года. Делаю понятные интерфейсы для веба и мобильных приложений — от UX-логики до чистого UI и передачи в разработку.",
       openResume: "Открыть резюме",
       messageTelegram: "Написать в Telegram",
+    },
+    shots: {
+      title: "Шоты",
+      subtitle: "Небольшие фрагменты интерфейсов и эксперименты",
     },
     skills: {
       title: "Навыки",
@@ -169,6 +177,10 @@ export const i18n = {
       bio: "I've been working since 2021. I design clear, user-friendly web and mobile interfaces — from UX logic to polished UI and developer handoff.",
       openResume: "Open Resume",
       messageTelegram: "Message on Telegram",
+    },
+    shots: {
+      title: "Shots",
+      subtitle: "Small UI fragments and experiments",
     },
     skills: {
       title: "Skills",
