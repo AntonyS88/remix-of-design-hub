@@ -15,7 +15,7 @@ A premium, minimalist portfolio website built with React, TypeScript, and Tailwi
 
 ### Prerequisites
 - Node.js 18+ 
-- npm or bun
+- npm
 
 ### Installation
 
@@ -26,16 +26,12 @@ cd portfolio
 
 # Install dependencies
 npm install
-# or
-bun install
 
 # Start development server
 npm run dev
-# or
-bun dev
 ```
 
-The site will be available at `http://localhost:5173`
+The site will be available at `http://localhost:8080`
 
 ## 📁 Project Structure
 
@@ -100,7 +96,7 @@ Edit `src/config/cases.ts`:
 
 Replace these files:
 - `src/assets/avatar.jpg` — Your photo for hero section
-- `src/assets/avatar-3d.png` — 3D avatar for skills section (optional)
+- `src/assets/avatar-3d.webp` — 3D avatar for skills section (optional)
 
 ### 5. Design Tokens
 

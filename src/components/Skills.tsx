@@ -11,7 +11,7 @@ import {
   Target
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
-import avatar3d from '@/assets/avatar-3d.png';
+import avatar3d from '@/assets/avatar-3d.webp';
 import { cn } from '@/lib/utils';
 
 const skillIcons = {
@@ -50,6 +50,8 @@ export function Skills() {
                   <img
                     src={avatar3d}
                     alt="3D Avatar"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-top"
                   />
                 </div>

@@ -2,7 +2,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/site.config';
 import { Button } from '@/components/ui/button';
-import ctaOrb from '@/assets/cta-orb.png';
+import ctaOrb from '@/assets/cta-orb.webp';
 
 export function CTA() {
   const { t } = useLanguage();
@@ -16,6 +16,8 @@ export function CTA() {
             <img 
               src={ctaOrb} 
               alt="" 
+              loading="lazy"
+              decoding="async"
               className="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 object-contain select-none"
               aria-hidden="true"
             />

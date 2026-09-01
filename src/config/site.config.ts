@@ -16,7 +16,7 @@ export const siteConfig = {
   
   // Avatar images
   avatarPhoto: "/assets/avatar.jpg", // Your photo for hero
-  avatar3d: "/assets/avatar-3d.png", // 3D avatar for skills section
+  avatar3d: "/assets/avatar-3d.webp", // 3D avatar for skills section
   
   // Social links for contacts section
   socials: {

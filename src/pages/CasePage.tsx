@@ -186,6 +186,8 @@ export default function CasePage() {
                     <img
                       src={image}
                       alt={`Screenshot ${index + 1}`}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </button>
