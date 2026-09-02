@@ -3,7 +3,7 @@
 
 export const siteConfig = {
   name: "Anton Sechin",
-  role: "Product Designer · UX / UI",
+  role: "Product Designer · AI Products & SaaS",
   location: "Montenegro (Bar)",
   email: "sechin.ao@gmail.com",
   telegram: {
@@ -28,12 +28,12 @@ export const siteConfig = {
   // SEO
   seo: {
     title: {
-      ru: "Антон Сечин — Product Designer · UX / UI",
-      en: "Anton Sechin — Product Designer · UX / UI",
+      ru: "Антон Сечин — Product Designer · AI-продукты & SaaS",
+      en: "Anton Sechin — Product Designer · AI Products & SaaS",
     },
     description: {
-      ru: "Дизайнер интерфейсов. Создаю понятные и красивые веб и мобильные приложения.",
-      en: "Interface designer. Creating clear and beautiful web and mobile applications.",
+      ru: "Product Designer с фокусом на SaaS и AI-продукты. Работаю от продуктовой задачи и UX-сценариев до дизайн-системы, прототипа и реализации.",
+      en: "Product Designer focused on SaaS and AI products. I work from product problems and UX flows to design systems, prototypes and implementation.",
     },
   },
 } as const;

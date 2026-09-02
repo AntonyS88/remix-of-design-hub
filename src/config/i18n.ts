@@ -6,16 +6,25 @@ export type Language = 'ru' | 'en';
 // Define a more flexible type for i18n content
 export interface I18nContent {
   nav: {
-    skills: string;
-    cases: string;
-    contacts: string;
-    emailMe: string;
+    work: string;
+    capabilities: string;
+    resume: string;
+    contact: string;
   };
   hero: {
-    greeting: string;
+    role: string;
     bio: string;
-    openResume: string;
-    messageTelegram: string;
+    viewWork: string;
+    resume: string;
+    locationStatus: string;
+  };
+  capabilities: {
+    title: string;
+    items: ReadonlyArray<{ title: string; description: string }>;
+  };
+  howIWork: {
+    title: string;
+    steps: ReadonlyArray<string>;
   };
   skills: {
     title: string;
@@ -35,6 +44,10 @@ export interface I18nContent {
     subtitle: string;
     description: string;
     button: string;
+  };
+  contact: {
+    title: string;
+    description: string;
   };
   contacts: {
     title: string;
@@ -63,16 +76,42 @@ export interface I18nContent {
 export const i18n = {
   ru: {
     nav: {
-      skills: "Навыки",
-      cases: "Кейсы",
-      contacts: "Контакты",
-      emailMe: "Написать на почту",
+      work: "Проекты",
+      capabilities: "Навыки",
+      resume: "Резюме",
+      contact: "Контакты",
     },
     hero: {
-      greeting: "Привет!",
-      bio: "Я работаю с 2021 года. Делаю понятные интерфейсы для веба и мобильных приложений — от UX-логики до чистого UI и передачи в разработку.",
-      openResume: "Открыть резюме",
-      messageTelegram: "Написать в Telegram",
+      role: "Product Designer · AI-продукты & SaaS",
+      bio: "Проектирую цифровые продукты от ранней идеи до понятного работающего решения — соединяя продуктовое мышление, UX, UI-системы и разработку с помощью AI.",
+      viewWork: "Смотреть проекты",
+      resume: "Резюме",
+      locationStatus: "Черногория · Открыт к удалённой работе",
+    },
+    capabilities: {
+      title: "Что я делаю",
+      items: [
+        {
+          title: "Продуктовое мышление",
+          description: "Формулирование проблем, гипотезы, продуктовые сценарии и приоритизация.",
+        },
+        {
+          title: "UX и взаимодействие",
+          description: "Информационная архитектура, user flows, прототипы и сложные сценарии взаимодействия.",
+        },
+        {
+          title: "UI и дизайн-системы",
+          description: "Визуальные системы, компоненты, variables, адаптивные интерфейсы и передача в разработку.",
+        },
+        {
+          title: "Создание продуктов с помощью AI",
+          description: "Использование AI-инструментов и coding agents для быстрого перехода от дизайн-решений к работающему продукту.",
+        },
+      ],
+    },
+    howIWork: {
+      title: "Как я работаю",
+      steps: ["Проблема", "Исследование", "Гипотеза", "UX", "UI-система", "Прототип", "Реализация", "Проверка и итерации"],
     },
     skills: {
       title: "Навыки",
@@ -121,7 +160,7 @@ export const i18n = {
       },
     },
     cases: {
-      title: "Кейсы",
+      title: "Избранные проекты",
       viewCase: "Смотреть кейс",
     },
     shots: {
@@ -134,12 +173,16 @@ export const i18n = {
       description: "Открыт для новых проектов и интересных задач",
       button: "Написать в Telegram",
     },
+    contact: {
+      title: "Давайте создавать полезные продукты.",
+      description: "Открыт к предложениям на позиции Product Designer и AI Product Designer.",
+    },
     contacts: {
       title: "Контакты",
       email: "Электронная почта",
       telegram: "Telegram",
       linkedin: "LinkedIn",
-      cv: "Скачать CV",
+      cv: "Резюме",
       location: "Локация",
     },
     casePage: {
@@ -159,16 +202,42 @@ export const i18n = {
   },
   en: {
     nav: {
-      skills: "Skills",
-      cases: "Cases",
-      contacts: "Contacts",
-      emailMe: "Email me",
+      work: "Work",
+      capabilities: "Capabilities",
+      resume: "Resume",
+      contact: "Contact",
     },
     hero: {
-      greeting: "Hi!",
-      bio: "I've been working since 2021. I design clear, user-friendly web and mobile interfaces — from UX logic to polished UI and developer handoff.",
-      openResume: "Open Resume",
-      messageTelegram: "Message on Telegram",
+      role: "Product Designer · AI Products & SaaS",
+      bio: "I design digital products from early ideas to clear, working experiences — combining product thinking, UX, UI systems and AI-assisted development.",
+      viewWork: "View my work",
+      resume: "Resume",
+      locationStatus: "Montenegro · Open to remote",
+    },
+    capabilities: {
+      title: "Capabilities",
+      items: [
+        {
+          title: "Product Thinking",
+          description: "Problem framing, hypotheses, product flows and prioritization.",
+        },
+        {
+          title: "UX & Interaction",
+          description: "Information architecture, user flows, prototypes and complex interaction scenarios.",
+        },
+        {
+          title: "UI & Design Systems",
+          description: "Visual systems, components, variables, responsive interfaces and developer handoff.",
+        },
+        {
+          title: "AI-assisted Product Building",
+          description: "Using AI tools and coding agents to move faster from design decisions to working products.",
+        },
+      ],
+    },
+    howIWork: {
+      title: "How I work",
+      steps: ["Problem", "Research", "Hypothesis", "UX", "UI System", "Prototype", "Build", "Test & Iterate"],
     },
     skills: {
       title: "Skills",
@@ -217,7 +286,7 @@ export const i18n = {
       },
     },
     cases: {
-      title: "Cases",
+      title: "Selected Work",
       viewCase: "View case",
     },
     shots: {
@@ -230,12 +299,16 @@ export const i18n = {
       description: "Open for new projects and interesting challenges",
       button: "Message on Telegram",
     },
+    contact: {
+      title: "Let's build something useful.",
+      description: "I'm open to Product Designer and AI Product Designer opportunities.",
+    },
     contacts: {
       title: "Contacts",
       email: "Email",
       telegram: "Telegram",
       linkedin: "LinkedIn",
-      cv: "Download CV",
+      cv: "Resume",
       location: "Location",
     },
     casePage: {

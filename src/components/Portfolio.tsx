@@ -22,7 +22,7 @@ export function Portfolio() {
   const { lang, t } = useLanguage();
 
   return (
-    <section id="cases" className="py-20 sm:py-32 px-4">
+    <section id="selected-work" className="scroll-mt-16 py-20 sm:py-32 px-4">
       <div className="container mx-auto max-w-6xl">
         {/* Section Title */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-16">

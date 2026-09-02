@@ -1,4 +1,5 @@
-import { Mail, Send, Linkedin, FileText, MapPin } from 'lucide-react';
+import { Mail, Send, Linkedin, FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/site.config';
 import { cn } from '@/lib/utils';
@@ -9,22 +10,19 @@ interface ContactItemProps {
   value: string;
   href: string;
   external?: boolean;
+  internal?: boolean;
 }
 
-function ContactItem({ icon, label, value, href, external = true }: ContactItemProps) {
-  return (
-    <a
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
-      className={cn(
-        "flex items-center gap-4 p-4 rounded-2xl",
-        "bg-card/60 backdrop-blur-sm",
-        "hover:bg-accent/50",
-        "transition-all duration-300 group",
-        "shadow-sm hover:shadow-md"
-      )}
-    >
+function ContactItem({ icon, label, value, href, external = true, internal = false }: ContactItemProps) {
+  const className = cn(
+    "flex items-center gap-4 p-4 rounded-2xl",
+    "bg-card/60 backdrop-blur-sm",
+    "hover:bg-accent/50",
+    "transition-all duration-300 group",
+    "shadow-sm hover:shadow-md"
+  );
+  const content = (
+    <>
       <div className="w-11 h-11 rounded-xl bg-accent flex items-center justify-center group-hover:bg-primary/10 transition-colors">
         {icon}
       </div>
@@ -32,12 +30,27 @@ function ContactItem({ icon, label, value, href, external = true }: ContactItemP
         <p className="text-xs text-muted-foreground mb-0.5">{label}</p>
         <p className="text-sm font-medium text-foreground truncate">{value}</p>
       </div>
+    </>
+  );
+
+  if (internal) {
+    return <Link to={href} className={className}>{content}</Link>;
+  }
+
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className={className}
+    >
+      {content}
     </a>
   );
 }
 
 export function Contacts() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const contactItems = [
@@ -49,46 +62,45 @@ export function Contacts() {
       external: false,
     },
     {
-      icon: <Send className="w-5 h-5 text-primary" strokeWidth={2} />,
-      label: t.contacts.telegram,
-      value: siteConfig.telegram.username,
-      href: siteConfig.telegram.url,
-    },
-    {
       icon: <Linkedin className="w-5 h-5 text-primary" strokeWidth={2} />,
       label: t.contacts.linkedin,
       value: "LinkedIn",
       href: siteConfig.linkedin,
     },
     {
+      icon: <Send className="w-5 h-5 text-primary" strokeWidth={2} />,
+      label: t.contacts.telegram,
+      value: siteConfig.telegram.username,
+      href: siteConfig.telegram.url,
+    },
+    {
       icon: <FileText className="w-5 h-5 text-primary" strokeWidth={2} />,
       label: t.contacts.cv,
-      value: "CV.pdf",
-      href: siteConfig.cvUrl,
+      value: t.hero.resume,
+      href: `/resume/${lang}`,
+      external: false,
+      internal: true,
     },
   ];
 
   return (
-    <section id="contacts" className="py-20 sm:py-32 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-2xl">
-        {/* Section Title */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12">
-          {t.contacts.title}
-        </h2>
+    <section id="contact" className="scroll-mt-16 py-20 sm:py-32 px-4 bg-muted/30">
+      <div className="container mx-auto max-w-3xl">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-balance mb-4">
+            {t.contact.title}
+          </h2>
+          <p className="text-base sm:text-lg text-muted-foreground text-balance max-w-2xl mx-auto">
+            {t.contact.description}
+          </p>
+        </div>
 
-        {/* Contact Items */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-          {contactItems.map((item, index) => (
-            <ContactItem key={index} {...item} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+          {contactItems.map((item) => (
+            <ContactItem key={item.label} {...item} />
           ))}
         </div>
 
-        <div className="flex items-center justify-center gap-2 text-muted-foreground mb-12">
-          <MapPin className="w-5 h-5" strokeWidth={2} />
-          <span className="text-sm">{siteConfig.location}</span>
-        </div>
-
-        {/* Footer */}
         <footer className="text-center">
           <p className="text-sm text-muted-foreground">
             {t.footer.copyright.replace('{year}', currentYear.toString())}

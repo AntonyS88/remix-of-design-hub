@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/site.config';
@@ -28,17 +28,34 @@ export function Hero() {
         </h1>
 
         {/* Role */}
-        <p className="text-xl sm:text-2xl font-semibold text-foreground/90 mb-6">
-          {siteConfig.role}
+        <p className="text-xl sm:text-2xl font-semibold text-foreground/90 mb-6 text-balance">
+          {t.hero.role}
         </p>
 
         {/* Bio */}
-        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-10 max-w-lg mx-auto text-balance">
+        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl mx-auto text-balance">
           {t.hero.bio}
         </p>
 
+        <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-10">
+          <MapPin className="w-4 h-4 shrink-0" strokeWidth={2} aria-hidden="true" />
+          <span>{t.hero.locationStatus}</span>
+        </div>
+
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button
+            variant="default"
+            size="lg"
+            className="rounded-full px-8 min-w-[200px] cta-glow group"
+            asChild
+          >
+            <a href="#selected-work">
+              {t.hero.viewWork}
+              <ArrowDown className="w-5 h-5 shrink-0 transition-transform group-hover:translate-y-0.5" strokeWidth={2} />
+            </a>
+          </Button>
+
           <Button
             variant="secondary"
             size="lg"
@@ -46,21 +63,9 @@ export function Hero() {
             asChild
           >
             <Link to={`/resume/${lang}`}>
-              {t.hero.openResume}
+              {t.hero.resume}
               <ArrowUpRight className="w-5 h-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </Link>
-          </Button>
-
-          <Button
-            variant="default"
-            size="lg"
-            className="rounded-full px-8 min-w-[200px] cta-glow group"
-            asChild
-          >
-            <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer">
-              {t.hero.messageTelegram}
-              <ArrowUpRight className="w-5 h-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
-            </a>
           </Button>
         </div>
       </div>
