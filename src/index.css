@@ -197,6 +197,28 @@
     opacity: 0.04;
   }
 
+  /* Homepage editorial background: nearly neutral with one quiet accent */
+  .gradient-bg.gradient-bg-minimal::before {
+    background:
+      radial-gradient(ellipse 65% 45% at 12% 0%, hsl(var(--primary) / 0.045), transparent 68%),
+      hsl(var(--background));
+    animation: none;
+  }
+
+  .dark .gradient-bg.gradient-bg-minimal::before {
+    background:
+      radial-gradient(ellipse 60% 42% at 12% 0%, hsl(var(--primary) / 0.035), transparent 68%),
+      hsl(var(--background));
+  }
+
+  .gradient-bg.gradient-bg-minimal::after {
+    opacity: 0.012;
+  }
+
+  .dark .gradient-bg.gradient-bg-minimal::after {
+    opacity: 0.018;
+  }
+
   @keyframes gradient-drift {
     0%, 100% {
       transform: translate(0, 0) scale(1);
@@ -220,45 +242,11 @@
   /* Glow token variables */
   :root {
     --glow-color: var(--primary);
-    --glow-blur: 60px;
-    --glow-opacity: 0.25;
     --glow-hover-opacity: 0.35;
   }
 
   .dark {
-    --glow-opacity: 0.18;
     --glow-hover-opacity: 0.28;
-  }
-
-  /* Avatar Glow - subtle brand glow behind avatar */
-  .avatar-glow {
-    @apply relative;
-  }
-
-  .avatar-glow::before {
-    content: '';
-    position: absolute;
-    inset: -20%;
-    background: radial-gradient(
-      circle,
-      hsl(var(--glow-color) / var(--glow-opacity)) 0%,
-      hsl(var(--glow-color) / calc(var(--glow-opacity) * 0.5)) 40%,
-      transparent 70%
-    );
-    filter: blur(var(--glow-blur));
-    z-index: 0;
-    animation: glow-pulse 6s ease-in-out infinite;
-  }
-
-  @keyframes glow-pulse {
-    0%, 100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.8;
-      transform: scale(1.05);
-    }
   }
 
   /* CTA Button Glow - appears on hover */
@@ -280,19 +268,6 @@
 
   .cta-glow:hover::before {
     @apply opacity-100;
-  }
-
-  /* Case Block Hover Glow */
-  .case-block {
-    @apply bg-card/60 backdrop-blur-sm transition-all duration-500;
-    box-shadow: 0 4px 32px -8px hsl(var(--foreground) / 0.06);
-  }
-
-  .case-block:hover {
-    box-shadow: 
-      0 16px 48px -12px hsl(var(--foreground) / 0.08),
-      0 0 40px -8px hsl(var(--glow-color) / var(--glow-hover-opacity));
-    transform: translateY(-6px);
   }
 
   /* Shot Card - bento tiles */
@@ -339,38 +314,10 @@
       0 0 48px -8px hsl(var(--glow-color) / var(--glow-hover-opacity));
   }
 
-  .glass-card-hover {
-    @apply glass-card;
-  }
-
-  .glass-card-hover:hover {
-    box-shadow: 
-      0 12px 40px -8px hsl(var(--foreground) / 0.1),
-      0 0 32px -8px hsl(var(--glow-color) / var(--glow-hover-opacity));
-    transform: translateY(-4px);
-  }
-
   /* Active Nav Indicator Glow */
   .nav-link.active::after,
   .nav-link:hover::after {
     box-shadow: 0 2px 12px 0 hsl(var(--glow-color) / 0.4);
-  }
-
-  /* Section animations */
-  .section-fade-in {
-    animation: section-enter 0.8s ease-out forwards;
-    opacity: 0;
-  }
-
-  @keyframes section-enter {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   /* Nav link underline */

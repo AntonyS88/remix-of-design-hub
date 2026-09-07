@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { Portfolio } from '@/components/Portfolio';
@@ -12,6 +13,7 @@ import { siteConfig } from '@/config/site.config';
 
 const Index = () => {
   const { lang } = useLanguage();
+  const location = useLocation();
 
   useEffect(() => {
     const title = siteConfig.seo.title[lang];
@@ -25,9 +27,19 @@ const Index = () => {
     document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')?.setAttribute('content', description);
   }, [lang]);
 
+  useEffect(() => {
+    if (!location.hash) return;
+
+    const animationFrame = window.requestAnimationFrame(() => {
+      document.querySelector(location.hash)?.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    return () => window.cancelAnimationFrame(animationFrame);
+  }, [location.hash]);
+
   return (
     <>
-      <GradientBackground />
+      <GradientBackground minimal />
       <Header />
       <main>
         <Hero />

@@ -18,7 +18,6 @@ const App = () => (
             <Route path="/case/:slug" element={<CasePage />} />
             <Route path="/resume/:lang" element={<ResumePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

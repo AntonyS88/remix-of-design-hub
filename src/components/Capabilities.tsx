@@ -4,27 +4,29 @@ export function Capabilities() {
   const { t } = useLanguage();
 
   return (
-    <section id="capabilities" className="scroll-mt-16 py-20 sm:py-32 px-4">
-      <div className="container mx-auto max-w-6xl">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 sm:mb-16">
+    <section id="capabilities" className="scroll-mt-16 px-4 py-24 sm:px-6 sm:py-36">
+      <div className="container mx-auto max-w-7xl">
+        <h2 className="mb-12 text-3xl font-bold tracking-[-0.04em] text-foreground sm:mb-16 sm:text-5xl">
           {t.capabilities.title}
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 gap-x-12 md:grid-cols-2">
           {t.capabilities.items.map((item, index) => (
             <article
               key={item.title}
-              className="rounded-2xl border border-border/60 bg-card/60 p-6 sm:p-8 shadow-sm"
+              className="grid grid-cols-[3.5rem_minmax(0,1fr)] gap-4 border-t border-border/70 py-8 sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-6 sm:py-10"
             >
-              <span className="block text-sm font-semibold text-accent-foreground mb-5" aria-hidden="true">
+              <span className="text-3xl font-light tracking-[-0.06em] text-muted-foreground sm:text-5xl" aria-hidden="true">
                 {String(index + 1).padStart(2, '0')}
               </span>
-              <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-3">
-                {item.title}
-              </h3>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                {item.description}
-              </p>
+              <div>
+                <h3 className="mb-3 text-lg font-semibold tracking-[-0.02em] text-foreground sm:text-xl">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  {item.description}
+                </p>
+              </div>
             </article>
           ))}
         </div>

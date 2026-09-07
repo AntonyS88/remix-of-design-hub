@@ -1,15 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 import { siteConfig } from '@/config/site.config';
-import { cn } from '@/lib/utils';
+import { i18n, type Language } from '@/config/i18n';
 
 export function Header() {
-  const { t, lang } = useLanguage();
+  const { lang: selectedLanguage } = useLanguage();
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const routeLanguage = location.pathname.match(/^\/resume\/(ru|en)$/)?.[1] as Language | undefined;
+  const lang = routeLanguage ?? selectedLanguage;
+  const t = i18n[lang];
+  const navigationLabel = lang === 'ru' ? 'Основная навигация' : 'Primary navigation';
+  const mobileNavigationLabel = lang === 'ru' ? 'Мобильная навигация' : 'Mobile navigation';
+  const menuLabel = lang === 'ru' ? 'Открыть меню' : 'Toggle menu';
 
   const navItems = [
     { label: t.nav.work, href: '#selected-work', type: 'scroll' as const },
@@ -17,6 +24,10 @@ export function Header() {
     { label: t.nav.resume, href: `/resume/${lang}`, type: 'route' as const },
     { label: t.nav.contact, href: '#contact', type: 'scroll' as const },
   ];
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname, location.hash]);
 
   const scrollToSection = (href: string) => {
     setMobileMenuOpen(false);
@@ -27,43 +38,57 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl">
-      <div className="container mx-auto px-4 sm:px-6">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-sm">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
+          <Link
+            to="/"
+            className="rounded-sm text-sm font-semibold tracking-[-0.01em] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
+          >
+            <span className="sm:hidden">{siteConfig.name.split(' ')[0]}</span>
+            <span className="hidden sm:inline">{siteConfig.name}</span>
+          </Link>
+
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="ml-auto hidden items-center gap-6 md:flex" aria-label={navigationLabel}>
             {navItems.map((item) =>
               item.type === 'route' ? (
-                <Link key={item.href} to={item.href} className="nav-link text-sm font-medium py-1">
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  aria-current={location.pathname === item.href ? 'page' : undefined}
+                  className="nav-link rounded-sm py-1 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
+                >
                   {item.label}
                 </Link>
               ) : (
-                <button
+                <Link
                   key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  className="nav-link text-sm font-medium py-1"
+                  to={location.pathname === '/' ? item.href : `/${item.href}`}
+                  onClick={(event) => {
+                    if (location.pathname === '/') {
+                      event.preventDefault();
+                      scrollToSection(item.href);
+                    }
+                  }}
+                  className="nav-link rounded-sm py-1 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
                 >
                   {item.label}
-                </button>
+                </Link>
               )
             )}
           </nav>
 
-          {/* Mobile Logo/Name */}
-          <div className="md:hidden">
-            <span className="font-semibold text-foreground">{siteConfig.name.split(' ')[0]}</span>
-          </div>
-
           {/* Right side */}
-          <div className="flex items-center gap-3">
+          <div className="ml-6 flex items-center gap-3">
             <ThemeToggle className="hidden sm:flex" />
             <LanguageSwitcher className="hidden sm:flex" />
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+              className="rounded-full p-2 transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
+              aria-label={menuLabel}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
             >
@@ -74,42 +99,45 @@ export function Header() {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={cn(
-          "md:hidden absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-xl transition-all duration-300",
-          mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
-        )}
-      >
-        <nav id="mobile-navigation" className="container mx-auto px-4 py-4 flex flex-col gap-2">
-          {navItems.map((item) =>
-            item.type === 'route' ? (
-              <Link
-                key={item.href}
-                to={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-left py-3 px-4 rounded-lg hover:bg-muted transition-colors font-medium"
-              >
-                {item.label}
-              </Link>
-            ) : (
-              <button
-                key={item.href}
-                onClick={() => scrollToSection(item.href)}
-                className="text-left py-3 px-4 rounded-lg hover:bg-muted transition-colors font-medium"
-              >
-                {item.label}
-              </button>
-            )
-          )}
-          <div className="border-t border-border/30 my-2" />
-          <div className="flex items-center justify-between px-4 py-2">
-            <div className="flex items-center gap-3">
-              <ThemeToggle />
-              <LanguageSwitcher />
+      {mobileMenuOpen && (
+        <div className="absolute inset-x-0 top-16 border-b border-border/70 bg-background md:hidden">
+          <nav id="mobile-navigation" className="container mx-auto flex max-w-7xl flex-col px-4 py-3" aria-label={mobileNavigationLabel}>
+            {navItems.map((item) =>
+              item.type === 'route' ? (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-current={location.pathname === item.href ? 'page' : undefined}
+                  className="border-t border-border/60 py-3 text-left text-sm font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <Link
+                  key={item.href}
+                  to={location.pathname === '/' ? item.href : `/${item.href}`}
+                  onClick={(event) => {
+                    if (location.pathname === '/') {
+                      event.preventDefault();
+                      scrollToSection(item.href);
+                    }
+                  }}
+                  className="border-t border-border/60 py-3 text-left text-sm font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+            <div className="mt-1 flex items-center justify-between border-t border-border/60 py-3">
+              <div className="flex items-center gap-3">
+                <ThemeToggle />
+                <LanguageSwitcher />
+              </div>
             </div>
-          </div>
-        </nav>
-      </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

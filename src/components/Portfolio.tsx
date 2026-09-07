@@ -1,108 +1,83 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
-import { cases } from '@/config/cases';
+import { cases, type CaseStudy } from '@/config/cases';
+import type { Language } from '@/config/i18n';
 import { cn } from '@/lib/utils';
 
-const colSpanMap = {
-  1: 'lg:col-span-1',
-  2: 'lg:col-span-2',
-  3: 'lg:col-span-3',
-  4: 'lg:col-span-4',
-  5: 'lg:col-span-5',
-  6: 'lg:col-span-6',
-} as const;
+interface ProjectCardProps {
+  item: CaseStudy;
+  lang: Language;
+  viewCase: string;
+  featured?: boolean;
+}
 
-const rowSpanMap = {
-  1: 'lg:row-span-1',
-  2: 'lg:row-span-2',
-} as const;
+function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProps) {
+  return (
+    <article>
+      <Link to={`/case/${item.slug}`} className="group block focus-visible:outline-none">
+        <div
+          className={cn(
+            'overflow-hidden rounded-xl bg-muted ring-offset-background transition-shadow group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-4',
+            featured ? 'aspect-[16/9]' : 'aspect-[4/3]'
+          )}
+        >
+          <img
+            src={item.coverImage}
+            alt={item.title[lang]}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          />
+        </div>
+
+        <div className={cn('mt-5', featured && 'sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(18rem,0.62fr)] sm:gap-10')}>
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+              {item.tags.join(' · ')}
+            </p>
+            <h3 className={cn('font-semibold tracking-[-0.025em] text-foreground', featured ? 'text-2xl sm:text-4xl' : 'text-xl sm:text-2xl')}>
+              {item.title[lang]}
+            </h3>
+          </div>
+
+          <div className={cn(featured ? 'mt-4 sm:mt-0' : 'mt-3')}>
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+              {item.summary[lang]}
+            </p>
+            <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
+              <span className="border-b border-transparent transition-colors group-hover:border-primary">{viewCase}</span>
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+            </span>
+          </div>
+        </div>
+      </Link>
+    </article>
+  );
+}
 
 export function Portfolio() {
   const { lang, t } = useLanguage();
+  const [featured, ...secondary] = cases;
 
   return (
-    <section id="selected-work" className="scroll-mt-16 py-20 sm:py-32 px-4">
-      <div className="container mx-auto max-w-6xl">
-        {/* Section Title */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-16">
-          {t.cases.title}
-        </h2>
+    <section id="selected-work" className="scroll-mt-16 px-4 py-24 sm:px-6 sm:py-36">
+      <div className="container mx-auto max-w-7xl">
+        <div className="mb-12 flex items-end justify-between border-b border-border/70 pb-6 sm:mb-16">
+          <h2 className="text-3xl font-bold tracking-[-0.04em] text-foreground sm:text-5xl">
+            {t.cases.title}
+          </h2>
+          <span className="hidden text-xs font-semibold tracking-[0.16em] text-muted-foreground sm:block" aria-hidden="true">
+            01—03
+          </span>
+        </div>
 
-        {/* Bento Grid: 1 col mobile, 2 cols tablet, 6 cols desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-5">
-          {cases.map((caseItem, index) => {
-            const colSpan = caseItem.bento?.colSpan ?? 3;
-            const rowSpan = caseItem.bento?.rowSpan ?? 1;
-            const aspect = caseItem.bento?.aspect ?? 'aspect-[16/10]';
+        <ProjectCard item={featured} lang={lang} viewCase={t.cases.viewCase} featured />
 
-            return (
-              <Link
-                key={caseItem.slug}
-                to={`/case/${caseItem.slug}`}
-                className={cn(
-                  'group case-block rounded-[20px] overflow-hidden block relative',
-                  'transition-all duration-500',
-                  colSpanMap[colSpan],
-                  rowSpanMap[rowSpan]
-                )}
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                {/* Cover image */}
-                <div className={cn('relative w-full overflow-hidden rounded-[20px]', aspect)}>
-                  <img
-                    src={caseItem.coverImage}
-                    alt={caseItem.title[lang]}
-                    loading="lazy"
-                    decoding="async"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-
-                  {/* Bottom gradient for legibility */}
-                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
-
-                  {/* Hover violet tint */}
-                  <div className="absolute inset-0 bg-primary/0 transition-colors duration-300 group-hover:bg-primary/10" />
-
-                  {/* Top: tags */}
-                  <div className="absolute top-4 left-4 right-4 flex flex-wrap gap-2">
-                    {caseItem.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs font-medium px-3 py-1.5 rounded-full bg-background/80 backdrop-blur-md text-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Bottom: title + summary + arrow */}
-                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 flex items-end justify-between gap-4">
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-white mb-1.5 line-clamp-2">
-                        {caseItem.title[lang]}
-                      </h3>
-                      <p className="text-sm text-white/80 line-clamp-2">
-                        {caseItem.summary[lang]}
-                      </p>
-                    </div>
-
-                    <span
-                      className={cn(
-                        'shrink-0 w-10 h-10 rounded-full bg-white/95 text-foreground',
-                        'flex items-center justify-center',
-                        'translate-y-2 opacity-0 transition-all duration-300',
-                        'group-hover:translate-y-0 group-hover:opacity-100'
-                      )}
-                      aria-label={t.cases.viewCase}
-                    >
-                      <ArrowUpRight className="w-5 h-5" strokeWidth={2} />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+        <div className="mt-16 grid gap-12 sm:mt-24 sm:grid-cols-2 sm:gap-6 lg:gap-10">
+          {secondary.map((item) => (
+            <ProjectCard key={item.slug} item={item} lang={lang} viewCase={t.cases.viewCase} />
+          ))}
         </div>
       </div>
     </section>

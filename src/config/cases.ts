@@ -4,7 +4,13 @@
 
 import caseAI from '@/assets/case-ai-assistants.jpg';
 import caseDashboard from '@/assets/case-operations-dashboard.jpg';
-import caseMobile from '@/assets/case-mobile-app.jpg';
+import aiVideoHero from '@/assets/ai-video-hero.webp';
+import aiVideoProblem from '@/assets/ai-video-problem.webp';
+import aiVideoResearch from '@/assets/ai-video-research.webp';
+import aiVideoSolution from '@/assets/ai-video-solution.webp';
+import aiVideoAgenticFlow from '@/assets/ai-video-agentic-flow.webp';
+import aiVideoDesign from '@/assets/ai-video-design.webp';
+import aiVideoOutput from '@/assets/ai-video-output.webp';
 
 export interface CaseStudy {
   slug: string;
@@ -45,6 +51,7 @@ export interface CaseContent {
   outcome: string;
   tools: string[];
   gallery: string[]; // Image paths - replace with real screenshots
+  galleryCaptions?: string[];
 }
 
 export const cases: CaseStudy[] = [
@@ -190,70 +197,92 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "mobile-app-concept",
-    coverImage: caseMobile,
-    tags: ["Mobile", "iOS", "UI Kit"],
+    coverImage: aiVideoHero,
+    tags: ["Product Design", "Mobile", "AI"],
     bento: { colSpan: 2, rowSpan: 1, aspect: 'aspect-[4/3]' },
     title: {
-      ru: "Mobile App Concept",
-      en: "Mobile App Concept",
+      ru: "AI-видеоредактор",
+      en: "AI Video Editor",
     },
     summary: {
-      ru: "Концепт мобильного приложения с онбордингом, профилем и UI Kit",
-      en: "Mobile app concept with onboarding, profile, and UI Kit",
+      ru: "Agentic UX-концепт: AI сам собирает ролик, пользователь только подтверждает",
+      en: "Agentic UX concept: AI assembles the video, the user simply approves",
     },
     content: {
       ru: {
         hero: {
-          title: "Mobile App Concept — Onboarding, Profile, UI Kit",
+          title: "Мобильный видеоредактор — агентный UX",
           role: "Product Designer",
-          period: "2024–2025",
-          outcome: "Создан полный UI Kit и ключевые экраны приложения",
+          period: "2026",
+          outcome: "Концепт мобильного видеоредактора, который превращает монтаж в короткий сценарий подтверждения",
         },
-        problem: "Нужно спроектировать мобильное приложение с нуля: продумать онбординг, профиль пользователя и создать масштабируемый UI Kit для дальнейшей разработки.",
-        role: "Разработал концепцию приложения, спроектировал онбординг flow, экраны профиля и библиотеку компонентов с соблюдением iOS HIG.",
+        problem: "Обычные видеоредакторы перекладывают на пользователя импорт, выбор стиля, музыки и монтаж. Даже короткий ролик требует времени, навыков и множества решений.",
+        role: "Сформулировал продуктовую гипотезу, исследовал AI-first паттерны, спроектировал agentic flow и ключевые мобильные экраны.",
         process: [
-          "Исследование целевой аудитории",
-          "User journey mapping",
-          "Проектирование онбординга (3–4 шага)",
-          "Дизайн профиля и настроек",
-          "Создание UI Kit с токенами",
-          "Прототипирование переходов",
+          "Разбор проблем традиционного монтажа",
+          "Исследование AI-first и voice-first сценариев",
+          "Гипотеза проактивного агента",
+          "Проектирование потока open → approve → share",
+          "UI-концепт ключевых состояний",
+          "Проверка ясности и когнитивной нагрузки",
         ],
-        solution: "Онбординг с прогрессом и skip-опцией. Профиль с аватаром, статистикой и быстрыми действиями. UI Kit с 50+ компонентами.",
-        uiDetails: "Компоненты: кнопки, инпуты, карточки, навигация, модалки. Токены: цвета, типографика, spacing. Auto Layout для адаптивности.",
-        outcome: "Готовая дизайн-система для команды. Документация компонентов. Прототип для пользовательского тестирования.",
-        tools: ["Figma", "Photoshop", "iOS HIG"],
+        solution: "Агент заранее анализирует галерею, выбирает лучшие кадры, предлагает готовый вариант и ждёт одного подтверждения. Пользователь может уточнить результат голосом и сразу поделиться роликом.",
+        uiDetails: "Тёмный mobile UI с одним фиолетовым акцентом, крупными CTA и сфокусированными состояниями агента. Интерфейс оставляет пользователю контроль без сложного таймлайна.",
+        outcome: "Сценарий сокращён до трёх действий: открыть, подтвердить и поделиться — без лишних решений и ручной сборки ролика.",
+        tools: ["Figma", "FigJam", "AI prototyping", "iOS HIG"],
         gallery: [
-          caseMobile,
-          caseMobile,
-          caseMobile,
+          aiVideoProblem,
+          aiVideoResearch,
+          aiVideoSolution,
+          aiVideoAgenticFlow,
+          aiVideoDesign,
+          aiVideoOutput,
+        ],
+        galleryCaptions: [
+          "Традиционный монтаж требует слишком много решений.",
+          "Исследование подтвердило потенциал проактивного AI-сценария.",
+          "Агент берёт инициативу, пользователь подтверждает результат.",
+          "Пять шагов от анализа галереи до публикации.",
+          "Voice-first интерфейс помогает быстро уточнить выбор.",
+          "AI выбирает лучшие кадры, собирает ролик и готовит его к публикации.",
         ],
       },
       en: {
         hero: {
-          title: "Mobile App Concept — Onboarding, Profile, UI Kit",
+          title: "Mobile Video Editor — Agentic UX",
           role: "Product Designer",
-          period: "2024–2025",
-          outcome: "Created complete UI Kit and key app screens",
+          period: "2026",
+          outcome: "A mobile video editor concept that turns editing into a short approval flow",
         },
-        problem: "Need to design mobile app from scratch: plan onboarding, user profile, and create scalable UI Kit for further development.",
-        role: "Developed app concept, designed onboarding flow, profile screens, and component library following iOS HIG.",
+        problem: "Traditional video editors make users import clips, choose a style and music, and assemble the edit. Even a short reel demands time, skill, and too many decisions.",
+        role: "Defined the product hypothesis, researched AI-first patterns, designed the agentic flow, and created the key mobile screens.",
         process: [
-          "Target audience research",
-          "User journey mapping",
-          "Onboarding design (3–4 steps)",
-          "Profile and settings design",
-          "UI Kit creation with tokens",
-          "Transition prototyping",
+          "Mapped the friction in traditional editing",
+          "Researched AI-first and voice-first patterns",
+          "Formed the proactive-agent hypothesis",
+          "Designed the open → approve → share flow",
+          "Created the key interface states",
+          "Checked clarity and cognitive load",
         ],
-        solution: "Onboarding with progress and skip option. Profile with avatar, stats, and quick actions. UI Kit with 50+ components.",
-        uiDetails: "Components: buttons, inputs, cards, navigation, modals. Tokens: colors, typography, spacing. Auto Layout for adaptivity.",
-        outcome: "Ready design system for the team. Component documentation. Prototype for user testing.",
-        tools: ["Figma", "Photoshop", "iOS HIG"],
+        solution: "The agent analyzes the gallery in advance, selects the best shots, suggests a ready-made edit, and waits for one approval. The user can refine it by voice and share immediately.",
+        uiDetails: "A dark mobile UI with one purple accent, clear CTAs, and focused agent states. The experience preserves user control without exposing a complex timeline.",
+        outcome: "The journey is reduced to three actions: open, approve, and share — with no unnecessary decisions or manual assembly.",
+        tools: ["Figma", "FigJam", "AI prototyping", "iOS HIG"],
         gallery: [
-          caseMobile,
-          caseMobile,
-          caseMobile,
+          aiVideoProblem,
+          aiVideoResearch,
+          aiVideoSolution,
+          aiVideoAgenticFlow,
+          aiVideoDesign,
+          aiVideoOutput,
+        ],
+        galleryCaptions: [
+          "Traditional editing asks users to make too many decisions.",
+          "Research revealed an opportunity for a proactive AI flow.",
+          "The agent takes initiative; the user approves the result.",
+          "Five steps take the experience from analysis to publishing.",
+          "A voice-first interface makes refinement fast and direct.",
+          "AI selects the best shots, assembles the reel, and prepares it to share.",
         ],
       },
     },

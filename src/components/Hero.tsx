@@ -1,73 +1,78 @@
 import { ArrowDown, ArrowUpRight, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
-import { siteConfig } from '@/config/site.config';
 import { Button } from '@/components/ui/button';
-import avatarImage from '@/assets/avatar.jpg';
+import avatarImage from '@/assets/avatar-retouched.jpg';
+
+const buildStages = ['IDEA', 'DESIGN', 'BUILD', 'SHIP'] as const;
 
 export function Hero() {
   const { t, lang } = useLanguage();
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-16 pb-20 px-4">
-      <div className="text-center max-w-2xl mx-auto animate-fade-in">
-        {/* Avatar with subtle brand glow */}
-        <div className="mb-8 flex justify-center">
-          <div className="avatar-glow relative">
-            <img
-              src={avatarImage}
-              alt={siteConfig.name}
-              className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover bg-muted relative z-10"
-            />
+    <section className="min-h-[100svh] flex items-center px-4 pt-28 pb-12 sm:px-6 sm:pt-32 sm:pb-16 lg:min-h-[82svh] lg:items-start lg:pb-10">
+      <div className="container relative mx-auto w-full max-w-7xl">
+        <div className="pointer-events-none absolute inset-x-0 top-0 hidden grid-cols-12 gap-x-6 lg:grid">
+          <img
+            src={avatarImage}
+            alt="Anton Sechin"
+            width={640}
+            height={640}
+            decoding="async"
+            className="col-start-10 col-end-12 aspect-[4/5] w-28 translate-x-6 select-none justify-self-end rounded-2xl object-cover object-[center_38%]"
+          />
+        </div>
+
+        <div className="grid gap-10 sm:gap-12 lg:grid-cols-12 lg:items-start lg:gap-x-6 lg:gap-y-0 lg:pt-[11.75rem]">
+          <h1 aria-label="Anton Sechin" className="min-w-0 text-[clamp(4.25rem,13vw,10rem)] font-bold uppercase leading-[0.82] tracking-[-0.075em] text-foreground animate-fade-in lg:col-span-7">
+            <span className="block">Anton</span>
+            <span className="block">Sechin</span>
+          </h1>
+
+          <div className="max-w-xl lg:col-start-8 lg:col-end-12 lg:w-[112%] lg:max-w-none">
+            <p className="mb-6 text-lg font-semibold leading-snug text-foreground sm:text-xl lg:text-[1.3125rem]">
+              {t.hero.role}
+            </p>
+
+            <p className="mb-6 text-base leading-relaxed text-muted-foreground sm:text-lg lg:text-[1.1875rem]">
+              {t.hero.bio}
+            </p>
+
+            <div className="mb-10 flex items-center gap-2 text-sm text-muted-foreground">
+              <MapPin className="h-4 w-4 shrink-0" strokeWidth={1.75} aria-hidden="true" />
+              <span>{t.hero.locationStatus}</span>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
+              <Button variant="default" size="lg" className="rounded-full px-6 group" asChild>
+                <a href="#selected-work">
+                  {t.hero.viewWork}
+                  <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" strokeWidth={2} />
+                </a>
+              </Button>
+
+              <Link
+                to={`/resume/${lang}`}
+                className="group inline-flex items-center gap-2 border-b border-foreground/30 py-1 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
+              >
+                {t.hero.resume}
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* Name */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-2">
-          {siteConfig.name}
-        </h1>
-
-        {/* Role */}
-        <p className="text-xl sm:text-2xl font-semibold text-foreground/90 mb-6 text-balance">
-          {t.hero.role}
-        </p>
-
-        {/* Bio */}
-        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl mx-auto text-balance">
-          {t.hero.bio}
-        </p>
-
-        <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-10">
-          <MapPin className="w-4 h-4 shrink-0" strokeWidth={2} aria-hidden="true" />
-          <span>{t.hero.locationStatus}</span>
-        </div>
-
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button
-            variant="default"
-            size="lg"
-            className="rounded-full px-8 min-w-[200px] cta-glow group"
-            asChild
-          >
-            <a href="#selected-work">
-              {t.hero.viewWork}
-              <ArrowDown className="w-5 h-5 shrink-0 transition-transform group-hover:translate-y-0.5" strokeWidth={2} />
-            </a>
-          </Button>
-
-          <Button
-            variant="secondary"
-            size="lg"
-            className="rounded-full px-8 min-w-[200px] group"
-            asChild
-          >
-            <Link to={`/resume/${lang}`}>
-              {t.hero.resume}
-              <ArrowUpRight className="w-5 h-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
-            </Link>
-          </Button>
-        </div>
+        <ol className="mt-14 grid grid-cols-2 border-y border-border/70 sm:mt-16 sm:grid-cols-4 lg:mt-8" aria-label="Idea to shipped product">
+          {buildStages.map((stage, index) => (
+            <li
+              key={stage}
+              className="flex items-center gap-3 py-4 text-xs font-semibold tracking-[0.16em] text-muted-foreground sm:border-l sm:px-5 sm:first:border-l-0"
+            >
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <span>{stage}</span>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
