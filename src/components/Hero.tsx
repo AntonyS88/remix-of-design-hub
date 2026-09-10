@@ -10,8 +10,8 @@ export function Hero() {
   const { t, lang } = useLanguage();
 
   return (
-    <section className="min-h-[100svh] flex items-center px-4 pt-28 pb-12 sm:px-6 sm:pt-32 sm:pb-16 lg:min-h-[82svh] lg:items-start lg:pb-10">
-      <div className="container relative mx-auto w-full max-w-7xl">
+    <section className="flex min-h-[100svh] items-center pb-14 pt-28 sm:pb-16 sm:pt-32 lg:min-h-[80svh] lg:items-start lg:pb-12">
+      <div className="layout-shell relative">
         <div className="pointer-events-none absolute inset-x-0 top-0 hidden grid-cols-12 gap-x-6 lg:grid">
           <img
             src={avatarImage}
@@ -19,17 +19,17 @@ export function Hero() {
             width={640}
             height={640}
             decoding="async"
-            className="col-start-10 col-end-12 aspect-[4/5] w-28 translate-x-6 select-none justify-self-end rounded-2xl object-cover object-[center_38%]"
+            className="col-start-10 col-end-12 aspect-[4/5] w-28 translate-x-4 select-none justify-self-end rounded-[var(--radius-visual)] object-cover object-[center_38%]"
           />
         </div>
 
-        <div className="grid gap-10 sm:gap-12 lg:grid-cols-12 lg:items-start lg:gap-x-6 lg:gap-y-0 lg:pt-[11.75rem]">
+        <div className="grid gap-9 sm:gap-11 lg:grid-cols-12 lg:items-start lg:gap-x-6 lg:gap-y-0 lg:pt-[10.75rem]">
           <h1 aria-label="Anton Sechin" className="min-w-0 text-[clamp(4.25rem,13vw,10rem)] font-bold uppercase leading-[0.82] tracking-[-0.075em] text-foreground animate-fade-in lg:col-span-7">
             <span className="block">Anton</span>
             <span className="block">Sechin</span>
           </h1>
 
-          <div className="max-w-xl lg:col-start-8 lg:col-end-12 lg:w-[112%] lg:max-w-none">
+          <div className="max-w-xl lg:col-start-8 lg:col-end-13 lg:max-w-[34rem]">
             <p className="mb-6 text-lg font-semibold leading-snug text-foreground sm:text-xl lg:text-[1.3125rem]">
               {t.hero.role}
             </p>
@@ -62,7 +62,7 @@ export function Hero() {
           </div>
         </div>
 
-        <ol className="mt-14 grid grid-cols-2 border-y border-border/70 sm:mt-16 sm:grid-cols-4 lg:mt-8" aria-label="Idea to shipped product">
+        <ol className="mt-14 grid grid-cols-2 border-y border-border/70 sm:mt-16 sm:grid-cols-4 lg:mt-10" aria-label="Idea to shipped product">
           {buildStages.map((stage, index) => (
             <li
               key={stage}

@@ -38,8 +38,8 @@ export function Header() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-sm">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
+      <div className="layout-shell">
         <div className="flex items-center justify-between h-16">
           <Link
             to="/"
@@ -101,7 +101,7 @@ export function Header() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="absolute inset-x-0 top-16 border-b border-border/70 bg-background md:hidden">
-          <nav id="mobile-navigation" className="container mx-auto flex max-w-7xl flex-col px-4 py-3" aria-label={mobileNavigationLabel}>
+          <nav id="mobile-navigation" className="layout-shell flex flex-col py-3" aria-label={mobileNavigationLabel}>
             {navItems.map((item) =>
               item.type === 'route' ? (
                 <Link

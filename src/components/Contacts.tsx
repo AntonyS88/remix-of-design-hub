@@ -10,8 +10,8 @@ export function Contacts() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <section id="contact" className="scroll-mt-16 border-t border-border/70 px-4 py-24 sm:px-6 sm:py-36">
-      <div className="container mx-auto max-w-7xl">
+    <section id="contact" className="section-space scroll-mt-16 border-t border-border/70">
+      <div className="layout-shell">
         <h2 className="max-w-5xl text-[clamp(3rem,8vw,7rem)] font-bold leading-[0.95] tracking-[-0.065em] text-foreground">
           {t.contact.title}
         </h2>
@@ -41,6 +41,14 @@ export function Contacts() {
             </a>
             <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer" className={externalLinkClass}>
               {t.contacts.telegram}
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+            </a>
+            <a href={siteConfig.dribbble} target="_blank" rel="noopener noreferrer" className={externalLinkClass}>
+              {t.contacts.dribbble}
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+            </a>
+            <a href={siteConfig.behance} target="_blank" rel="noopener noreferrer" className={externalLinkClass}>
+              {t.contacts.behance}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </a>
             <Link to={`/resume/${lang}`} className={externalLinkClass}>

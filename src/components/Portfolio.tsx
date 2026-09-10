@@ -14,12 +14,15 @@ interface ProjectCardProps {
 
 function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProps) {
   return (
-    <article>
-      <Link to={`/case/${item.slug}`} className="group block focus-visible:outline-none">
+    <article className={cn(!featured && 'h-full')}>
+      <Link
+        to={`/case/${item.slug}`}
+        className={cn('group block focus-visible:outline-none', !featured && 'flex h-full flex-col')}
+      >
         <div
           className={cn(
-            'overflow-hidden rounded-xl bg-muted ring-offset-background transition-shadow group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-4',
-            featured ? 'aspect-[16/9]' : 'aspect-[4/3]'
+            'overflow-hidden rounded-[var(--radius-visual)] bg-muted ring-offset-background transition-shadow group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-4',
+            featured ? (item.coverAspect ?? 'aspect-[16/9]') : 'aspect-[14/11]'
           )}
         >
           <img
@@ -27,11 +30,14 @@ function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProp
             alt={item.title[lang]}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+            className={cn(
+              'h-full w-full transition-transform duration-500 ease-out',
+              featured && item.coverAspect ? 'object-contain' : 'object-cover group-hover:scale-[1.02]'
+            )}
           />
         </div>
 
-        <div className={cn('mt-5', featured && 'sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(18rem,0.62fr)] sm:gap-10')}>
+        <div className={cn('mt-5', featured ? 'sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(18rem,0.62fr)] sm:gap-10' : 'flex flex-1 flex-col')}>
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
               {item.tags.join(' · ')}
@@ -41,11 +47,11 @@ function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProp
             </h3>
           </div>
 
-          <div className={cn(featured ? 'mt-4 sm:mt-0' : 'mt-3')}>
+          <div className={cn(featured ? 'mt-4 sm:mt-0' : 'mt-3 flex flex-1 flex-col')}>
             <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
               {item.summary[lang]}
             </p>
-            <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
+            <span className={cn('inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors group-hover:text-primary', featured ? 'mt-4' : 'mt-auto pt-4')}>
               <span className="border-b border-transparent transition-colors group-hover:border-primary">{viewCase}</span>
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </span>
@@ -58,17 +64,22 @@ function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProp
 
 export function Portfolio() {
   const { lang, t } = useLanguage();
-  const [featured, ...secondary] = cases;
+  const selectedCases = ['remy', 'mobile-app-concept', 'forex-trading-simulator']
+    .map((slug) => cases.find((item) => item.slug === slug))
+    .filter((item): item is CaseStudy => Boolean(item));
+  const [featured, ...secondary] = selectedCases;
+
+  if (!featured) return null;
 
   return (
-    <section id="selected-work" className="scroll-mt-16 px-4 py-24 sm:px-6 sm:py-36">
-      <div className="container mx-auto max-w-7xl">
+    <section id="selected-work" className="section-space scroll-mt-16">
+      <div className="layout-shell">
         <div className="mb-12 flex items-end justify-between border-b border-border/70 pb-6 sm:mb-16">
-          <h2 className="text-3xl font-bold tracking-[-0.04em] text-foreground sm:text-5xl">
+          <h2 className="section-heading text-foreground">
             {t.cases.title}
           </h2>
           <span className="hidden text-xs font-semibold tracking-[0.16em] text-muted-foreground sm:block" aria-hidden="true">
-            01—03
+            01—{String(selectedCases.length).padStart(2, '0')}
           </span>
         </div>
 
@@ -76,7 +87,12 @@ export function Portfolio() {
 
         <div className="mt-16 grid gap-12 sm:mt-24 sm:grid-cols-2 sm:gap-6 lg:gap-10">
           {secondary.map((item) => (
-            <ProjectCard key={item.slug} item={item} lang={lang} viewCase={t.cases.viewCase} />
+            <ProjectCard
+              key={item.slug}
+              item={item}
+              lang={lang}
+              viewCase={t.cases.viewCase}
+            />
           ))}
         </div>
       </div>

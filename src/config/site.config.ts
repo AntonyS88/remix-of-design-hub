@@ -11,6 +11,8 @@ export const siteConfig = {
     url: "https://t.me/AntonyS88",
   },
   linkedin: "https://www.linkedin.com/in/anton-sechin-ab7449a3/",
+  dribbble: "https://dribbble.com/Sechin",
+  behance: "https://www.behance.net/DesignerAntonSechin/projects",
   cvUrl: "/cv.pdf",
   emailSubject: "UX%2FUI%20Design%20Inquiry",
   
@@ -22,6 +24,8 @@ export const siteConfig = {
   socials: {
     telegram: "https://t.me/AntonyS88",
     linkedin: "https://www.linkedin.com/in/anton-sechin-ab7449a3/",
+    dribbble: "https://dribbble.com/Sechin",
+    behance: "https://www.behance.net/DesignerAntonSechin/projects",
     email: "mailto:sechin.ao@gmail.com?subject=UX%2FUI%20Design%20Inquiry",
   },
   

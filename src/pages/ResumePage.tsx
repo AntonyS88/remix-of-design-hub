@@ -50,10 +50,10 @@ export default function ResumePage() {
       <GradientBackground minimal />
       <Header />
 
-      <main className="min-h-screen px-4 pb-20 pt-28 sm:px-6 sm:pb-24 sm:pt-32">
-        <div className="container mx-auto w-full max-w-7xl">
+      <main className="min-h-screen pb-20 pt-28 sm:pb-24 sm:pt-32">
+        <div className="layout-shell">
           <div className="flex items-start justify-between gap-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Anton Sechin</p>
+            <p className="eyebrow">Anton Sechin</p>
             <nav className="flex items-center gap-4 text-sm font-semibold" aria-label={data.languageLabel}>
               {(['ru', 'en'] as const).map((language) => (
                 <Link
@@ -74,7 +74,7 @@ export default function ResumePage() {
             </nav>
           </div>
 
-          <header className="mt-16 grid gap-8 sm:mt-24 lg:grid-cols-12 lg:items-end lg:gap-6">
+          <header className="mt-16 grid gap-8 sm:mt-20 lg:grid-cols-12 lg:items-end lg:gap-6">
             <h1 className="text-[clamp(4.5rem,12vw,10rem)] font-bold uppercase leading-[0.82] tracking-[-0.075em] text-foreground lg:col-span-8">
               {data.title}
             </h1>
@@ -83,9 +83,9 @@ export default function ResumePage() {
             </p>
           </header>
 
-          <section className="mt-14 grid gap-10 border-y border-border/70 py-10 sm:mt-20 sm:py-12 lg:grid-cols-12 lg:items-end lg:gap-6">
+          <section className="mt-14 grid gap-10 border-y border-border/70 py-10 sm:mt-16 sm:py-12 lg:grid-cols-12 lg:items-end lg:gap-6">
             <div className="lg:col-span-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+              <p className="eyebrow">
                 {currentLang === 'ru' ? 'Product Designer · AI-продукты & SaaS' : 'Product Designer · AI Products & SaaS'}
               </p>
               <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">

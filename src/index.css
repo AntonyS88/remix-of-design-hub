@@ -2,10 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Premium UX/UI Portfolio Design System
-   Violet/Indigo accent, animated gradient, clean minimalism
-   All colors in HSL format
-*/
+/* Anton Sechin portfolio — editorial product design system.
+   All color values stay semantic and theme-aware. */
 
 @layer base {
   /* Light Theme */
@@ -48,8 +46,12 @@
     --ring: 258 70% 55%;
 
     --radius: 0.75rem;
-    --radius-lg: 1.5rem;
-    --radius-xl: 2rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+    --radius-visual: 0.75rem;
+    --content-max: 80rem;
+    --measure: 42rem;
+    --section-space: clamp(6rem, 10vw, 9rem);
 
     /* Gradient colors - soft in light mode */
     --gradient-1: 258 60% 92%;
@@ -143,10 +145,21 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-width: 320px;
+    text-rendering: optimizeLegibility;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.22);
+  }
+
+  :focus-visible {
+    outline-color: hsl(var(--ring));
+    outline-offset: 4px;
   }
 }
 
@@ -338,6 +351,30 @@
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
   }
+
+  .layout-shell {
+    width: min(calc(100% - 2rem), var(--content-max));
+    margin-inline: auto;
+  }
+
+  .section-space {
+    padding-block: var(--section-space);
+  }
+
+  .section-heading {
+    font-size: clamp(2rem, 4.1vw, 3.5rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+  }
 }
 
 /* Utility classes */
@@ -349,5 +386,26 @@
   .gradient-text {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(290 60% 55%));
+  }
+}
+
+@media (min-width: 640px) {
+  .layout-shell {
+    width: min(calc(100% - 3rem), var(--content-max));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

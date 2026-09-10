@@ -32,9 +32,9 @@ export default function NotFound() {
     <>
       <GradientBackground minimal />
       <Header />
-      <main className="flex min-h-screen items-center px-4 pb-20 pt-28 sm:px-6">
-        <div className="container mx-auto max-w-7xl">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">{text.eyebrow}</p>
+      <main className="flex min-h-screen items-center pb-20 pt-28">
+        <div className="layout-shell">
+          <p className="eyebrow mb-5">{text.eyebrow}</p>
           <h1 className="text-[clamp(7rem,22vw,18rem)] font-bold leading-[0.72] tracking-[-0.075em] text-foreground">{text.title}</h1>
           <div className="mt-14 grid gap-8 border-t border-border/70 pt-8 lg:grid-cols-12 lg:gap-6">
             <p className="max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg lg:col-span-5 lg:col-start-8">

@@ -150,12 +150,12 @@ function ImageLightbox({ images, captions, currentIndex, imageAlt, labels, onClo
 
 function EditorialSection({ index, title, children }: { index: string; title: string; children: ReactNode }) {
   return (
-    <section className="grid gap-5 border-t border-border/70 py-10 sm:py-12 lg:grid-cols-12 lg:gap-6">
-      <div className="lg:col-span-4">
-        <p className="mb-2 text-xs font-semibold tracking-[0.16em] text-muted-foreground">{index}</p>
+    <section className="grid gap-5 border-t border-border/70 py-10 sm:py-14 lg:grid-cols-12 lg:gap-6">
+      <div className="lg:col-span-3">
+        <p className="eyebrow mb-2">{index}</p>
         <h2 className="text-xl font-semibold tracking-[-0.025em] text-foreground sm:text-2xl">{title}</h2>
       </div>
-      <div className="min-w-0 lg:col-span-7 lg:col-start-6">{children}</div>
+      <div className="min-w-0 lg:col-span-8 lg:col-start-5">{children}</div>
     </section>
   );
 }
@@ -224,8 +224,8 @@ export default function CasePage() {
         <GradientBackground minimal />
         <Header />
 
-        <main className="min-h-screen px-4 pb-20 pt-28 sm:px-6 sm:pb-28 sm:pt-32">
-        <div className="container mx-auto max-w-7xl">
+        <main className="min-h-screen pb-20 pt-28 sm:pb-28 sm:pt-32">
+        <div className="layout-shell">
           <Link
             to="/#selected-work"
             className="group inline-flex items-center gap-2 rounded-sm py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
@@ -234,17 +234,17 @@ export default function CasePage() {
             {t.casePage.back}
           </Link>
 
-          <header className="mt-12 grid gap-8 lg:mt-16 lg:grid-cols-12 lg:gap-x-6">
-            <div className="lg:col-span-8">
-              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+          <header className="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-12 lg:items-start lg:gap-x-6">
+            <div className="lg:col-span-7">
+              <p className="eyebrow mb-5">
                 {caseData.tags.join(' · ')}
               </p>
-              <h1 className="max-w-5xl text-4xl font-bold leading-[0.96] tracking-[-0.055em] text-foreground sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+              <h1 className="max-w-5xl text-[clamp(2.75rem,6.2vw,5.75rem)] font-bold leading-[0.94] tracking-[-0.06em] text-foreground">
                 {content.hero.title}
               </h1>
             </div>
 
-            <div className="border-t border-border/70 pt-5 lg:col-span-4 lg:self-end">
+            <div className="border-t border-border/70 pt-5 lg:col-span-4 lg:col-start-9 lg:mt-7">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-medium text-foreground">
                 <span>{content.hero.role}</span>
                 <span aria-hidden="true" className="text-muted-foreground">·</span>
@@ -256,15 +256,15 @@ export default function CasePage() {
             </div>
           </header>
 
-          <figure className="mt-12 overflow-hidden rounded-xl bg-muted sm:mt-16">
+          <figure className="mt-10 overflow-hidden rounded-[var(--radius-visual)] bg-muted sm:mt-14">
             <img
               src={caseData.coverImage}
               alt={caseData.title[lang]}
-              className="aspect-[16/9] w-full object-cover"
+              className="h-auto w-full object-contain"
             />
           </figure>
 
-          <div className="mt-16 sm:mt-24">
+          <div className="mt-16 sm:mt-20">
             <EditorialSection index="01" title={t.casePage.problem}>
               <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">{content.problem}</p>
             </EditorialSection>
@@ -295,19 +295,26 @@ export default function CasePage() {
                   01—{String(content.gallery.length).padStart(2, '0')}
                 </span>
               </div>
-              <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+              <div className={cn(
+                'grid gap-8 sm:gap-12',
+                (!content.galleryCaptions || content.galleryLayout === 'screens') && 'sm:grid-cols-2 sm:gap-6'
+              )}>
                 {content.gallery.map((image, index) => {
                   const caption = content.galleryCaptions?.[index];
+                  const screenGallery = content.galleryLayout === 'screens';
 
                   return (
                     <figure
                       key={`${image}-${index}`}
-                      className={cn((index === 0 || content.galleryCaptions) && 'sm:col-span-2')}
+                      className={cn(
+                        (!content.galleryCaptions || screenGallery) && index === 0 && 'sm:col-span-2',
+                        screenGallery && index > 0 && 'mx-auto w-full max-w-sm'
+                      )}
                     >
                       <button
                         type="button"
                         onClick={() => openLightbox(index)}
-                        className="group block w-full overflow-hidden rounded-xl bg-muted text-left ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
+                        className="group block w-full overflow-hidden rounded-[var(--radius-visual)] bg-muted text-left ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
                         aria-label={caption || lightboxLabels.goTo(index + 1)}
                       >
                         <img
@@ -315,15 +322,13 @@ export default function CasePage() {
                           alt={caption || `${caseData.title[lang]} — ${index + 1}`}
                           loading="lazy"
                           decoding="async"
-                          className={cn(
-                            'w-full transition-transform duration-500 ease-out group-hover:scale-[1.015]',
-                            caption ? 'h-auto object-contain' : index === 0 ? 'aspect-[16/9] object-cover' : 'aspect-[4/3] object-cover'
-                          )}
+                          className="h-auto w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.015]"
                         />
                       </button>
                       {caption && (
-                        <figcaption className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                          {caption}
+                        <figcaption className="mt-4 grid gap-2 text-sm leading-relaxed text-muted-foreground sm:grid-cols-[3rem_minmax(0,1fr)]">
+                          <span className="font-semibold tabular-nums text-foreground/55" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                          <span className="max-w-2xl">{caption}</span>
                         </figcaption>
                       )}
                     </figure>
@@ -352,8 +357,8 @@ export default function CasePage() {
 
             <section className="grid gap-7 border-y border-border/70 py-12 sm:py-16 lg:grid-cols-12 lg:items-end lg:gap-6">
               <div className="lg:col-span-7">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">{t.contacts.telegram}</p>
-                <h2 className="text-3xl font-bold tracking-[-0.045em] text-foreground sm:text-5xl">{t.casePage.contact}</h2>
+                <p className="eyebrow mb-3">{t.contacts.telegram}</p>
+                <h2 className="section-heading text-foreground">{t.casePage.contact}</h2>
               </div>
               <div className="lg:col-span-4 lg:col-start-9 lg:justify-self-end">
                 <Button variant="default" size="lg" className="group rounded-full px-7" asChild>

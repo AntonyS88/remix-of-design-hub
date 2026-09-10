@@ -54,6 +54,8 @@ export interface I18nContent {
     email: string;
     telegram: string;
     linkedin: string;
+    dribbble: string;
+    behance: string;
     cv: string;
     location: string;
   };
@@ -111,7 +113,7 @@ export const i18n = {
     },
     howIWork: {
       title: "Как я работаю",
-      steps: ["Проблема", "Исследование", "Гипотеза", "UX", "UI-система", "Прототип", "Реализация", "Проверка и итерации"],
+      steps: ["Исследование и проблема", "Гипотеза и UX", "UI-система и прототип", "Реализация и итерации"],
     },
     skills: {
       title: "Навыки",
@@ -182,6 +184,8 @@ export const i18n = {
       email: "Электронная почта",
       telegram: "Telegram",
       linkedin: "LinkedIn",
+      dribbble: "Dribbble",
+      behance: "Behance",
       cv: "Резюме",
       location: "Локация",
     },
@@ -237,7 +241,7 @@ export const i18n = {
     },
     howIWork: {
       title: "How I work",
-      steps: ["Problem", "Research", "Hypothesis", "UX", "UI System", "Prototype", "Build", "Test & Iterate"],
+      steps: ["Research & Problem", "Hypothesis & UX", "UI System & Prototype", "Build & Iterate"],
     },
     skills: {
       title: "Skills",
@@ -308,6 +312,8 @@ export const i18n = {
       email: "Email",
       telegram: "Telegram",
       linkedin: "LinkedIn",
+      dribbble: "Dribbble",
+      behance: "Behance",
       cv: "Resume",
       location: "Location",
     },
