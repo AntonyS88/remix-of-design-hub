@@ -3,6 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const { pathname, search, hash } = window.location;
+        if (!search.startsWith("?/")) return;
+
+        const [route, ...queryParts] = search.slice(2).split("&");
+        const decodeAmpersands = (value) => value.replace(/~and~/g, "&");
+        const query = queryParts.length
+          ? `?${decodeAmpersands(queryParts.join("&"))}`
+          : "";
+
+        window.history.replaceState(
+          null,
+          "",
+          `${pathname}${decodeAmpersands(route)}${query}${hash}`,
+        );
+      })();
+    </script>
     <title>Anton Sechin — Product Designer · AI Products & SaaS</title>
     <meta name="description" content="Product Designer focused on SaaS and AI products. I work from product problems and UX flows to design systems, prototypes and implementation." />
     
@@ -10,7 +28,7 @@
     <meta property="og:title" content="Anton Sechin — Product Designer · AI Products & SaaS" />
     <meta property="og:description" content="Product Designer focused on SaaS and AI products. I work from product problems and UX flows to design systems, prototypes and implementation." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content="%BASE_URL%og-image.png" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -23,7 +41,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="%BASE_URL%favicon.ico" />
   </head>
 
   <body>

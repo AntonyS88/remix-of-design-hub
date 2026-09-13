@@ -7,11 +7,12 @@ import Index from "./pages/Index";
 const CasePage = lazy(() => import("./pages/CasePage"));
 const ResumePage = lazy(() => import("./pages/ResumePage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
 
 const App = () => (
   <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="portfolio-theme">
     <LanguageProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={routerBasename}>
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<Index />} />
