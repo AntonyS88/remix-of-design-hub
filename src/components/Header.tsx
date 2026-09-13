@@ -80,9 +80,9 @@ export function Header() {
           </nav>
 
           {/* Right side */}
-          <div className="ml-6 flex items-center gap-3">
+          <div className="ml-4 flex items-center gap-2 sm:ml-6 sm:gap-3">
             <ThemeToggle className="hidden sm:flex" />
-            <LanguageSwitcher className="hidden sm:flex" />
+            <LanguageSwitcher className="shrink-0" />
 
             {/* Mobile menu button */}
             <button
@@ -130,10 +130,7 @@ export function Header() {
               )
             )}
             <div className="mt-1 flex items-center justify-between border-t border-border/60 py-3">
-              <div className="flex items-center gap-3">
-                <ThemeToggle />
-                <LanguageSwitcher />
-              </div>
+              <ThemeToggle />
             </div>
           </nav>
         </div>
