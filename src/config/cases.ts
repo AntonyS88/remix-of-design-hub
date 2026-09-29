@@ -3,10 +3,10 @@
 // NOTE: Replace placeholder images with real case screenshots
 
 import caseDashboard from '@/assets/case-operations-dashboard.jpg';
-import remyProductSystem from '@/assets/remy-product-system.jpg';
-import remyInboxDesktop from '@/assets/remy-inbox-desktop.png';
-import remyInboxMobile from '@/assets/remy-inbox-mobile.png';
-import remyOrganizeMobile from '@/assets/remy-organize-mobile.png';
+import remyFocusDesktop from '@/assets/remy-focus-desktop.webp';
+import remyInboxDesktop from '@/assets/remy-inbox-desktop.webp';
+import remyFocusMobile from '@/assets/remy-focus-mobile.webp';
+import remyTaskMobile from '@/assets/remy-task-mobile.webp';
 import aiVideoHero from '@/assets/ai-video-hero.webp';
 import aiVideoProblem from '@/assets/ai-video-problem.webp';
 import aiVideoResearch from '@/assets/ai-video-research.webp';
@@ -40,6 +40,7 @@ export interface CaseStudy {
     ru: string;
     en: string;
   };
+  projectUrl?: string;
   /** Desktop bento placement on a 6-col grid */
   bento?: {
     colSpan: 1 | 2 | 3 | 4 | 5 | 6;
@@ -74,9 +75,10 @@ export interface CaseContent {
 export const cases: CaseStudy[] = [
   {
     slug: "remy",
-    coverImage: remyProductSystem,
+    coverImage: remyFocusDesktop,
     coverAspect: 'aspect-[3/2]',
     tags: ["Product Design", "AI", "Responsive"],
+    projectUrl: "https://remy-focus-task-app.onrender.com/",
     bento: { colSpan: 4, rowSpan: 2, aspect: 'aspect-[3/2]' },
     title: {
       ru: "Remy — менеджер фокуса и задач",
@@ -92,31 +94,33 @@ export const cases: CaseStudy[] = [
           title: "Remy — спокойная система фокуса и задач",
           role: "Product Designer & Product Builder",
           period: "2026 · в разработке",
-          outcome: "Рабочая продуктовая основа для цикла: собрать → разобрать → сфокусироваться → завершить",
+          outcome: "Рабочий продуктовый прототип для цикла: записать → организовать → выбрать фокус → выполнить",
         },
         problem: "Обычные task-менеджеры быстро превращаются в бесконечный backlog. Пользователю приходится одновременно помнить дела, расставлять приоритеты и решать, за что взяться сейчас. Это увеличивает когнитивную нагрузку и создаёт чувство вины вместо ощущения прогресса.",
         role: "Я формирую продуктовую модель Remy, информационную архитектуру и UX/UI, проектирую адаптивную компонентную систему и проверяю решения прямо в работающем продукте. Проект развиваю самостоятельно: от гипотезы и прототипа до реализации и технической валидации.",
         process: [
           "Сформулировал основную задачу продукта: снизить перегрузку и помочь начать действие",
-          "Собрал core loop Capture → Inbox → Organize → Focus → Do → Complete → Review",
-          "Разделил быстрый сбор мыслей и осознанный выбор задач на экраны Inbox и Focus",
-          "Спроектировал поля, приоритеты, следующий шаг, сроки и ограниченный список фокуса",
-          "Собрал responsive UI для desktop и mobile с общими компонентами и состояниями",
-          "Проверил ready, empty, loading, success, error и disabled states в локальном прототипе",
+          "Собрал core loop Capture → Organize → Focus → Do → Complete → Review",
+          "Оставил в быстром Capture только название, а детали раскрыл постепенно через Organize",
+          "Ограничил Focus тремя задачами и выделил одну текущую задачу с одним главным действием",
+          "Спроектировал AI-подсказки для следующего шага и декомпозиции: Remy предлагает, пользователь подтверждает",
+          "Собрал и проверил единую responsive-систему для desktop и mobile, включая ключевые состояния",
         ],
-        solution: "Remy строится вокруг двух простых режимов. Inbox принимает всё, что пришло в голову, и помогает превратить запись в понятную задачу: уточнить контекст, проект, срок, длительность и следующий шаг. Focus оставляет перед пользователем одну текущую задачу и короткую реалистичную очередь, чтобы не конкурировать за внимание.",
-        uiDetails: "Интерфейс использует спокойную тёмную основу, синий action-color и компактную иерархию без декоративного шума. Одинаковые паттерны работают на desktop и mobile: быстрый Capture, task row, приоритет, Organize, Add to Focus, Complete и обратная связь с возможностью Undo.",
-        outcome: "Собран и проверен рабочий core flow управления задачами. Реализована персональная персистентность задач и валидация основных CRUD-сценариев в development-среде. Remy остаётся активным собственным продуктом: production authentication и дальнейшие продуктовые итерации ещё в работе.",
+        solution: "Remy превращает длинный список дел в спокойный управляемый поток. Capture быстро сохраняет мысль, Inbox помогает добавить структуру только при необходимости, а Focus намеренно ограничивает день тремя задачами. В режиме выполнения остаются одна текущая задача, понятный следующий шаг и необязательный таймер; Review завершает цикл без давления и чувства вины.",
+        uiDetails: "Актуальная система построена на холодных нейтральных оттенках, белой типографике и одном синем акценте. В каждом контексте есть одно главное действие, второстепенные настройки раскрываются постепенно, а desktop и mobile сохраняют одинаковую иерархию Capture, Organize, Focus и Complete.",
+        outcome: "Собран и проверен актуальный responsive-прототип ключевого цикла Remy: от быстрого Capture до Focus и завершения задачи. Основные сценарии и состояния валидируются на локальных данных. Remy остаётся активным собственным продуктом: персистентность, authentication и production-hardening продолжают развиваться.",
         tools: ["React", "TypeScript", "Tailwind CSS", "tRPC"],
         gallery: [
+          remyFocusDesktop,
           remyInboxDesktop,
-          remyInboxMobile,
-          remyOrganizeMobile,
+          remyFocusMobile,
+          remyTaskMobile,
         ],
         galleryCaptions: [
-          "Desktop Inbox: быстрый Capture, очередь задач и раскрытый режим Organize в одном рабочем контексте.",
-          "Mobile Inbox сохраняет ту же иерархию и выносит главное действие Capture в нижнюю навигацию.",
-          "Раскрытая задача на mobile: контекст, срок, длительность и следующий шаг редактируются без отдельного экрана.",
+          "Desktop Focus намеренно ограничивает день тремя задачами и показывает одно главное действие.",
+          "Capture-first Inbox хранит всё записанное и предлагает добавить структуру только тогда, когда она помогает.",
+          "Mobile сохраняет приоритет текущей задачи, короткую очередь и быстрый доступ к Capture.",
+          "Organize раскрывает контекст постепенно, а AI предлагает следующий шаг только с подтверждением пользователя.",
         ],
         galleryLayout: 'screens',
       },
@@ -125,31 +129,33 @@ export const cases: CaseStudy[] = [
           title: "Remy — a calm focus and task system",
           role: "Product Designer & Product Builder",
           period: "2026 · in progress",
-          outcome: "A working product foundation for capture → organize → focus → complete",
+          outcome: "A working product prototype for capture → organize → focus → do",
         },
         problem: "Traditional task managers quickly become endless backlogs. People have to remember tasks, prioritize them, and decide what to do next at the same time. The result is more cognitive load and guilt instead of visible progress.",
         role: "I shape Remy's product model, information architecture, and UX/UI, build the responsive component system, and validate decisions inside the working product. I am developing it independently from hypothesis and prototype through implementation and technical validation.",
         process: [
           "Defined the core product job: reduce overload and help people start",
-          "Mapped the Capture → Inbox → Organize → Focus → Do → Complete → Review loop",
-          "Separated frictionless capture from deliberate task selection across Inbox and Focus",
-          "Designed task context, priority, next action, due date, duration, and a limited Focus list",
-          "Built a responsive desktop and mobile UI from shared components",
-          "Validated ready, empty, loading, success, error, and disabled states in a local prototype",
+          "Mapped the Capture → Organize → Focus → Do → Complete → Review loop",
+          "Kept quick Capture to a title and progressively disclosed details through Organize",
+          "Limited Focus to three tasks and emphasized one current task with one primary action",
+          "Designed AI suggestions for the next step and task breakdown: Remy proposes, the user confirms",
+          "Built and validated one responsive system for desktop and mobile, including key product states",
         ],
-        solution: "Remy is built around two simple modes. Inbox captures anything and helps turn it into an actionable task by clarifying context, project, due date, duration, and the next step. Focus presents one current task and a short realistic queue, so priorities do not compete for attention.",
-        uiDetails: "The interface uses a calm dark foundation, a blue action color, and a compact hierarchy without decorative noise. The same patterns work on desktop and mobile: quick Capture, task rows, priority, Organize, Add to Focus, Complete, and undoable feedback.",
-        outcome: "The core task-management flow is implemented and validated. Per-user task persistence and the main CRUD scenarios work in the development environment. Remy remains an active independent product: production authentication and further product iterations are still in progress.",
+        solution: "Remy turns a long task list into a calm, manageable flow. Capture saves a thought quickly, Inbox adds structure only when it helps, and Focus intentionally limits the day to three tasks. Do keeps one current task, a clear next action, and an optional timer in view; Review closes the loop without pressure or guilt.",
+        uiDetails: "The current system uses cool neutrals, white typography, and one blue accent. Each context has one primary action, secondary settings are progressively disclosed, and desktop and mobile preserve the same Capture, Organize, Focus, and Complete hierarchy.",
+        outcome: "The current responsive prototype validates Remy's key loop from quick Capture to Focus and task completion. Core journeys and states are tested with local data. Remy remains an active independent product while persistence, authentication, and production hardening continue to evolve.",
         tools: ["React", "TypeScript", "Tailwind CSS", "tRPC"],
         gallery: [
+          remyFocusDesktop,
           remyInboxDesktop,
-          remyInboxMobile,
-          remyOrganizeMobile,
+          remyFocusMobile,
+          remyTaskMobile,
         ],
         galleryCaptions: [
-          "Desktop Inbox combines quick Capture, the task queue, and an expanded Organize state in one working context.",
-          "Mobile Inbox keeps the same hierarchy and places the primary Capture action in the bottom navigation.",
-          "Expanded mobile task: context, due date, duration, and the next step are editable without a separate page.",
+          "Desktop Focus intentionally limits the day to three tasks and presents one primary action.",
+          "The capture-first Inbox stores everything and adds structure only when it helps.",
+          "Mobile preserves the current task, a short queue, and fast access to Capture.",
+          "Organize reveals context progressively, while AI suggests the next step only after user confirmation.",
         ],
         galleryLayout: 'screens',
       },

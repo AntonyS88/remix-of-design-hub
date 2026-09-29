@@ -253,6 +253,14 @@ export default function CasePage() {
               <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
                 {content.hero.outcome}
               </p>
+              {caseData.projectUrl && (
+                <Button variant="outline" size="lg" className="group mt-6 rounded-full px-6" asChild>
+                  <a href={caseData.projectUrl} target="_blank" rel="noopener noreferrer">
+                    {lang === 'ru' ? 'Открыть Remy' : 'Open Remy'}
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+                  </a>
+                </Button>
+              )}
             </div>
           </header>
 
