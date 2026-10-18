@@ -2,6 +2,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/site.config';
+import { openAnalyticsSettings, trackEvent } from '@/lib/analytics';
 
 const externalLinkClass = 'group inline-flex items-center gap-2 border-b border-foreground/25 py-1 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4';
 
@@ -27,6 +28,7 @@ export function Contacts() {
             </p>
             <a
               href={`mailto:${siteConfig.email}?subject=${siteConfig.emailSubject}`}
+              onClick={() => trackEvent('contact_click', { contact_type: 'email', source: 'contact' })}
               className="group inline-flex max-w-full items-center gap-3 text-xl font-semibold tracking-[-0.03em] text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 sm:text-3xl md:text-4xl"
             >
               <span className="break-all">{siteConfig.email}</span>
@@ -35,19 +37,19 @@ export function Contacts() {
           </div>
 
           <nav className="flex flex-wrap items-center gap-x-7 gap-y-4" aria-label={t.contacts.title}>
-            <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className={externalLinkClass}>
+            <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className={externalLinkClass} onClick={() => trackEvent('linkedin_click', { source: 'contact' })}>
               {t.contacts.linkedin}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </a>
-            <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer" className={externalLinkClass}>
+            <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer" className={externalLinkClass} onClick={() => trackEvent('contact_click', { contact_type: 'telegram', source: 'contact' })}>
               {t.contacts.telegram}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </a>
-            <a href={siteConfig.dribbble} target="_blank" rel="noopener noreferrer" className={externalLinkClass}>
+            <a href={siteConfig.dribbble} target="_blank" rel="noopener noreferrer" className={externalLinkClass} onClick={() => trackEvent('contact_click', { contact_type: 'dribbble', source: 'contact' })}>
               {t.contacts.dribbble}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </a>
-            <a href={siteConfig.behance} target="_blank" rel="noopener noreferrer" className={externalLinkClass}>
+            <a href={siteConfig.behance} target="_blank" rel="noopener noreferrer" className={externalLinkClass} onClick={() => trackEvent('contact_click', { contact_type: 'behance', source: 'contact' })}>
               {t.contacts.behance}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
             </a>
@@ -58,8 +60,14 @@ export function Contacts() {
           </nav>
         </div>
 
-        <footer className="pt-8 text-sm text-muted-foreground">
-          {t.footer.copyright.replace('{year}', currentYear.toString())}
+        <footer className="flex flex-col gap-3 pt-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <span>{t.footer.copyright.replace('{year}', currentYear.toString())}</span>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link className="transition-colors hover:text-foreground" to="/privacy">{t.footer.privacy}</Link>
+            <button className="transition-colors hover:text-foreground" type="button" onClick={openAnalyticsSettings}>
+              {t.footer.analyticsSettings}
+            </button>
+          </div>
         </footer>
       </div>
     </section>

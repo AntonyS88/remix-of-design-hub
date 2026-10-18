@@ -2,10 +2,13 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { LanguageProvider } from "@/hooks/useLanguage";
+import { ConsentBanner } from "@/components/ConsentBanner";
+import { RouteAnalytics } from "@/components/RouteAnalytics";
 import Index from "./pages/Index";
 
 const CasePage = lazy(() => import("./pages/CasePage"));
 const ResumePage = lazy(() => import("./pages/ResumePage"));
+const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
 
@@ -13,11 +16,14 @@ const App = () => (
   <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="portfolio-theme">
     <LanguageProvider>
       <BrowserRouter basename={routerBasename}>
+        <RouteAnalytics />
+        <ConsentBanner />
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/case/:slug" element={<CasePage />} />
             <Route path="/resume/:lang" element={<ResumePage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
