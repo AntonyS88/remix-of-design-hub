@@ -3,6 +3,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/site.config';
 import { Button } from '@/components/ui/button';
 import ctaOrb from '@/assets/cta-orb.webp';
+import { trackEvent } from '@/lib/analytics';
 
 export function CTA() {
   const { t } = useLanguage();
@@ -45,7 +46,7 @@ export function CTA() {
               className="rounded-full px-8 cta-glow group/btn"
               asChild
             >
-              <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer">
+              <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('contact_click', { contact_type: 'telegram', source: 'cta' })}>
                 {t.cta.button}
                 <ArrowUpRight className="w-5 h-5 shrink-0 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" strokeWidth={2} />
               </a>

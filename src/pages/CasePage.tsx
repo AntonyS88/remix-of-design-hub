@@ -7,6 +7,7 @@ import { siteConfig } from '@/config/site.config';
 import { Header } from '@/components/Header';
 import { GradientBackground } from '@/components/GradientBackground';
 import { Button } from '@/components/ui/button';
+import { trackEvent } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 interface LightboxLabels {
@@ -255,7 +256,14 @@ export default function CasePage() {
               </p>
               {caseData.projectUrl && (
                 <Button variant="outline" size="lg" className="group mt-6 rounded-full px-6" asChild>
-                  <a href={caseData.projectUrl} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={caseData.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      if (caseData.slug === 'remy') trackEvent('remy_open', { case_slug: caseData.slug });
+                    }}
+                  >
                     {lang === 'ru' ? 'Открыть Remy' : 'Open Remy'}
                     <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
                   </a>
@@ -370,7 +378,7 @@ export default function CasePage() {
               </div>
               <div className="lg:col-span-4 lg:col-start-9 lg:justify-self-end">
                 <Button variant="default" size="lg" className="group rounded-full px-7" asChild>
-                  <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer">
+                  <a href={siteConfig.telegram.url} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('contact_click', { contact_type: 'telegram', source: 'case' })}>
                     {t.cta.button}
                     <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
                   </a>

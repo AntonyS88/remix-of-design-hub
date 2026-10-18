@@ -72,6 +72,8 @@ export interface I18nContent {
   };
   footer: {
     copyright: string;
+    privacy: string;
+    analyticsSettings: string;
   };
 }
 
@@ -202,6 +204,8 @@ export const i18n = {
     },
     footer: {
       copyright: "© {year} Anton Sechin",
+      privacy: "Конфиденциальность",
+      analyticsSettings: "Настройки аналитики",
     },
   },
   en: {
@@ -330,6 +334,8 @@ export const i18n = {
     },
     footer: {
       copyright: "© {year} Anton Sechin",
+      privacy: "Privacy",
+      analyticsSettings: "Analytics settings",
     },
   },
 } as const satisfies Record<Language, I18nContent>;
