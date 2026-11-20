@@ -14,7 +14,7 @@ export const workEnglishCopy = {
       'Развиваю адаптивный интерфейс и общую систему компонентов для мобильных устройств и компьютеров',
     ],
     solution: 'Today предлагает короткую сессию, а Sprint объединяет задания и обратную связь в последовательный сценарий. Раздел Explore позволяет читать материалы по интересующим темам, слушать текст и проверять понимание. Работа с повторением и персонализацией развивается постепенно; разговорная практика и AI-обратная связь остаются будущими направлениями.',
-    outcome: 'WorkEnglish доступен в браузере как развивающийся персональный alpha-продукт. В нём доступны короткая практика, несколько типов заданий, обратная связь, аудирование и материалы Explore. Данные обучения хранятся локально; синхронизация между устройствами, голосовая практика и AI-feedback запланированы на будущие итерации.',
+    outcome: 'WorkEnglish доступен в браузере как публичная beta-версия и продолжает активно развиваться. В нём доступны короткая практика, несколько типов заданий, обратная связь, аудирование и материалы Explore. Данные обучения хранятся локально; синхронизация между устройствами, голосовая практика и AI-feedback запланированы на будущие итерации.',
   },
   en: {
     title: 'WorkEnglish — English practice for real work situations',
@@ -27,9 +27,9 @@ export const workEnglishCopy = {
       'Designed Today and a short Sprint with a sequence of exercises and feedback',
       'Planned for an active session, draft and feedback to survive a reload',
       'Introduced listening practice and Explore reading with translations and exercises',
-      'Develop the responsive interface and shared component system for mobile and desktop',
+      'Continue developing the responsive interface and shared component system for mobile and desktop',
     ],
     solution: 'Today offers a short session, while Sprint brings exercises and feedback into a focused sequence. Explore lets learners read about topics of interest, listen to the text and check comprehension. Review and personalisation continue to evolve; speaking practice and AI feedback are future directions.',
-    outcome: 'WorkEnglish is available in the browser as an evolving personal alpha. It includes short practice sessions, multiple exercise types, feedback, listening and Explore content. Learning data is stored locally; cross-device sync, voice practice and AI feedback are planned for future iterations.',
+    outcome: 'WorkEnglish is available in the browser as a public beta and remains in active development. It includes short practice sessions, multiple exercise types, feedback, listening and Explore content. Learning data is stored locally; cross-device sync, voice practice and AI feedback are planned for future iterations.',
   },
 } as const;
