@@ -4,7 +4,6 @@
 
 import caseDashboard from '@/assets/case-operations-dashboard.jpg';
 import { workEnglishCopy } from '@/config/workenglish-copy';
-import workEnglishToday from '@/assets/workenglish-today.webp';
 import workEnglishCover from '@/assets/workenglish-cover.webp';
 import workEnglishExplore from '@/assets/workenglish-explore.webp';
 import workEnglishReader from '@/assets/workenglish-reader-desktop.webp';
@@ -106,8 +105,8 @@ export const cases: CaseStudy[] = [
           { title: 'Следующие итерации', description: 'Дальнейшее развитие повторения и персонализации; синхронизация между устройствами, AI-обратная связь и разговорная практика остаются планами.' },
         ],
         tools: ['Product Design', 'UX', 'Design System', 'AI coding agents'],
-        gallery: [workEnglishToday, workEnglishListening, workEnglishFeedback, workEnglishPracticeMobile, workEnglishExplore, workEnglishReader],
-        galleryCaptions: ['Today предлагает начать короткое занятие без дополнительного выбора.', 'Аудирование связывает распознавание рабочей фразы с выбором ответа и управлением скоростью.', 'Обратная связь сразу показывает ответ, перевод и возможность прослушать пример.', 'Мобильный Sprint удерживает одну задачу и выбранный ответ в фокусе.', 'Explore помогает выбрать материал по интересующей теме и уровню.', 'Чтение объединяет профессиональный контекст, перевод и прослушивание.'],
+        gallery: [workEnglishListening, workEnglishFeedback, workEnglishPracticeMobile, workEnglishExplore, workEnglishReader],
+        galleryCaptions: ['Аудирование связывает распознавание рабочей фразы с выбором ответа и управлением скоростью.', 'Обратная связь сразу показывает ответ, перевод и возможность прослушать пример.', 'Мобильный Sprint удерживает одну задачу и выбранный ответ в фокусе.', 'Explore помогает выбрать материал по интересующей теме и уровню.', 'Чтение объединяет профессиональный контекст, перевод и прослушивание.'],
         galleryLayout: 'screens',
       },
       en: {
@@ -123,8 +122,8 @@ export const cases: CaseStudy[] = [
           { title: 'Next product iterations', description: 'Further improvements to review and personalisation; cross-device sync, AI feedback and speaking practice remain planned.' },
         ],
         tools: ['Product Design', 'UX', 'Design System', 'AI coding agents'],
-        gallery: [workEnglishToday, workEnglishListening, workEnglishFeedback, workEnglishPracticeMobile, workEnglishExplore, workEnglishReader],
-        galleryCaptions: ['Today offers a short session without requiring extra choices.', 'Listening combines recognition of a work phrase with answer choices and playback speed controls.', 'Feedback makes the answer, translation and audio example immediately available.', 'The mobile Sprint keeps one task and the selected answer in focus.', 'Explore helps learners choose material by topic and level.', 'Reading brings work-related content, translations and listening together.'],
+        gallery: [workEnglishListening, workEnglishFeedback, workEnglishPracticeMobile, workEnglishExplore, workEnglishReader],
+        galleryCaptions: ['Listening combines recognition of a work phrase with answer choices and playback speed controls.', 'Feedback makes the answer, translation and audio example immediately available.', 'The mobile Sprint keeps one task and the selected answer in focus.', 'Explore helps learners choose material by topic and level.', 'Reading brings work-related content, translations and listening together.'],
         galleryLayout: 'screens',
       },
     },
