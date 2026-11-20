@@ -94,7 +94,7 @@ export const cases: CaseStudy[] = [
     summary: { ru: workEnglishCopy.ru.summary, en: workEnglishCopy.en.summary },
     content: {
       ru: {
-        hero: { title: workEnglishCopy.ru.title, role: 'Product Designer', period: '2026 · в разработке', outcome: 'Работающий alpha-продукт с короткими занятиями и материалами для практики английского.' },
+        hero: { title: workEnglishCopy.ru.title, role: 'Product Designer', period: '2026 · в разработке', outcome: 'Работающая публичная beta-версия с короткими занятиями и материалами для практики английского.' },
         problem: workEnglishCopy.ru.problem,
         role: workEnglishCopy.ru.role,
         process: [...workEnglishCopy.ru.process],
@@ -111,7 +111,7 @@ export const cases: CaseStudy[] = [
         galleryLayout: 'screens',
       },
       en: {
-        hero: { title: workEnglishCopy.en.title, role: 'Product Designer', period: '2026 · in progress', outcome: 'A working alpha with short sessions and materials for English practice.' },
+        hero: { title: workEnglishCopy.en.title, role: 'Product Designer', period: '2026 · in progress', outcome: 'A working public beta with short sessions and materials for English practice.' },
         problem: workEnglishCopy.en.problem,
         role: workEnglishCopy.en.role,
         process: [...workEnglishCopy.en.process],
