@@ -4,6 +4,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { cases, type CaseStudy } from '@/config/cases';
 import type { Language } from '@/config/i18n';
 import { cn } from '@/lib/utils';
+import workEnglishCardCover from '@/assets/workenglish-cover-card.webp';
 
 interface ProjectCardProps {
   item: CaseStudy;
@@ -22,18 +23,17 @@ function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProp
         <div
           className={cn(
             'overflow-hidden rounded-[var(--radius-visual)] bg-muted ring-offset-background transition-shadow group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-4',
-            featured ? (item.coverAspect ?? 'aspect-[16/9]') : 'aspect-[14/11]'
+            featured ? (item.coverAspect ?? 'aspect-[16/9]') : item.slug === 'workenglish' ? 'aspect-[126/57]' : 'aspect-[14/11]'
           )}
         >
           <img
-            src={item.coverImage}
+            src={item.slug === 'workenglish' ? workEnglishCardCover : item.coverImage}
             alt={item.title[lang]}
             loading="lazy"
             decoding="async"
             className={cn(
               'h-full w-full transition-transform duration-500 ease-out',
-              featured && item.coverAspect ? 'object-contain' : 'object-cover group-hover:scale-[1.02]',
-              item.slug === 'workenglish' && 'object-contain'
+              featured && item.coverAspect ? 'object-contain' : 'object-cover group-hover:scale-[1.02]'
             )}
           />
         </div>
