@@ -3,6 +3,14 @@
 // NOTE: Replace placeholder images with real case screenshots
 
 import caseDashboard from '@/assets/case-operations-dashboard.jpg';
+import { workEnglishCopy } from '@/config/workenglish-copy';
+import workEnglishToday from '@/assets/workenglish-today.webp';
+import workEnglishCover from '@/assets/workenglish-cover.webp';
+import workEnglishExplore from '@/assets/workenglish-explore.webp';
+import workEnglishReader from '@/assets/workenglish-reader-desktop.webp';
+import workEnglishListening from '@/assets/workenglish-listening.webp';
+import workEnglishFeedback from '@/assets/workenglish-feedback.webp';
+import workEnglishPracticeMobile from '@/assets/workenglish-practice-mobile.webp';
 import remyFocusDesktop from '@/assets/remy-focus-desktop.webp';
 import remyInboxDesktop from '@/assets/remy-inbox-desktop.webp';
 import remyFocusMobile from '@/assets/remy-focus-mobile.webp';
@@ -41,6 +49,7 @@ export interface CaseStudy {
     en: string;
   };
   projectUrl?: string;
+  projectCta?: { ru: string; en: string };
   /** Desktop bento placement on a 6-col grid */
   bento?: {
     colSpan: 1 | 2 | 3 | 4 | 5 | 6;
@@ -66,6 +75,7 @@ export interface CaseContent {
   solution: string;
   uiDetails: string;
   outcome: string;
+  outcomeDetails?: { title: string; description: string }[];
   tools: string[];
   gallery: string[]; // Image paths - replace with real screenshots
   galleryCaptions?: string[];
@@ -74,11 +84,58 @@ export interface CaseContent {
 
 export const cases: CaseStudy[] = [
   {
+    slug: 'workenglish',
+    coverImage: workEnglishCover,
+    coverAspect: 'aspect-[1607/730]',
+    tags: ['Product Design', 'Learning', 'Mobile-first'],
+    projectUrl: 'https://workenglish.workenglish.workers.dev/',
+    projectCta: { ru: 'Открыть WorkEnglish', en: 'Open WorkEnglish' },
+    title: { ru: 'WorkEnglish — английский для работы', en: 'WorkEnglish — English for work' },
+    summary: { ru: workEnglishCopy.ru.summary, en: workEnglishCopy.en.summary },
+    content: {
+      ru: {
+        hero: { title: workEnglishCopy.ru.title, role: 'Product Designer', period: '2026 · в разработке', outcome: 'Работающий alpha-продукт с короткими занятиями и материалами для практики английского.' },
+        problem: workEnglishCopy.ru.problem,
+        role: workEnglishCopy.ru.role,
+        process: [...workEnglishCopy.ru.process],
+        solution: workEnglishCopy.ru.solution,
+        uiDetails: 'Адаптивный интерфейс делает короткую практику доступной на компьютере и телефоне. Общие компоненты, понятная иерархия и последовательные действия помогают сосредоточиться на задании.',
+        outcome: workEnglishCopy.ru.outcome,
+        outcomeDetails: [
+          { title: 'Работает сейчас', description: 'Короткие занятия, задания с обратной связью, аудирование и материалы Explore. Прогресс хранится в браузере.' },
+          { title: 'Следующие итерации', description: 'Дальнейшее развитие повторения и персонализации; синхронизация между устройствами, AI-обратная связь и разговорная практика остаются планами.' },
+        ],
+        tools: ['Product Design', 'UX', 'Design System', 'AI coding agents'],
+        gallery: [workEnglishToday, workEnglishListening, workEnglishFeedback, workEnglishPracticeMobile, workEnglishExplore, workEnglishReader],
+        galleryCaptions: ['Today предлагает начать короткое занятие без дополнительного выбора.', 'Аудирование связывает распознавание рабочей фразы с выбором ответа и управлением скоростью.', 'Обратная связь сразу показывает ответ, перевод и возможность прослушать пример.', 'Мобильный Sprint удерживает одну задачу и выбранный ответ в фокусе.', 'Explore помогает выбрать материал по интересующей теме и уровню.', 'Чтение объединяет профессиональный контекст, перевод и прослушивание.'],
+        galleryLayout: 'screens',
+      },
+      en: {
+        hero: { title: workEnglishCopy.en.title, role: 'Product Designer', period: '2026 · in progress', outcome: 'A working alpha with short sessions and materials for English practice.' },
+        problem: workEnglishCopy.en.problem,
+        role: workEnglishCopy.en.role,
+        process: [...workEnglishCopy.en.process],
+        solution: workEnglishCopy.en.solution,
+        uiDetails: 'A responsive interface makes short practice sessions accessible on desktop and mobile. Shared components, clear hierarchy and sequential actions keep attention on the task.',
+        outcome: workEnglishCopy.en.outcome,
+        outcomeDetails: [
+          { title: 'Currently working', description: 'Short sessions, exercises with feedback, listening and Explore content. Progress is stored in the browser.' },
+          { title: 'Next product iterations', description: 'Further improvements to review and personalisation; cross-device sync, AI feedback and speaking practice remain planned.' },
+        ],
+        tools: ['Product Design', 'UX', 'Design System', 'AI coding agents'],
+        gallery: [workEnglishToday, workEnglishListening, workEnglishFeedback, workEnglishPracticeMobile, workEnglishExplore, workEnglishReader],
+        galleryCaptions: ['Today offers a short session without requiring extra choices.', 'Listening combines recognition of a work phrase with answer choices and playback speed controls.', 'Feedback makes the answer, translation and audio example immediately available.', 'The mobile Sprint keeps one task and the selected answer in focus.', 'Explore helps learners choose material by topic and level.', 'Reading brings work-related content, translations and listening together.'],
+        galleryLayout: 'screens',
+      },
+    },
+  },
+  {
     slug: "remy",
     coverImage: remyFocusDesktop,
     coverAspect: 'aspect-[3/2]',
     tags: ["Product Design", "AI", "Responsive"],
     projectUrl: "https://remy-focus-task-app.onrender.com/",
+    projectCta: { ru: "Открыть Remy", en: "Open Remy" },
     bento: { colSpan: 4, rowSpan: 2, aspect: 'aspect-[3/2]' },
     title: {
       ru: "Remy — менеджер фокуса и задач",

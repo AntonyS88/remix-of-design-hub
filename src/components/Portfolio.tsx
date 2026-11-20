@@ -32,7 +32,8 @@ function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProp
             decoding="async"
             className={cn(
               'h-full w-full transition-transform duration-500 ease-out',
-              featured && item.coverAspect ? 'object-contain' : 'object-cover group-hover:scale-[1.02]'
+              featured && item.coverAspect ? 'object-contain' : 'object-cover group-hover:scale-[1.02]',
+              item.slug === 'workenglish' && 'object-contain'
             )}
           />
         </div>
@@ -64,7 +65,7 @@ function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProp
 
 export function Portfolio() {
   const { lang, t } = useLanguage();
-  const selectedCases = ['remy', 'mobile-app-concept', 'forex-trading-simulator']
+  const selectedCases = ['remy', 'workenglish', 'forex-trading-simulator']
     .map((slug) => cases.find((item) => item.slug === slug))
     .filter((item): item is CaseStudy => Boolean(item));
   const [featured, ...secondary] = selectedCases;

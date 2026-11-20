@@ -253,10 +253,10 @@ export default function CasePage() {
               <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
                 {content.hero.outcome}
               </p>
-              {caseData.projectUrl && (
+              {caseData.projectUrl && caseData.projectCta && (
                 <Button variant="outline" size="lg" className="group mt-6 rounded-full px-6" asChild>
                   <a href={caseData.projectUrl} target="_blank" rel="noopener noreferrer">
-                    {lang === 'ru' ? 'Открыть Remy' : 'Open Remy'}
+                    {caseData.projectCta[lang]}
                     <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
                   </a>
                 </Button>
@@ -351,6 +351,16 @@ export default function CasePage() {
 
             <EditorialSection index="06" title={t.casePage.outcome}>
               <p className="max-w-3xl text-lg font-medium leading-relaxed text-foreground sm:text-xl">{content.outcome}</p>
+              {content.outcomeDetails && (
+                <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                  {content.outcomeDetails.map((detail) => (
+                    <div key={detail.title}>
+                      <h3 className="text-sm font-semibold text-foreground">{detail.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{detail.description}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </EditorialSection>
 
             <EditorialSection index="07" title={t.casePage.tools}>
