@@ -86,7 +86,7 @@ export default function ResumePage() {
           <section className="mt-14 grid gap-10 border-y border-border/70 py-10 sm:mt-16 sm:py-12 lg:grid-cols-12 lg:items-end lg:gap-6">
             <div className="lg:col-span-5">
               <p className="eyebrow">
-                {currentLang === 'ru' ? 'Product Designer · AI-продукты & SaaS' : 'Product Designer · AI Products & SaaS'}
+                {currentLang === 'ru' ? 'Product Designer · AI Product Builder' : 'Product Designer · AI Product Builder'}
               </p>
               <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
                 {data.note}
