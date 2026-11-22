@@ -234,7 +234,7 @@ export const i18n = {
           description: "I design and implement systems with reusable components, tokens, variables, responsive behavior and clear rules for development.",
         },
         {
-          title: "AI-assisted Product Building",
+          title: "AI Product Building",
           description: "I use AI tools and coding agents for prototyping, implementation, QA and fast iteration — validating design decisions in working products.",
         },
       ],
