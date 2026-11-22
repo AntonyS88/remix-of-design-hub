@@ -65,7 +65,7 @@ function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProp
 
 export function Portfolio() {
   const { lang, t } = useLanguage();
-  const selectedCases = ['remy', 'workenglish', 'forex-trading-simulator']
+  const selectedCases = ['remy', 'workenglish', 'mobile-app-concept', 'forex-trading-simulator']
     .map((slug) => cases.find((item) => item.slug === slug))
     .filter((item): item is CaseStudy => Boolean(item));
   const [featured, ...secondary] = selectedCases;
