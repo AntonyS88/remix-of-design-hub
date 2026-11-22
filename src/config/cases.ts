@@ -183,7 +183,7 @@ export const cases: CaseStudy[] = [
       en: {
         hero: {
           title: "Remy — a calm focus and task system",
-          role: "Product Designer & Product Builder",
+          role: "Product Designer",
           period: "2026 · in progress",
           outcome: "A working responsive prototype of the core Capture → Organize → Focus → Complete loop",
         },
@@ -195,7 +195,7 @@ export const cases: CaseStudy[] = [
           "Kept quick Capture to a title and progressively disclosed details through Organize",
           "Limited Focus to three tasks and emphasized one current task with one primary action",
           "Designed AI suggestions for the next step and task breakdown: Remy proposes, the user confirms",
-          "Built a responsive component system for desktop and mobile and test key states in the working prototype",
+          "Built a responsive component system for desktop and mobile and continue testing key states in the working prototype",
         ],
         solution: "Remy turns a long task list into a calm, manageable flow. Capture saves a thought quickly, Inbox adds structure only when it helps, and Focus intentionally limits the day to three tasks. Do keeps one current task, a clear next action, and an optional timer in view; Review closes the loop without pressure or guilt.",
         uiDetails: "The interface uses a neutral palette with one blue accent. Each context emphasizes one primary action, secondary settings are progressively disclosed, and desktop and mobile preserve the same Capture, Organize, Focus, and Complete hierarchy.",
