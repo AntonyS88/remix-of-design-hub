@@ -27,7 +27,7 @@ export const workEnglishCopy = {
       'Designed Today and a short Sprint with sequential exercises and immediate feedback',
       'Designed persistence for the active session, selected answer and feedback across reloads',
       'Added listening and Explore content with reading, translation and comprehension practice',
-      'Built a responsive component system for desktop and mobile and validate it in the live product',
+      'Built a responsive component system for desktop and mobile and continue validating it in the live product',
     ],
     solution: 'Today lowers the barrier to starting with a short session and minimal choice. Sprint keeps attention on one exercise at a time, while feedback connects the answer, translation and audio example in one place. Explore adds reading and listening by topic. Personalisation, review, speaking practice and AI feedback are being developed as separate iterations.',
     outcome: 'The public beta now covers the core learning flow on desktop and mobile: short sessions, multiple exercise types, feedback, listening and Explore content. Learning data is still stored locally; cross-device sync, speaking practice and AI feedback remain the next stages.',
