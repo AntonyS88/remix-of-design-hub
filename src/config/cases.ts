@@ -93,12 +93,12 @@ export const cases: CaseStudy[] = [
     summary: { ru: workEnglishCopy.ru.summary, en: workEnglishCopy.en.summary },
     content: {
       ru: {
-        hero: { title: workEnglishCopy.ru.title, role: 'Product Designer', period: '2026 · в разработке', outcome: 'Публичная beta для короткой практики рабочего английского: Sprint-задания, обратная связь, аудирование и Explore.' },
+        hero: { title: workEnglishCopy.ru.title, role: 'Product Designer', period: '2026 · в разработке', outcome: 'Публичная бета-версия для короткой практики рабочего английского: задания, обратная связь, аудирование и материалы по темам.' },
         problem: workEnglishCopy.ru.problem,
         role: workEnglishCopy.ru.role,
         process: [...workEnglishCopy.ru.process],
         solution: workEnglishCopy.ru.solution,
-        uiDetails: 'Адаптивный интерфейс делает короткую практику доступной на компьютере и телефоне. Общие компоненты, понятная иерархия и последовательные действия помогают сосредоточиться на задании.',
+        uiDetails: 'Адаптивный интерфейс сохраняет одну и ту же логику на компьютере и телефоне. Общие компоненты, ясная иерархия и последовательные действия помогают сосредоточиться на задании, а не на навигации.',
         outcome: workEnglishCopy.ru.outcome,
         outcomeDetails: [
           { title: 'Работает сейчас', description: 'Today, Sprint, задания с обратной связью, аудирование и Explore. Учебный прогресс хранится локально в браузере.' },
@@ -141,8 +141,8 @@ export const cases: CaseStudy[] = [
       en: "Remy — Focus & Task Manager",
     },
     summary: {
-      ru: "Персональный продукт, который превращает хаотичный список дел в ясный следующий шаг",
-      en: "A personal product that turns a chaotic task list into one clear next step",
+      ru: "Собственный таск-менеджер, который помогает организовать задачи, выбрать главное и сосредоточиться на следующем действии",
+      en: "An independent task manager that helps organize tasks, choose what matters, and focus on the next action",
     },
     content: {
       ru: {
@@ -150,7 +150,7 @@ export const cases: CaseStudy[] = [
           title: "Remy — спокойная система фокуса и задач",
           role: "Product Designer",
           period: "2026 · в разработке",
-          outcome: "Рабочий адаптивный прототип ключевого цикла: Capture → Organize → Focus → Complete",
+          outcome: "Собственный таск-менеджер для организации задач, управления фокусом и более осознанного планирования дня",
         },
         problem: "Обычные task-менеджеры легко превращаются в длинный backlog: пользователь одновременно должен помнить дела, расставлять приоритеты и каждый раз решать, что делать дальше. Проблема Remy — не хранение задач само по себе, а снижение когнитивной нагрузки между «записал» и «начал делать».",
         role: "Развиваю Remy как собственный продукт: формулирую проблему и продуктовую модель, проектирую информационную архитектуру, UX/UI и дизайн-систему, а с помощью AI coding agents довожу решения до рабочего прототипа и проверяю их в продукте.",
@@ -185,7 +185,7 @@ export const cases: CaseStudy[] = [
           title: "Remy — a calm focus and task system",
           role: "Product Designer",
           period: "2026 · in progress",
-          outcome: "A working responsive prototype of the core Capture → Organize → Focus → Complete loop",
+          outcome: "An independent task manager for organizing tasks, managing focus, and planning the day with less cognitive overhead",
         },
         problem: "Traditional task managers easily become long backlogs: people have to remember tasks, prioritize them, and repeatedly decide what to do next. Remy focuses on the gap between capturing a task and actually starting it, reducing the cognitive load around choosing the next action.",
         role: "I develop Remy as an independent product: framing the problem and product model, designing the information architecture, UX/UI and design system, then using AI coding agents to turn decisions into a working prototype and test them in the product.",
@@ -297,8 +297,8 @@ export const cases: CaseStudy[] = [
       en: "AI Video Editor",
     },
     summary: {
-      ru: "Agentic UX-концепт мобильного видеоредактора: AI готовит ролик, а пользователь контролирует результат через короткий сценарий подтверждения и уточнения",
-      en: "An agentic mobile video editor concept where AI prepares the edit and the user controls the result through a short approve-and-refine flow",
+      ru: "Концепт AI-видеоредактора, который сокращает ручной монтаж: система готовит вариант ролика, а пользователь подтверждает или уточняет результат",
+      en: "An AI video editor concept that reduces manual editing: the system prepares a draft and the user approves or refines the result",
     },
     content: {
       ru: {
@@ -306,7 +306,7 @@ export const cases: CaseStudy[] = [
           title: "Мобильный видеоредактор — агентный UX",
           role: "Product Designer",
           period: "2026",
-          outcome: "Концепт мобильного видеоредактора, который превращает монтаж в короткий сценарий подтверждения",
+          outcome: "Концепт AI-видеоредактора, где автоматизация сокращает ручные шаги, сохраняя контроль пользователя над результатом",
         },
         problem: "Обычные видеоредакторы перекладывают на пользователя импорт, выбор стиля, музыки и монтаж. Даже короткий ролик требует времени, навыков и множества решений.",
         role: "Сформулировал продуктовую гипотезу, проанализировал AI-first и voice-first паттерны, спроектировал agentic flow и ключевые mobile-состояния, сохраняя баланс между автоматизацией и контролем пользователя.",
@@ -344,7 +344,7 @@ export const cases: CaseStudy[] = [
           title: "Mobile Video Editor — Agentic UX",
           role: "Product Designer",
           period: "2026",
-          outcome: "A mobile video editor concept that turns editing into a short approval flow",
+          outcome: "An AI video editor concept that removes manual steps while keeping the user in control of the result",
         },
         problem: "Traditional video editors make users import clips, choose a style and music, and assemble the edit. Even a short reel demands time, skill, and too many decisions.",
         role: "Defined the product hypothesis, analysed AI-first and voice-first patterns, designed the agentic flow and key mobile states, and balanced automation with user control.",
@@ -390,8 +390,8 @@ export const cases: CaseStudy[] = [
       en: "Forex Trading Simulator",
     },
     summary: {
-      ru: "Редизайн мобильного trading-симулятора: более ясный торговый flow, меньше визуального шума и обучение внутри продукта",
-      en: "A mobile trading-simulator redesign with a clearer core flow, less visual noise and learning integrated into the product",
+      ru: "Редизайн мобильного симулятора трейдинга: более понятный торговый сценарий, меньше визуального шума и обучение внутри продукта",
+      en: "A mobile trading simulator redesign with a clearer core flow, less visual noise, and learning integrated into the product",
     },
     content: {
       ru: {
@@ -399,7 +399,7 @@ export const cases: CaseStudy[] = [
           title: "Симулятор Forex-трейдинга",
           role: "Product Designer",
           period: "2024",
-          outcome: "Редизайн мобильного приложения для практики трейдинга без риска реальных денег",
+          outcome: "Редизайн мобильного симулятора для понятной практики трейдинга без риска реальных денег",
         },
         problem: "Симулятор сохранял ключевые торговые функции, но перегруженный интерфейс усложнял навигацию, настройку сделки и чтение графика. Обучение, новости и история операций воспринимались как разрозненные части продукта.",
         role: "Провёл UX-аудит, сформулировал JTBD, пересобрал архитектуру и основные сценарии, подготовил wireframes, визуальную систему и интерактивный прототип.",
