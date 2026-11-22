@@ -84,8 +84,8 @@ export const i18n = {
       contact: "Контакты",
     },
     hero: {
-      role: "Product Designer · AI-продукты & SaaS",
-      bio: "Проектирую цифровые продукты от ранней идеи до понятного работающего решения — соединяя продуктовое мышление, UX, UI-системы и разработку с помощью AI.",
+      role: "Product Designer · AI Product Builder",
+      bio: "Проектирую цифровые продукты от формулировки проблемы до UX, дизайн-системы и работающего прототипа. Использую AI-инструменты и coding agents, чтобы быстрее проверять решения и доводить их до реализации.",
       viewWork: "Смотреть проекты",
       resume: "Резюме",
       locationStatus: "Черногория · Открыт к удалённой работе",
@@ -95,25 +95,25 @@ export const i18n = {
       items: [
         {
           title: "Продуктовое мышление",
-          description: "Формулирование проблем, гипотезы, продуктовые сценарии и приоритизация.",
+          description: "Формулирую проблему, гипотезы и продуктовые сценарии, определяю приоритеты и границы MVP.",
         },
         {
           title: "UX и взаимодействие",
-          description: "Информационная архитектура, user flows, прототипы и сложные сценарии взаимодействия.",
+          description: "Проектирую информационную архитектуру, user flows, состояния и edge cases; упрощаю сложные сценарии до понятных действий.",
         },
         {
           title: "UI и дизайн-системы",
-          description: "Визуальные системы, компоненты, variables, адаптивные интерфейсы и передача в разработку.",
+          description: "Создаю и внедряю дизайн-системы: компоненты, токены, переменные, адаптивные интерфейсы и правила для разработки.",
         },
         {
-          title: "Создание продуктов с помощью AI",
-          description: "Использование AI-инструментов и coding agents для быстрого перехода от дизайн-решений к работающему продукту.",
+          title: "AI Product Building",
+          description: "Использую AI и coding agents для прототипирования, реализации, QA и быстрых итераций — проверяю дизайн не только в макете, но и в работающем продукте.",
         },
       ],
     },
     howIWork: {
       title: "Как я работаю",
-      steps: ["Исследование и проблема", "Гипотеза и UX", "UI-система и прототип", "Реализация и итерации"],
+      steps: ["Проблема и контекст", "Гипотеза и сценарии", "Система и прототип", "Сборка, проверка, итерации"],
     },
     skills: {
       title: "Навыки",
@@ -177,7 +177,7 @@ export const i18n = {
     },
     contact: {
       title: "Давайте создавать полезные продукты.",
-      description: "Открыт к предложениям на позиции Product Designer и AI Product Designer.",
+      description: "Открыт к позициям Product Designer в командах, создающих SaaS, AI и цифровые продукты. Особенно интересны 0→1 задачи, где можно пройти путь от проблемы до работающего решения.",
     },
     contacts: {
       title: "Контакты",
@@ -195,7 +195,7 @@ export const i18n = {
       role: "Моя роль",
       process: "Процесс",
       solution: "Решение",
-      uiDetails: "UI детали",
+      uiDetails: "Интерфейсная система",
       outcome: "Результат",
       tools: "Инструменты",
       contact: "Связаться со мной",
@@ -212,8 +212,8 @@ export const i18n = {
       contact: "Contact",
     },
     hero: {
-      role: "Product Designer · AI Products & SaaS",
-      bio: "I design digital products from early ideas to clear, working experiences — combining product thinking, UX, UI systems and AI-assisted development.",
+      role: "Product Designer · AI Product Builder",
+      bio: "I design digital products from problem framing to UX, design systems, and working prototypes. I use AI tools and coding agents to test decisions faster and turn them into working products.",
       viewWork: "View my work",
       resume: "Resume",
       locationStatus: "Montenegro · Open to remote",
@@ -223,25 +223,25 @@ export const i18n = {
       items: [
         {
           title: "Product Thinking",
-          description: "Problem framing, hypotheses, product flows and prioritization.",
+          description: "I frame problems, hypotheses and product flows, then define priorities and MVP scope.",
         },
         {
           title: "UX & Interaction",
-          description: "Information architecture, user flows, prototypes and complex interaction scenarios.",
+          description: "I design information architecture, user flows, states and edge cases, turning complex journeys into clear actions.",
         },
         {
           title: "UI & Design Systems",
-          description: "Visual systems, components, variables, responsive interfaces and developer handoff.",
+          description: "I design and implement systems with reusable components, tokens, variables, responsive behavior and clear rules for development.",
         },
         {
           title: "AI-assisted Product Building",
-          description: "Using AI tools and coding agents to move faster from design decisions to working products.",
+          description: "I use AI tools and coding agents for prototyping, implementation, QA and fast iteration — validating design decisions in working products.",
         },
       ],
     },
     howIWork: {
       title: "How I work",
-      steps: ["Research & Problem", "Hypothesis & UX", "UI System & Prototype", "Build & Iterate"],
+      steps: ["Problem & Context", "Hypothesis & Flows", "System & Prototype", "Build, Test & Iterate"],
     },
     skills: {
       title: "Skills",
@@ -305,7 +305,7 @@ export const i18n = {
     },
     contact: {
       title: "Let's build something useful.",
-      description: "I'm open to Product Designer and AI Product Designer opportunities.",
+      description: "I'm open to Product Designer roles in teams building SaaS, AI and digital products, especially 0→1 work that connects product problems with working solutions.",
     },
     contacts: {
       title: "Contacts",
@@ -323,7 +323,7 @@ export const i18n = {
       role: "My Role",
       process: "Process",
       solution: "Solution",
-      uiDetails: "UI Details",
+      uiDetails: "Interface System",
       outcome: "Outcome",
       tools: "Tools",
       contact: "Get in touch",
