@@ -3,7 +3,7 @@
 
 export const siteConfig = {
   name: "Anton Sechin",
-  role: "Product Designer · AI Products & SaaS",
+  role: "Product Designer · AI Product Builder",
   location: "Montenegro (Bar)",
   email: "sechin.ao@gmail.com",
   telegram: {
@@ -14,7 +14,7 @@ export const siteConfig = {
   dribbble: "https://dribbble.com/Sechin",
   behance: "https://www.behance.net/DesignerAntonSechin/projects",
   cvUrl: "/cv.pdf",
-  emailSubject: "UX%2FUI%20Design%20Inquiry",
+  emailSubject: "Product%20Design%20Inquiry",
   
   // Avatar images
   avatarPhoto: "/assets/avatar.jpg", // Your photo for hero
@@ -26,18 +26,18 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/anton-sechin-ab7449a3/",
     dribbble: "https://dribbble.com/Sechin",
     behance: "https://www.behance.net/DesignerAntonSechin/projects",
-    email: "mailto:sechin.ao@gmail.com?subject=UX%2FUI%20Design%20Inquiry",
+    email: "mailto:sechin.ao@gmail.com?subject=Product%20Design%20Inquiry",
   },
   
   // SEO
   seo: {
     title: {
-      ru: "Антон Сечин — Product Designer · AI-продукты & SaaS",
-      en: "Anton Sechin — Product Designer · AI Products & SaaS",
+      ru: "Антон Сечин — Product Designer · AI Product Builder",
+      en: "Anton Sechin — Product Designer · AI Product Builder",
     },
     description: {
-      ru: "Product Designer с фокусом на SaaS и AI-продукты. Работаю от продуктовой задачи и UX-сценариев до дизайн-системы, прототипа и реализации.",
-      en: "Product Designer focused on SaaS and AI products. I work from product problems and UX flows to design systems, prototypes and implementation.",
+      ru: "Product Designer и AI Product Builder. Работаю от формулировки проблемы и UX-сценариев до дизайн-системы, работающего прототипа и проверки решений в продукте.",
+      en: "Product Designer and AI Product Builder working from problem framing and UX flows to design systems, working prototypes and product validation.",
     },
   },
 } as const;
