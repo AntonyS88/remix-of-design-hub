@@ -10,6 +10,7 @@ import { GradientBackground } from '@/components/GradientBackground';
 import { BackToTop } from '@/components/BackToTop';
 import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/site.config';
+import { BlurFade } from '@/components/magicui/blur-fade';
 
 const Index = () => {
   const { lang } = useLanguage();
@@ -44,9 +45,9 @@ const Index = () => {
       <main>
         <Hero />
         <Portfolio />
-        <Capabilities />
-        <HowIWork />
-        <Contacts />
+        <BlurFade><Capabilities /></BlurFade>
+        <BlurFade><HowIWork /></BlurFade>
+        <BlurFade><Contacts /></BlurFade>
       </main>
       <BackToTop />
     </>

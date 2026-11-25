@@ -5,6 +5,7 @@ import { cases, type CaseStudy } from '@/config/cases';
 import type { Language } from '@/config/i18n';
 import { cn } from '@/lib/utils';
 import workEnglishCardCover from '@/assets/workenglish-cover-card.webp';
+import { BlurFade } from '@/components/magicui/blur-fade';
 
 interface ProjectCardProps {
   item: CaseStudy;
@@ -22,7 +23,7 @@ function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProp
       >
         <div
           className={cn(
-            'overflow-hidden rounded-[var(--radius-visual)] bg-muted ring-offset-background transition-shadow group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-4',
+            'project-cover overflow-hidden rounded-[var(--radius-visual)] bg-muted ring-offset-background transition-shadow group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-4',
             featured ? (item.coverAspect ?? 'aspect-[16/9]') : item.slug === 'workenglish' ? 'aspect-[126/57]' : 'aspect-[14/11]'
           )}
         >
@@ -84,16 +85,13 @@ export function Portfolio() {
           </span>
         </div>
 
-        <ProjectCard item={featured} lang={lang} viewCase={t.cases.viewCase} featured />
+        <BlurFade><ProjectCard item={featured} lang={lang} viewCase={t.cases.viewCase} featured /></BlurFade>
 
         <div className="mt-16 grid gap-12 sm:mt-24 sm:grid-cols-2 sm:gap-6 lg:gap-10">
-          {secondary.map((item) => (
-            <ProjectCard
-              key={item.slug}
-              item={item}
-              lang={lang}
-              viewCase={t.cases.viewCase}
-            />
+          {secondary.map((item, index) => (
+            <BlurFade key={item.slug} className="h-full" delay={index * 60}>
+              <ProjectCard item={item} lang={lang} viewCase={t.cases.viewCase} />
+            </BlurFade>
           ))}
         </div>
       </div>
