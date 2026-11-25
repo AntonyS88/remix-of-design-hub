@@ -19,17 +19,17 @@ export function Hero() {
             width={640}
             height={640}
             decoding="async"
-            className="col-start-10 col-end-12 aspect-[4/5] w-28 translate-x-4 select-none justify-self-end rounded-[var(--radius-visual)] object-cover object-[center_38%]"
+            className="motion-opacity col-start-10 col-end-12 aspect-[4/5] w-28 translate-x-4 select-none justify-self-end rounded-[var(--radius-visual)] object-cover object-[center_38%]"
           />
         </div>
 
         <div className="grid gap-9 sm:gap-11 lg:grid-cols-12 lg:items-start lg:gap-x-6 lg:gap-y-0 lg:pt-[10.75rem]">
-          <h1 aria-label="Anton Sechin" className="min-w-0 text-[clamp(4.25rem,13vw,10rem)] font-bold uppercase leading-[0.82] tracking-[-0.075em] text-foreground animate-fade-in lg:col-span-7">
-            <span className="block">Anton</span>
-            <span className="block">Sechin</span>
+          <h1 aria-label="Anton Sechin" className="motion-intro min-w-0 text-[clamp(4.25rem,13vw,10rem)] font-bold uppercase leading-[0.82] tracking-[-0.075em] text-foreground lg:col-span-7">
+            <span className="motion-intro block">Anton</span>
+            <span className="motion-intro motion-intro-later block">Sechin</span>
           </h1>
 
-          <div className="max-w-xl lg:col-start-8 lg:col-end-13 lg:max-w-[34rem]">
+          <div className="motion-intro motion-intro-later max-w-xl lg:col-start-8 lg:col-end-13 lg:max-w-[34rem]">
             <p className="mb-6 text-lg font-semibold leading-snug text-foreground sm:text-xl lg:text-[1.3125rem]">
               {t.hero.role}
             </p>
@@ -44,7 +44,7 @@ export function Hero() {
             </div>
 
             <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
-              <Button variant="default" size="lg" className="rounded-full px-6 group" asChild>
+              <Button variant="default" size="lg" className="motion-cta rounded-full px-6 group" asChild>
                 <a href="#selected-work">
                   {t.hero.viewWork}
                   <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" strokeWidth={2} />
@@ -62,11 +62,12 @@ export function Hero() {
           </div>
         </div>
 
-        <ol className="mt-14 grid grid-cols-2 border-y border-border/70 sm:mt-16 sm:grid-cols-4 lg:mt-10" aria-label="Idea to shipped product">
+        <ol className="motion-intro motion-intro-last mt-14 grid grid-cols-2 border-y border-border/70 sm:mt-16 sm:grid-cols-4 lg:mt-10" aria-label="Idea to shipped product">
           {buildStages.map((stage, index) => (
             <li
               key={stage}
-              className="flex items-center gap-3 py-4 text-xs font-semibold tracking-[0.16em] text-muted-foreground sm:border-l sm:px-5 sm:first:border-l-0"
+              className="motion-intro flex items-center gap-3 py-4 text-xs font-semibold tracking-[0.16em] text-muted-foreground sm:border-l sm:px-5 sm:first:border-l-0"
+              style={{ animationDelay: `${index * 45}ms` }}
             >
               <span>{String(index + 1).padStart(2, '0')}</span>
               <span>{stage}</span>

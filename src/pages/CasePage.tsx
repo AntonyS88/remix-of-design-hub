@@ -8,6 +8,7 @@ import { Header } from '@/components/Header';
 import { GradientBackground } from '@/components/GradientBackground';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { BlurFade } from '@/components/magicui/blur-fade';
 
 interface LightboxLabels {
   close: string;
@@ -76,7 +77,7 @@ function ImageLightbox({ images, captions, currentIndex, imageAlt, labels, onClo
       role="dialog"
       aria-modal="true"
       aria-label={labels.gallery}
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-background/95 px-4 py-20"
+      className="motion-opacity fixed inset-0 z-[60] flex items-center justify-center bg-background/95 px-4 py-20"
       onClick={onClose}
     >
       <button
@@ -150,13 +151,13 @@ function ImageLightbox({ images, captions, currentIndex, imageAlt, labels, onClo
 
 function EditorialSection({ index, title, children }: { index: string; title: string; children: ReactNode }) {
   return (
-    <section className="grid gap-5 border-t border-border/70 py-10 sm:py-14 lg:grid-cols-12 lg:gap-6">
+    <BlurFade><section className="grid gap-5 border-t border-border/70 py-10 sm:py-14 lg:grid-cols-12 lg:gap-6">
       <div className="lg:col-span-3">
         <p className="eyebrow mb-2">{index}</p>
         <h2 className="text-xl font-semibold tracking-[-0.025em] text-foreground sm:text-2xl">{title}</h2>
       </div>
       <div className="min-w-0 lg:col-span-8 lg:col-start-5">{children}</div>
-    </section>
+    </section></BlurFade>
   );
 }
 
@@ -234,7 +235,7 @@ export default function CasePage() {
             {t.casePage.back}
           </Link>
 
-          <header className="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-12 lg:items-start lg:gap-x-6">
+          <header className="motion-intro mt-10 grid gap-8 sm:mt-12 lg:grid-cols-12 lg:items-start lg:gap-x-6">
             <div className="lg:col-span-7">
               <p className="eyebrow mb-5">
                 {caseData.tags.join(' · ')}
@@ -264,7 +265,7 @@ export default function CasePage() {
             </div>
           </header>
 
-          <figure className="mt-10 overflow-hidden rounded-[var(--radius-visual)] bg-muted sm:mt-14">
+          <figure className="motion-intro motion-intro-later mt-10 overflow-hidden rounded-[var(--radius-visual)] bg-muted sm:mt-14">
             <img
               src={caseData.coverImage}
               alt={caseData.title[lang]}
