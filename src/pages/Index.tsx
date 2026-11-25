@@ -32,7 +32,7 @@ const Index = () => {
     if (!location.hash) return;
 
     const animationFrame = window.requestAnimationFrame(() => {
-      document.querySelector(location.hash)?.scrollIntoView({ behavior: 'smooth' });
+      document.querySelector(location.hash)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     });
 
     return () => window.cancelAnimationFrame(animationFrame);

@@ -427,6 +427,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .motion-cta:hover,
+  .group:hover img {
+    transform: none;
+  }
+
   html {
     scroll-behavior: auto;
   }

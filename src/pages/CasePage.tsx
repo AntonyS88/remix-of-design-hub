@@ -10,6 +10,15 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { BlurFade } from '@/components/magicui/blur-fade';
 
+// Intrinsic sizes reserve space before the case cover has loaded.
+const coverSizes: Record<string, readonly [number, number]> = {
+  remy: [2160, 1277],
+  workenglish: [1607, 730],
+  'operations-dashboard': [1024, 768],
+  'mobile-app-concept': [2000, 1571],
+  'forex-trading-simulator': [1600, 1054],
+};
+
 interface LightboxLabels {
   close: string;
   previous: string;
@@ -269,6 +278,8 @@ export default function CasePage() {
             <img
               src={caseData.coverImage}
               alt={caseData.title[lang]}
+              width={coverSizes[caseData.slug]?.[0]}
+              height={coverSizes[caseData.slug]?.[1]}
               className="h-auto w-full object-contain"
             />
           </figure>
