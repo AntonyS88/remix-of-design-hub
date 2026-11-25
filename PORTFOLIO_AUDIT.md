@@ -33,3 +33,13 @@ Baseline: production and `origin/main` at `3199be3`, inspected 2026-11-25. The a
 The portfolio itself has semantic light/dark CSS variables and reusable UI components. Source files or screenshots alone do not establish that a design system was adopted by a team or delivered to developers.
 
 Screenshots are in [docs/portfolio-audit](docs/portfolio-audit/) and are not evidence of business outcomes. The audit did not cover every page at every breakpoint and theme, every external link, assistive technologies, or measurable Core Web Vitals. Those checks remain open.
+
+## Phase 2 review — 25 November 2026
+
+- **Selected Work / P0 — addressed:** Forex no longer occupies an isolated full-width row; two featured products precede an equal pair of concept/redesign projects. Project types replace the duplicated Product Design tag. See [desktop](docs/portfolio-phase2/home-desktop.jpg) and [mobile](docs/portfolio-phase2/home-mobile.jpg).
+- **Case narratives / P0 — partially addressed:** real images now sit beside the relevant problem, flow, decisions and interface details; project overview and next-project links were added. Additional validated outcomes, implementation evidence and token/handoff artifacts have not been supplied. See the four full-page case screenshots in `docs/portfolio-phase2`.
+- **WorkEnglish / P1 — addressed for mobile:** a real mobile Sprint screenshot replaces the desktop hero on narrow screens, and the heading is smaller. [Mobile capture](docs/portfolio-phase2/workenglish-mobile.jpg).
+- **Conversion / P1 — addressed:** removed the disabled PDF button; Google Docs links remain, and homepage contact copy addresses both employment and collaborations.
+- **Motion / P1 — partially checked:** nested Hero animations removed; reduced-motion rules are present in source. OS-level reduced-motion emulation remains unverified.
+- **QA / P1 — incomplete:** Lighthouse, full keyboard and contrast audits, all-page RU/EN and light/dark combinations and assistive technology remain unverified. Full-page screenshots may show sticky-header stitching artifacts. Do not treat them as proof of accessibility or performance.
+- **PR overlap / P1:** draft PR #5 and #6 both modify the eight motion files. Do not merge both independently.

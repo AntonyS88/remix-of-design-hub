@@ -4,7 +4,6 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { cases, type CaseStudy } from '@/config/cases';
 import type { Language } from '@/config/i18n';
 import { cn } from '@/lib/utils';
-import workEnglishCardCover from '@/assets/workenglish-cover-card.webp';
 import { BlurFade } from '@/components/magicui/blur-fade';
 
 interface ProjectCardProps {
@@ -12,11 +11,17 @@ interface ProjectCardProps {
   lang: Language;
   viewCase: string;
   featured?: boolean;
-  wide?: boolean;
 }
 
-function ProjectCard({ item, lang, viewCase, featured = false, wide = false }: ProjectCardProps) {
-  const editorial = featured || wide;
+const projectTypes: Record<string, { ru: string; en: string }> = {
+  remy: { ru: 'Собственный продукт', en: 'Independent Product' },
+  workenglish: { ru: 'Публичная бета', en: 'Public Beta' },
+  'mobile-app-concept': { ru: 'Концепт Agentic UX', en: 'Agentic UX Concept' },
+  'forex-trading-simulator': { ru: 'Редизайн продукта', en: 'Product Redesign' },
+};
+
+function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProps) {
+  const editorial = featured;
   return (
     <article className={cn(!featured && 'h-full')}>
       <Link
@@ -26,17 +31,19 @@ function ProjectCard({ item, lang, viewCase, featured = false, wide = false }: P
         <div
           className={cn(
             'project-cover overflow-hidden rounded-[var(--radius-visual)] bg-muted ring-offset-background transition-shadow group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-4',
-            editorial ? (item.coverAspect ?? 'aspect-[16/9]') : item.slug === 'workenglish' ? 'aspect-[126/57]' : 'aspect-[14/11]'
+            item.slug === 'forex-trading-simulator' && 'bg-[#0c1220]',
+            item.slug === 'mobile-app-concept' && 'bg-[#11111d]',
+            editorial ? (item.slug === 'remy' ? 'aspect-[2160/1277]' : (item.coverAspect ?? 'aspect-[16/9]')) : 'aspect-[14/11]'
           )}
         >
           <img
-            src={item.slug === 'workenglish' ? workEnglishCardCover : item.coverImage}
+            src={item.coverImage}
             alt={item.title[lang]}
             loading="lazy"
             decoding="async"
             className={cn(
               'h-full w-full transition-transform duration-500 ease-out',
-              editorial && item.coverAspect ? 'object-contain' : 'object-cover group-hover:scale-[1.02]'
+              'object-contain'
             )}
           />
         </div>
@@ -44,7 +51,7 @@ function ProjectCard({ item, lang, viewCase, featured = false, wide = false }: P
         <div className={cn('mt-5', editorial ? 'sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(18rem,0.62fr)] sm:gap-10' : 'flex flex-1 flex-col')}>
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-              {item.tags.join(' · ')} · {item.content[lang].hero.role}
+              {projectTypes[item.slug][lang]} · {item.content[lang].hero.role}
             </p>
             <h3 className={cn('font-semibold tracking-[-0.025em] text-foreground', editorial ? 'text-2xl sm:text-4xl' : 'text-xl sm:text-2xl')}>
               {item.title[lang]}
@@ -76,7 +83,7 @@ export function Portfolio() {
   const selectedCases = ['remy', 'workenglish', 'mobile-app-concept', 'forex-trading-simulator']
     .map((slug) => cases.find((item) => item.slug === slug))
     .filter((item): item is CaseStudy => Boolean(item));
-  const [featured, ...secondary] = selectedCases;
+  const [featured, secondFeatured, ...secondary] = selectedCases;
 
   if (!featured) return null;
 
@@ -94,10 +101,12 @@ export function Portfolio() {
 
         <BlurFade><ProjectCard item={featured} lang={lang} viewCase={t.cases.viewCase} featured /></BlurFade>
 
+        {secondFeatured && <BlurFade className="mt-16 sm:mt-24"><ProjectCard item={secondFeatured} lang={lang} viewCase={t.cases.viewCase} featured /></BlurFade>}
+
         <div className="mt-16 grid gap-12 sm:mt-24 sm:grid-cols-2 sm:gap-6 lg:gap-10">
           {secondary.map((item, index) => (
-            <BlurFade key={item.slug} className={cn('h-full', index === secondary.length - 1 && 'sm:col-span-2')} delay={index * 60}>
-              <ProjectCard item={item} lang={lang} viewCase={t.cases.viewCase} wide={index === secondary.length - 1} />
+            <BlurFade key={item.slug} className="h-full" delay={index * 60}>
+              <ProjectCard item={item} lang={lang} viewCase={t.cases.viewCase} />
             </BlurFade>
           ))}
         </div>

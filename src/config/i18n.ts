@@ -177,7 +177,7 @@ export const i18n = {
     },
     contact: {
       title: "Давайте создавать полезные продукты.",
-      description: "Открыт к позициям Product Designer в командах, создающих SaaS, AI и цифровые продукты. Особенно интересны 0→1 задачи, где можно пройти путь от проблемы до работающего решения.",
+      description: "Открыт к предложениям о работе и сотрудничеству над SaaS, AI и цифровыми продуктами. Особенно интересны 0→1 задачи, где можно пройти путь от проблемы до работающего решения.",
     },
     contacts: {
       title: "Контакты",
@@ -305,7 +305,7 @@ export const i18n = {
     },
     contact: {
       title: "Let's build something useful.",
-      description: "I'm open to Product Designer roles in teams building SaaS, AI and digital products, especially 0→1 work that connects product problems with working solutions.",
+      description: "I'm open to Product Designer roles and project collaborations in SaaS, AI and digital products, especially 0→1 work that connects product problems with working solutions.",
     },
     contacts: {
       title: "Contacts",

@@ -101,14 +101,6 @@ export default function ResumePage() {
                 </a>
               </Button>
 
-              <Button
-                variant="secondary"
-                size="lg"
-                className="justify-between rounded-full border border-border/70 bg-transparent px-6 text-muted-foreground disabled:opacity-60"
-                disabled
-              >
-                {data.downloadPdf}
-              </Button>
             </div>
           </section>
 

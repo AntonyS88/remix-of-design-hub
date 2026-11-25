@@ -2,7 +2,8 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
-import { getCaseBySlug } from '@/config/cases';
+import { cases, getCaseBySlug } from '@/config/cases';
+import workEnglishMobile from '@/assets/workenglish-practice-mobile.webp';
 import { siteConfig } from '@/config/site.config';
 import { Header } from '@/components/Header';
 import { GradientBackground } from '@/components/GradientBackground';
@@ -178,6 +179,10 @@ export default function CasePage() {
   const caseData = getCaseBySlug(slug || '');
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [slug]);
+
+  useEffect(() => {
     if (caseData) {
       document.title = `${caseData.title[lang]} — Anton Sechin`;
     }
@@ -228,6 +233,40 @@ export default function CasePage() {
     setLightboxOpen(true);
   };
 
+  // Curated image groups keep existing evidence next to the decisions it illustrates.
+  const groups: Record<string, number[][]> = {
+    remy: [[], [1], [0, 3], [2]],
+    workenglish: [[], [2, 3], [0, 1], [4]],
+    'mobile-app-concept': [[0, 1], [3], [2, 4], [5]],
+    'forex-trading-simulator': [[0, 1], [2, 3], [6, 7, 8, 9, 10], [4, 5]],
+  };
+  const imageGroups = groups[caseData.slug] ?? [[], [], content.gallery.map((_, index) => index), []];
+  const renderImages = (indices: number[]) => indices.length > 0 && (
+    <div className="mt-8 grid gap-8 sm:grid-cols-2 sm:gap-6">
+      {indices.map((index) => {
+        const image = content.gallery[index];
+        const caption = content.galleryCaptions?.[index];
+        return (
+          <figure key={`${image}-${index}`} className="min-w-0">
+            <button type="button" onClick={() => openLightbox(index)} className="group block w-full overflow-hidden rounded-[var(--radius-visual)] bg-muted text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4" aria-label={caption || lightboxLabels.goTo(index + 1)}>
+              <img src={image} alt={caption || `${caseData.title[lang]} — ${index + 1}`} loading="lazy" decoding="async" className="h-auto w-full object-contain" />
+            </button>
+            {caption && <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">{caption}</figcaption>}
+          </figure>
+        );
+      })}
+    </div>
+  );
+  const order = ['remy', 'workenglish', 'mobile-app-concept', 'forex-trading-simulator'];
+  const position = order.indexOf(caseData.slug);
+  const nextCase = position >= 0 ? cases.find((item) => item.slug === order[(position + 1) % order.length]) : undefined;
+  const projectType: Record<string, [string, string]> = {
+    remy: ['Собственный продукт', 'Independent product'],
+    workenglish: ['Публичная бета', 'Public beta'],
+    'mobile-app-concept': ['Концепт', 'Concept'],
+    'forex-trading-simulator': ['Редизайн', 'Redesign'],
+  };
+
   return (
     <>
       <div aria-hidden={lightboxOpen ? true : undefined}>
@@ -249,7 +288,7 @@ export default function CasePage() {
               <p className="eyebrow mb-5">
                 {caseData.tags.join(' · ')}
               </p>
-              <h1 className="max-w-5xl text-[clamp(2.75rem,6.2vw,5.75rem)] font-bold leading-[0.94] tracking-[-0.06em] text-foreground">
+              <h1 className="max-w-5xl text-[clamp(2.15rem,6.2vw,5.75rem)] font-bold leading-[1.02] tracking-[-0.055em] text-foreground sm:leading-[0.94]">
                 {content.hero.title}
               </h1>
             </div>
@@ -275,6 +314,8 @@ export default function CasePage() {
           </header>
 
           <figure className="motion-intro motion-intro-later mt-10 overflow-hidden rounded-[var(--radius-visual)] bg-muted sm:mt-14">
+            <picture>
+            {caseData.slug === 'workenglish' && <source media="(max-width: 639px)" srcSet={workEnglishMobile} />}
             <img
               src={caseData.coverImage}
               alt={caseData.title[lang]}
@@ -282,18 +323,28 @@ export default function CasePage() {
               height={coverSizes[caseData.slug]?.[1]}
               className="h-auto w-full object-contain"
             />
+            </picture>
           </figure>
 
           <div className="mt-16 sm:mt-20">
-            <EditorialSection index="01" title={t.casePage.problem}>
+            <EditorialSection index="00" title={lang === 'ru' ? 'О проекте' : 'Project overview'}>
+              <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">{content.hero.outcome}</p>
+              <dl className="mt-8 grid grid-cols-2 gap-6 text-sm sm:grid-cols-3">
+                <div><dt className="text-muted-foreground">{lang === 'ru' ? 'Роль' : 'Role'}</dt><dd className="mt-1 font-semibold">{content.hero.role}</dd></div>
+                <div><dt className="text-muted-foreground">{lang === 'ru' ? 'Формат и статус' : 'Type and status'}</dt><dd className="mt-1 font-semibold">{projectType[caseData.slug]?.[lang === 'ru' ? 0 : 1] ?? caseData.tags[0]} · {content.hero.period}</dd></div>
+                <div><dt className="text-muted-foreground">{lang === 'ru' ? 'Платформа' : 'Platform'}</dt><dd className="mt-1 font-semibold">{caseData.tags.filter((tag) => ['Mobile', 'Responsive', 'B2B'].includes(tag)).join(' · ') || 'Web'}</dd></div>
+              </dl>
+            </EditorialSection>
+            <EditorialSection index="01" title={lang === 'ru' ? 'Проблема и гипотеза' : 'Problem & hypothesis'}>
               <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">{content.problem}</p>
+              {renderImages(imageGroups[0])}
             </EditorialSection>
 
             <EditorialSection index="02" title={t.casePage.role}>
               <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">{content.role}</p>
             </EditorialSection>
 
-            <EditorialSection index="03" title={t.casePage.process}>
+            <EditorialSection index="03" title={lang === 'ru' ? 'Процесс и сценарии' : 'Process & user flows'}>
               <ol className="divide-y divide-border/70 border-y border-border/70">
                 {content.process.map((step, index) => (
                   <li key={step} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 py-4 text-sm leading-relaxed text-muted-foreground sm:grid-cols-[3rem_minmax(0,1fr)] sm:text-base">
@@ -302,63 +353,17 @@ export default function CasePage() {
                   </li>
                 ))}
               </ol>
+              {renderImages(imageGroups[1])}
             </EditorialSection>
 
-            <EditorialSection index="04" title={t.casePage.solution}>
+            <EditorialSection index="04" title={lang === 'ru' ? 'Ключевые решения' : 'Key design decisions'}>
               <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">{content.solution}</p>
+              {renderImages(imageGroups[2])}
             </EditorialSection>
-
-            <section className="border-t border-border/70 py-10 sm:py-16" aria-label={lightboxLabels.gallery}>
-              <div className="mb-7 flex items-end justify-between gap-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">{lightboxLabels.galleryTitle}</p>
-                <span className="text-xs font-semibold tabular-nums tracking-[0.16em] text-muted-foreground" aria-hidden="true">
-                  01—{String(content.gallery.length).padStart(2, '0')}
-                </span>
-              </div>
-              <div className={cn(
-                'grid gap-8 sm:gap-12',
-                (!content.galleryCaptions || content.galleryLayout === 'screens') && 'sm:grid-cols-2 sm:gap-6'
-              )}>
-                {content.gallery.map((image, index) => {
-                  const caption = content.galleryCaptions?.[index];
-                  const screenGallery = content.galleryLayout === 'screens';
-
-                  return (
-                    <figure
-                      key={`${image}-${index}`}
-                      className={cn(
-                        (!content.galleryCaptions || screenGallery) && index === 0 && 'sm:col-span-2',
-                        screenGallery && index > 0 && 'mx-auto w-full max-w-sm'
-                      )}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => openLightbox(index)}
-                        className="group block w-full overflow-hidden rounded-[var(--radius-visual)] bg-muted text-left ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
-                        aria-label={caption || lightboxLabels.goTo(index + 1)}
-                      >
-                        <img
-                          src={image}
-                          alt={caption || `${caseData.title[lang]} — ${index + 1}`}
-                          loading="lazy"
-                          decoding="async"
-                          className="h-auto w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.015]"
-                        />
-                      </button>
-                      {caption && (
-                        <figcaption className="mt-4 grid gap-2 text-sm leading-relaxed text-muted-foreground sm:grid-cols-[3rem_minmax(0,1fr)]">
-                          <span className="font-semibold tabular-nums text-foreground/55" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-                          <span className="max-w-2xl">{caption}</span>
-                        </figcaption>
-                      )}
-                    </figure>
-                  );
-                })}
-              </div>
-            </section>
 
             <EditorialSection index="05" title={t.casePage.uiDetails}>
               <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">{content.uiDetails}</p>
+              {renderImages(imageGroups[3])}
             </EditorialSection>
 
             <EditorialSection index="06" title={t.casePage.outcome}>
@@ -385,6 +390,10 @@ export default function CasePage() {
               </ul>
             </EditorialSection>
 
+            {nextCase && <nav aria-label={lang === 'ru' ? 'Следующий проект' : 'Next project'} className="border-t border-border/70 py-10">
+              <p className="eyebrow mb-3">{lang === 'ru' ? 'Следующий проект' : 'Next project'}</p>
+              <Link to={`/case/${nextCase.slug}`} className="inline-flex items-center gap-3 text-2xl font-semibold tracking-tight hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">{nextCase.title[lang]} <ArrowUpRight className="h-5 w-5" /></Link>
+            </nav>}
             <section className="grid gap-7 border-y border-border/70 py-12 sm:py-16 lg:grid-cols-12 lg:items-end lg:gap-6">
               <div className="lg:col-span-7">
                 <p className="eyebrow mb-3">{t.contacts.telegram}</p>

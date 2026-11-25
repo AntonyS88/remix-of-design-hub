@@ -10,7 +10,7 @@ export function Hero() {
   const { t, lang } = useLanguage();
 
   return (
-    <section className="flex min-h-[100svh] items-center pb-14 pt-28 sm:pb-16 sm:pt-32 lg:min-h-[80svh] lg:items-start lg:pb-12">
+    <section className="flex items-center pb-10 pt-24 sm:pb-12 sm:pt-28 lg:min-h-[74svh] lg:items-start lg:pb-10">
       <div className="layout-shell relative">
         <div className="pointer-events-none absolute inset-x-0 top-0 hidden grid-cols-12 gap-x-6 lg:grid">
           <img
@@ -23,10 +23,10 @@ export function Hero() {
           />
         </div>
 
-        <div className="grid gap-9 sm:gap-11 lg:grid-cols-12 lg:items-start lg:gap-x-6 lg:gap-y-0 lg:pt-[10.75rem]">
+        <div className="grid gap-7 sm:gap-9 lg:grid-cols-12 lg:items-start lg:gap-x-6 lg:gap-y-0 lg:pt-[10rem]">
           <h1 aria-label="Anton Sechin" className="motion-intro min-w-0 text-[clamp(4.25rem,13vw,10rem)] font-bold uppercase leading-[0.82] tracking-[-0.075em] text-foreground lg:col-span-7">
-            <span className="motion-intro block">Anton</span>
-            <span className="motion-intro motion-intro-later block">Sechin</span>
+            <span className="block">Anton</span>
+            <span className="block">Sechin</span>
           </h1>
 
           <div className="motion-intro motion-intro-later max-w-xl lg:col-start-8 lg:col-end-13 lg:max-w-[34rem]">
@@ -58,16 +58,18 @@ export function Hero() {
                 {t.hero.resume}
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
               </Link>
+              <a href="#contact" className="inline-flex items-center gap-2 border-b border-foreground/30 py-1 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4">
+                {lang === 'ru' ? 'Связаться' : 'Contact'} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
             </div>
           </div>
         </div>
 
-        <ol className="motion-intro motion-intro-last mt-14 grid grid-cols-2 border-y border-border/70 sm:mt-16 sm:grid-cols-4 lg:mt-10" aria-label="Idea to shipped product">
+        <ol className="motion-intro motion-intro-last mt-10 grid grid-cols-2 border-y border-border/70 sm:mt-12 sm:grid-cols-4 lg:mt-10" aria-label="Idea to shipped product">
           {buildStages.map((stage, index) => (
             <li
               key={stage}
-              className="motion-intro flex items-center gap-3 py-4 text-xs font-semibold tracking-[0.16em] text-muted-foreground sm:border-l sm:px-5 sm:first:border-l-0"
-              style={{ animationDelay: `${index * 45}ms` }}
+              className="flex items-center gap-3 py-4 text-xs font-semibold tracking-[0.16em] text-muted-foreground sm:border-l sm:px-5 sm:first:border-l-0"
             >
               <span>{String(index + 1).padStart(2, '0')}</span>
               <span>{stage}</span>
