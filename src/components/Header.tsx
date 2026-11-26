@@ -33,7 +33,7 @@ export function Header() {
     setMobileMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     }
   };
 
@@ -100,7 +100,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute inset-x-0 top-16 border-b border-border/70 bg-background md:hidden">
+        <div className="motion-opacity absolute inset-x-0 top-16 border-b border-border/70 bg-background md:hidden">
           <nav id="mobile-navigation" className="layout-shell flex flex-col py-3" aria-label={mobileNavigationLabel}>
             {navItems.map((item) =>
               item.type === 'route' ? (

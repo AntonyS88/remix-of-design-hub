@@ -10,6 +10,7 @@ import { GradientBackground } from '@/components/GradientBackground';
 import { BackToTop } from '@/components/BackToTop';
 import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/site.config';
+import { BlurFade } from '@/components/magicui/blur-fade';
 
 const Index = () => {
   const { lang } = useLanguage();
@@ -31,7 +32,7 @@ const Index = () => {
     if (!location.hash) return;
 
     const animationFrame = window.requestAnimationFrame(() => {
-      document.querySelector(location.hash)?.scrollIntoView({ behavior: 'smooth' });
+      document.querySelector(location.hash)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     });
 
     return () => window.cancelAnimationFrame(animationFrame);
@@ -44,9 +45,9 @@ const Index = () => {
       <main>
         <Hero />
         <Portfolio />
-        <Capabilities />
-        <HowIWork />
-        <Contacts />
+        <BlurFade><Capabilities /></BlurFade>
+        <BlurFade><HowIWork /></BlurFade>
+        <BlurFade><Contacts /></BlurFade>
       </main>
       <BackToTop />
     </>

@@ -395,7 +395,44 @@
   }
 }
 
+/* Motion stays readable before JavaScript or when observers are unavailable. */
+:root {
+  --motion-duration: 480ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-reveal[data-revealed='true'] {
+    animation: motion-arrive var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms) both;
+  }
+  .motion-intro { animation: motion-arrive var(--motion-duration) var(--motion-ease) both; }
+  .motion-intro-later { animation-delay: 80ms; }
+  .motion-intro-last { animation-delay: 150ms; }
+  .motion-opacity { animation: motion-opacity var(--motion-duration) ease-out both; }
+  @keyframes motion-opacity { from { opacity: .88; } to { opacity: 1; } }
+  @keyframes motion-arrive {
+    from { opacity: .88; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .project-cover { box-shadow: 0 12px 36px hsl(var(--foreground) / .08); }
+  .motion-cta { transition: transform 200ms var(--motion-ease), background-color 200ms ease, color 200ms ease; }
+  .motion-cta:hover { transform: translateY(-2px); }
+}
+
+@media (hover: none) {
+  .group:hover img { transform: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .motion-cta:hover,
+  .group:hover img,
+  .group:hover svg {
+    transform: none !important;
+  }
+
   html {
     scroll-behavior: auto;
   }

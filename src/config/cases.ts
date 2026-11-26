@@ -185,7 +185,7 @@ export const cases: CaseStudy[] = [
           title: "Remy — a calm focus and task system",
           role: "Product Designer",
           period: "2026 · in progress",
-          outcome: "An independent task manager for organizing tasks, managing focus, and planning the day with less cognitive overhead",
+          outcome: "An independent task manager for organizing tasks, managing focus, and planning work and everyday life",
         },
         problem: "Traditional task managers easily become long backlogs: people have to remember tasks, prioritize them, and repeatedly decide what to do next. Remy focuses on the gap between capturing a task and actually starting it, reducing the cognitive load around choosing the next action.",
         role: "I develop Remy as an independent product: framing the problem and product model, designing the information architecture, UX/UI and design system, then using AI coding agents to turn decisions into a working prototype and test them in the product.",
