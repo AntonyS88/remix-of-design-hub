@@ -17,13 +17,15 @@ export function BackToTop() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
     });
   };
 
   return (
     <button
       onClick={scrollToTop}
+      tabIndex={isVisible ? 0 : -1}
+      aria-hidden={!isVisible}
       className={cn(
         "fixed bottom-6 right-6 z-40",
         "w-12 h-12 rounded-full",

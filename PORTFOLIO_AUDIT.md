@@ -43,3 +43,10 @@ Screenshots are in [docs/portfolio-audit](docs/portfolio-audit/) and are not evi
 - **Motion / P1 — partially checked:** nested Hero animations removed; reduced-motion rules are present in source. OS-level reduced-motion emulation remains unverified.
 - **QA / P1 — incomplete:** Lighthouse, full keyboard and contrast audits, all-page RU/EN and light/dark combinations and assistive technology remain unverified. Full-page screenshots may show sticky-header stitching artifacts. Do not treat them as proof of accessibility or performance.
 - **PR overlap / P1:** draft PR #5 and #6 both modify the eight motion files. Do not merge both independently.
+
+## Final polish follow-up — 26 November 2026
+
+- **WorkEnglish card:** dedicated existing cover restored with matching container ratio. Mobile hero reserves its own 390:844 ratio; layout-shift measurement remains open.
+- **Case presentation:** existing images are grouped by content and format; wide research, architecture, wireframes and Forex design-system artifacts use the available text-column width. English WorkEnglish product screenshots remain unavailable in this repository.
+- **Lightbox and motion:** focus retention and restoration have regression tests; pagination targets are 44 px in code. Reduced-motion scrolling has a unit test, but system/browser emulation and physical touch testing are outstanding.
+- **Release gate remains incomplete:** current viewport control did not change the measured browser width, so final responsive viewport matrix is not established. Lighthouse is unavailable; social preview on production and public access to resume documents need verification after release.

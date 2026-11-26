@@ -428,8 +428,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .motion-cta:hover,
-  .group:hover img {
-    transform: none;
+  .group:hover img,
+  .group:hover svg {
+    transform: none !important;
   }
 
   html {

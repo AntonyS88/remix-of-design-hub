@@ -42,10 +42,12 @@ interface ImageLightboxProps {
 function ImageLightbox({ images, captions, currentIndex, imageAlt, labels, onClose, onNavigate }: ImageLightboxProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const currentIndexRef = useRef(currentIndex);
+  currentIndexRef.current = currentIndex;
 
   const navigate = useCallback((direction: -1 | 1) => {
-    onNavigate((currentIndex + direction + images.length) % images.length);
-  }, [currentIndex, images.length, onNavigate]);
+    onNavigate((currentIndexRef.current + direction + images.length) % images.length);
+  }, [images.length, onNavigate]);
 
   useEffect(() => {
     const previouslyFocused = document.activeElement as HTMLElement | null;
@@ -137,7 +139,7 @@ function ImageLightbox({ images, captions, currentIndex, imageAlt, labels, onClo
         <ChevronRight className="h-6 w-6" strokeWidth={2} />
       </button>
 
-      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-2">
+      <div className="absolute bottom-2 left-1/2 flex w-full max-w-lg -translate-x-1/2 flex-wrap items-center justify-center">
         {images.map((_, index) => (
           <button
             key={index}
@@ -146,13 +148,10 @@ function ImageLightbox({ images, captions, currentIndex, imageAlt, labels, onClo
               event.stopPropagation();
               onNavigate(index);
             }}
-            className={cn(
-              'h-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4',
-              index === currentIndex ? 'w-7 bg-primary' : 'w-2 bg-muted-foreground/40 hover:bg-muted-foreground/70'
-            )}
+            className="flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             aria-label={labels.goTo(index + 1)}
             aria-current={index === currentIndex ? 'true' : undefined}
-          />
+          ><span aria-hidden="true" className={cn('h-2 rounded-full', index === currentIndex ? 'w-7 bg-primary' : 'w-2 bg-muted-foreground/40')} /></button>
         ))}
       </div>
     </div>
@@ -170,6 +169,13 @@ function EditorialSection({ index, title, children }: { index: string; title: st
     </section></BlurFade>
   );
 }
+
+
+function FullWidthFigure({ children }: { children: ReactNode }) { return <div>{children}</div>; }
+function ResponsiveShowcase({ children }: { children: ReactNode }) { return <div className="grid items-start gap-6 sm:grid-cols-[minmax(0,3fr)_minmax(0,1fr)]">{children}</div>; }
+function MobileScreenSequence({ children }: { children: ReactNode }) { return <div className="sm:columns-2 sm:gap-6">{children}</div>; }
+function ImagePair({ children }: { children: ReactNode }) { return <div className="grid items-start gap-6 sm:grid-cols-2">{children}</div>; }
+function DesignSystemShowcase({ children }: { children: ReactNode }) { return <div>{children}</div>; }
 
 export default function CasePage() {
   const { slug } = useParams<{ slug: string }>();
@@ -233,33 +239,37 @@ export default function CasePage() {
     setLightboxOpen(true);
   };
 
-  // Curated image groups keep existing evidence next to the decisions it illustrates.
-  const groups: Record<string, number[][]> = {
-    remy: [[], [1], [0, 3], [2]],
-    workenglish: [[], [2, 3], [0, 1], [4]],
-    'mobile-app-concept': [[0, 1], [3], [2, 4], [5]],
-    'forex-trading-simulator': [[0, 1], [2, 3], [6, 7, 8, 9, 10], [4, 5]],
+  // Layouts are curated per project; image indices refer to the original gallery and lightbox order.
+  type Composition = { kind: 'full' | 'responsive' | 'sequence' | 'pair' | 'system'; indices: number[] };
+  const compositions: Record<string, Composition[][]> = {
+    remy: [[], [{ kind: 'full', indices: [1] }], [{ kind: 'responsive', indices: [0, 3] }], [{ kind: 'sequence', indices: [2] }]],
+    workenglish: [[], [{ kind: 'responsive', indices: [3, 2] }], [{ kind: 'full', indices: [0, 1] }], [{ kind: 'full', indices: [4] }]],
+    'mobile-app-concept': [[{ kind: 'full', indices: [0, 1] }], [{ kind: 'full', indices: [3] }], [{ kind: 'full', indices: [2] }, { kind: 'pair', indices: [4, 5] }], []],
+    'forex-trading-simulator': [[{ kind: 'full', indices: [0, 1] }], [{ kind: 'full', indices: [2, 3] }], [{ kind: 'sequence', indices: [6, 7, 8, 9, 10] }], [{ kind: 'system', indices: [4, 5] }]],
   };
-  const imageGroups = groups[caseData.slug] ?? [[], [], content.gallery.map((_, index) => index), []];
-  const renderImages = (indices: number[]) => indices.length > 0 && (
-    <div className="mt-8 grid gap-8 sm:grid-cols-2 sm:gap-6">
-      {indices.map((index) => {
-        const image = content.gallery[index];
-        const caption = content.galleryCaptions?.[index];
-        return (
-          <figure key={`${image}-${index}`} className="min-w-0">
-            <button type="button" onClick={() => openLightbox(index)} className="group block w-full overflow-hidden rounded-[var(--radius-visual)] bg-muted text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4" aria-label={caption || lightboxLabels.goTo(index + 1)}>
-              <img src={image} alt={caption || `${caseData.title[lang]} — ${index + 1}`} loading="lazy" decoding="async" className="h-auto w-full object-contain" />
-            </button>
-            {caption && <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">{caption}</figcaption>}
-          </figure>
-        );
-      })}
-    </div>
+  const imageGroups = compositions[caseData.slug] ?? [[], [], [{ kind: 'full' as const, indices: content.gallery.map((_, index) => index) }], []];
+  const figure = (index: number) => {
+    const image = content.gallery[index];
+    const caption = content.galleryCaptions?.[index];
+    return (
+      <figure key={`${image}-${index}`} className="mb-8 min-w-0 break-inside-avoid sm:mb-6">
+        <button type="button" onClick={() => openLightbox(index)} className="block w-full overflow-hidden rounded-[var(--radius-visual)] bg-muted text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4" aria-label={caption || lightboxLabels.goTo(index + 1)}>
+          <img src={image} alt={caption || `${caseData.title[lang]} — ${index + 1}`} loading="lazy" decoding="async" className="h-auto w-full object-contain" />
+        </button>
+        {caption && <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">{caption}</figcaption>}
+      </figure>
+    );
+  };
+  const renderImages = (items: Composition[]) => items.length > 0 && (
+    <div className="mt-8">{items.map((item, index) => {
+      const Layout = { full: FullWidthFigure, responsive: ResponsiveShowcase, sequence: MobileScreenSequence, pair: ImagePair, system: DesignSystemShowcase }[item.kind];
+      return <Layout key={`${item.kind}-${index}`}>{item.indices.map(figure)}</Layout>;
+    })}</div>
   );
   const order = ['remy', 'workenglish', 'mobile-app-concept', 'forex-trading-simulator'];
   const position = order.indexOf(caseData.slug);
   const nextCase = position >= 0 ? cases.find((item) => item.slug === order[(position + 1) % order.length]) : undefined;
+  const platforms: Record<string, string> = { remy: 'Web / Mobile web', workenglish: 'Web / Mobile web', 'mobile-app-concept': 'Mobile / iOS concept', 'forex-trading-simulator': 'Mobile', 'operations-dashboard': 'Web' };
   const projectType: Record<string, [string, string]> = {
     remy: ['Собственный продукт', 'Independent product'],
     workenglish: ['Публичная бета', 'Public beta'],
@@ -313,9 +323,9 @@ export default function CasePage() {
             </div>
           </header>
 
-          <figure className="motion-intro motion-intro-later mt-10 overflow-hidden rounded-[var(--radius-visual)] bg-muted sm:mt-14">
+          <figure className={cn("motion-intro motion-intro-later mt-10 overflow-hidden rounded-[var(--radius-visual)] bg-muted sm:mt-14", caseData.slug === 'workenglish' && "aspect-[390/844] sm:aspect-[1607/730]")}>
             <picture>
-            {caseData.slug === 'workenglish' && <source media="(max-width: 639px)" srcSet={workEnglishMobile} />}
+            {caseData.slug === 'workenglish' && <source media="(max-width: 639px)" srcSet={workEnglishMobile} width={390} height={844} />}
             <img
               src={caseData.coverImage}
               alt={caseData.title[lang]}
@@ -328,11 +338,10 @@ export default function CasePage() {
 
           <div className="mt-16 sm:mt-20">
             <EditorialSection index="00" title={lang === 'ru' ? 'О проекте' : 'Project overview'}>
-              <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">{content.hero.outcome}</p>
               <dl className="mt-8 grid grid-cols-2 gap-6 text-sm sm:grid-cols-3">
                 <div><dt className="text-muted-foreground">{lang === 'ru' ? 'Роль' : 'Role'}</dt><dd className="mt-1 font-semibold">{content.hero.role}</dd></div>
                 <div><dt className="text-muted-foreground">{lang === 'ru' ? 'Формат и статус' : 'Type and status'}</dt><dd className="mt-1 font-semibold">{projectType[caseData.slug]?.[lang === 'ru' ? 0 : 1] ?? caseData.tags[0]} · {content.hero.period}</dd></div>
-                <div><dt className="text-muted-foreground">{lang === 'ru' ? 'Платформа' : 'Platform'}</dt><dd className="mt-1 font-semibold">{caseData.tags.filter((tag) => ['Mobile', 'Responsive', 'B2B'].includes(tag)).join(' · ') || 'Web'}</dd></div>
+                <div><dt className="text-muted-foreground">{lang === 'ru' ? 'Платформа' : 'Platform'}</dt><dd className="mt-1 font-semibold">{platforms[caseData.slug] ?? 'Web'}</dd></div>
               </dl>
             </EditorialSection>
             <EditorialSection index="01" title={lang === 'ru' ? 'Проблема и гипотеза' : 'Problem & hypothesis'}>
@@ -361,7 +370,7 @@ export default function CasePage() {
               {renderImages(imageGroups[2])}
             </EditorialSection>
 
-            <EditorialSection index="05" title={t.casePage.uiDetails}>
+            <EditorialSection index="05" title={caseData.slug === 'workenglish' ? (lang === 'ru' ? 'Интерфейс и адаптивность' : 'Interface & responsiveness') : t.casePage.uiDetails}>
               <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">{content.uiDetails}</p>
               {renderImages(imageGroups[3])}
             </EditorialSection>

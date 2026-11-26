@@ -5,6 +5,7 @@ import { cases, type CaseStudy } from '@/config/cases';
 import type { Language } from '@/config/i18n';
 import { cn } from '@/lib/utils';
 import { BlurFade } from '@/components/magicui/blur-fade';
+import workEnglishCardCover from '@/assets/workenglish-cover-card.webp';
 
 interface ProjectCardProps {
   item: CaseStudy;
@@ -33,11 +34,11 @@ function ProjectCard({ item, lang, viewCase, featured = false }: ProjectCardProp
             'project-cover overflow-hidden rounded-[var(--radius-visual)] bg-muted ring-offset-background transition-shadow group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-4',
             item.slug === 'forex-trading-simulator' && 'bg-[#0c1220]',
             item.slug === 'mobile-app-concept' && 'bg-[#11111d]',
-            editorial ? (item.slug === 'remy' ? 'aspect-[2160/1277]' : (item.coverAspect ?? 'aspect-[16/9]')) : 'aspect-[14/11]'
+            editorial ? (item.slug === 'remy' ? 'aspect-[2160/1277]' : item.slug === 'workenglish' ? 'aspect-[126/57]' : (item.coverAspect ?? 'aspect-[16/9]')) : 'aspect-[14/11]'
           )}
         >
           <img
-            src={item.coverImage}
+            src={item.slug === 'workenglish' ? workEnglishCardCover : item.coverImage}
             alt={item.title[lang]}
             loading="lazy"
             decoding="async"
